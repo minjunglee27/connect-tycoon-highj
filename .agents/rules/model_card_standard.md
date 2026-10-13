@@ -35,6 +35,8 @@
    - `model_cards/README.md`: 전체 버전 히스토리 테이블 자동 업데이트
 4. **허깅페이스 실시간 동기화**:
    - `minjunglee27/connectailab-rl-highj-v{N}`의 `README.md`로 즉시 커밋 & 푸시
+5. **깃허브 자동 커밋 & 푸시 (Automatic Git Push)**:
+   - 새로운 버전(v2, v3...), 브레인 백업, 문서 수정 등 유의미한 작업이 완료될 때마다 자동으로 커밋하고 `origin main` (`minjunglee27/connect-tycoon-highj`)으로 즉시 `git push`를 수행한다.
 
 ## 5. Template & Section Policy
 * **기본 템플릿**: `connectailab-rl-highj-teacher`의 원본 구조 및 레이아웃을 엄격히 준수.
