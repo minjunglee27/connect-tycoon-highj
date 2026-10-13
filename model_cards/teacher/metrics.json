@@ -1,0 +1,16 @@
+{
+  "version": "teacher",
+  "created_at": "2026-10-13",
+  "base_model": "Qwen/Qwen3.5-0.8B",
+  "repo": "minjunglee27/connectailab-rl-highj-teacher",
+  "profit": 1221.15,
+  "sat": 0.9683965,
+  "incidents": 8.0,
+  "months": 2,
+  "card": {
+    "caught": 146,
+    "fraud": 177,
+    "saved": 0.7199487125932631,
+    "cases": 713
+  }
+}
