@@ -9,7 +9,11 @@
   - 본명: Minjung Lee (영문 본명)
   - 활동명: Highj
 
-## 2. Standard Intro Format (모델 카드 서두 규격 - 이중 작성 금지)
+## 2. Standard Header & Intro Format (모델 카드 제목 및 서두 규격)
+* **H1 제목 규격**:
+  - v1, v2 등: `# [CONNECT AI LAB] RL AI COMPANY DECISION MAKING MODEL (Highj v{N})`
+  - Teacher: `# [CONNECT AI LAB] RL AI COMPANY DECISION MAKING MODEL (Teacher Baseline)`
+* **표준 도입부 (이중 작성 금지)**:
 > **CONNECT AI LAB**의 기업 의사결정 AI 연구 프로젝트로, 소속 연구원 **Minjung Lee (Highj)**가 개발한 의사결정 특화 강화학습 모델 **connectailab-rl-highj-{version}**입니다.  
 > 회사의 경영 상황(인력 배치 · 재고 발주 · 마케팅 · 고객센터 · 환불 · 보안)과 질문, 보기를 읽고 **보기 글자 하나**로 답하는 모델입니다. 보기 글자의 확률이 선택지별 확률, 가장 큰 값이 확신입니다.  
 > [CONNECT TYCOON](https://github.com/wonseokjung/connect-tycoon) 시뮬레이터에서 추출한 학습 데이터로 `Qwen/Qwen3.5-0.8B`에 LoRA 미세조정 및 강화학습(RL)을 진행했습니다.

@@ -14,7 +14,7 @@ tags: [reinforcement-learning, deep-reinforcement-learning, grpo, decision-makin
 
 
 
-# RL AI COMPANY DECISION MAKING MODEL (Highj v1)
+# [CONNECT AI LAB] RL AI COMPANY DECISION MAKING MODEL (Highj v1)
 
 **CONNECT AI LAB**의 기업 의사결정 AI 연구 프로젝트로, 소속 연구원 **Minjung Lee (Highj)**가 개발한 의사결정 특화 강화학습 모델 **connectailab-rl-highj-v1**입니다.  
 회사의 경영 상황(인력 배치 · 재고 발주 · 마케팅 · 고객센터 · 환불 · 보안)과 질문, 보기를 읽고 **보기 글자 하나**로 답하는 모델입니다. 보기 글자의 확률이 선택지별 확률, 가장 큰 값이 확신입니다.  

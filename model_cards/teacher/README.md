@@ -14,7 +14,7 @@ tags: [reinforcement-learning, deep-reinforcement-learning, grpo, decision-makin
 
 
 
-# RL AI COMPANY DECISION MAKING MODEL (Teacher Baseline)
+# [CONNECT AI LAB] RL AI COMPANY DECISION MAKING MODEL (Teacher Baseline)
 
 **CONNECT AI LAB**의 기업 의사결정 AI 연구 프로젝트로, 소속 연구원 **Minjung Lee (Highj)**의 후속 모델 학습을 위해 구축된 **선생님 정책(Teacher Model)** 기준선 모델입니다.  
 회사의 판단 하나(상황 · 질문 · 보기)를 읽고 **보기 글자 하나**로 답하는 의사결정 모델입니다. 보기 글자의 확률이 선택지별 확률, 가장 큰 값이 확신입니다.  
