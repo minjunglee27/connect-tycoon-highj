@@ -24,18 +24,20 @@ import connect_tycoon as ct
 print("CONNECT TYCOON", ct.__version__)""", None),
     ("md", """## 1 · brain.json 고르기
 
-1. Colab 왼쪽 세로 막대의 **📁(파일)** 을 누릅니다.
-2. 게임에서 저장한 파일(다운로드 폴더의 `회사이름-v2.json` 같은 이름)을 그 창에 **끌어다 놓습니다**.
-3. 아래 셀을 실행합니다. 파일 없이 보기만 하려면 `USE_EXAMPLE`을 켜면 예시 모델을 씁니다.
+게임에서 저장한 파일(다운로드 폴더의 `회사이름-v2.json` 같은 이름)을 넣는 방법은 둘 중 편한 것:
 
-파일 선택 버튼이 편하면 `UPLOAD_BUTTON`을 켜세요. 다만 브라우저 설정에 따라 버튼이 안 보이거나 멈출 수 있습니다."""),
+- **끌어다 놓기** · Colab 왼쪽 세로 막대의 **📁(파일)** 을 누르고 그 창에 끌어다 놓은 뒤 아래 셀 실행 (가장 확실)
+- **파일 선택 버튼** · 그냥 아래 셀을 실행하면 [파일 선택] 버튼이 뜹니다
+
+버튼이 안 보이는 브라우저(사파리 · 앱 속 브라우저 · 광고 차단 등)도 있습니다. 그때는 셀을 멈추고(■) 끌어다 놓은 뒤 다시 실행하세요.
+파일 없이 보기만 하려면 `USE_EXAMPLE`을 켜면 예시 모델을 씁니다."""),
     ("code", """USE_EXAMPLE = False                                   #@param {type:"boolean"}
-UPLOAD_BUTTON = False                                 #@param {type:"boolean"}
+UPLOAD_BUTTON = True                                  #@param {type:"boolean"}
 from connect_tycoon.colab import find_brain
 if USE_EXAMPLE:
     ct.CompanyBrain.default().save("example_brain.json"); BRAIN = "example_brain.json"
 else:
-    BRAIN = find_brain(upload_button=UPLOAD_BUTTON)       # 📁 파일 창에 끌어다 놓은 brain.json
+    BRAIN = find_brain(upload_button=UPLOAD_BUTTON)       # 📁에 있으면 그것, 없으면 [파일 선택] 버튼
 b = ct.CompanyBrain.from_file(BRAIN)
 print("모델:", b.name, "· 회사의 가치", b.values, "· 기록된 성적", b.spec["company"].get("results"))""", None),
     ("md", """## 2 · 이름 · 나를 알리는 글 · 올리기
