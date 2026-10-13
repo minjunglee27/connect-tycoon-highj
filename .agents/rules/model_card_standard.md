@@ -9,10 +9,10 @@
   - 본명: Minjung Lee (영문 본명)
   - 활동명: Highj
 
-## 2. Standard Intro Format (모델 카드 서두 규격)
-> **CONNECT AI LAB 소속 연구원 Minjung Lee (Highj)**가 개발한 기업 의사결정 특화 모델 **connectailab-rl-highj-{version}**입니다.  
-> 회사의 판단 하나(상황 · 질문 · 보기)를 읽고 **보기 글자 하나**로 답하는 의사결정 모델입니다. 보기 글자의 확률이 선택지별 확률, 가장 큰 값이 확신입니다.  
-> [CONNECT TYCOON](https://github.com/wonseokjung/connect-tycoon) 시뮬레이터에서 만든 학습 데이터로 `Qwen/Qwen3.5-0.8B`에 LoRA를 학습했습니다.
+## 2. Standard Intro Format (모델 카드 서두 규격 - 이중 작성 금지)
+> **CONNECT AI LAB**의 기업 의사결정 AI 연구 프로젝트로, 소속 연구원 **Minjung Lee (Highj)**가 개발한 의사결정 특화 강화학습 모델 **connectailab-rl-highj-{version}**입니다.  
+> 회사의 경영 상황(인력 배치 · 재고 발주 · 마케팅 · 고객센터 · 환불 · 보안)과 질문, 보기를 읽고 **보기 글자 하나**로 답하는 모델입니다. 보기 글자의 확률이 선택지별 확률, 가장 큰 값이 확신입니다.  
+> [CONNECT TYCOON](https://github.com/wonseokjung/connect-tycoon) 시뮬레이터에서 추출한 학습 데이터로 `Qwen/Qwen3.5-0.8B`에 LoRA 미세조정 및 강화학습(RL)을 진행했습니다.
 
 ## 3. Evaluation Table Convention (성적표 모델명 규격)
 * **성적표 표 안의 모델 행**: 소속 연구실(`connectailab`)과 본인 식별자(`highj`), 버전(`v{N}`)이 모두 포함된 **정식 모델 전체명**을 직접 명시 (방법 B 스타일 적용).

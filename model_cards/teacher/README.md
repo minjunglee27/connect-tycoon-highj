@@ -11,14 +11,12 @@ tags: [reinforcement-learning, deep-reinforcement-learning, grpo, decision-makin
 
 <p align="center"><a href="https://colab.research.google.com/github/wonseokjung/connect-tycoon/blob/main/notebooks/rl_decision_model_qwen_colab.ipynb"><img src="https://img.shields.io/badge/Colab-%EC%A7%81%EC%A0%91%20%ED%95%99%EC%8A%B5%ED%95%98%EA%B8%B0-d0f991?style=for-the-badge&logo=googlecolab&logoColor=d0f991&labelColor=050807&color=d0f991" alt="Colab"></a> <a href="https://github.com/wonseokjung/connect-tycoon"><img src="https://img.shields.io/badge/GitHub-CONNECT%20TYCOON-d0f991?style=for-the-badge&logo=github&logoColor=d0f991&labelColor=050807&color=d0f991" alt="GitHub"></a> <a href="https://www.youtube.com/@CONNECT-AI-LAB"><img src="https://img.shields.io/badge/YouTube-CONNECT%20AI%20LAB-d0f991?style=for-the-badge&logo=youtube&logoColor=d0f991&labelColor=050807&color=d0f991" alt="YouTube"></a> <a href="https://www.aicitybuilders.com/robot"><img src="https://img.shields.io/badge/AI%20CITY%20BUILDERS-%EA%B0%95%ED%99%94%ED%95%99%EC%8A%B5%20AI-d0f991?style=for-the-badge&logo=bookstack&logoColor=d0f991&labelColor=050807&color=d0f991" alt="AI CITY BUILDERS"></a></p>
 
-## 만든 사람
 
-AI 기반 비즈니스 의사결정 자동화와 강화학습 에이전트를 연구하는 **CONNECT AI LAB 소속 연구원 Minjung Lee (Highj)**입니다.  
-가상 기업 시뮬레이터 환경에서 회사를 운영하며 최적의 경영 판단 능력을 학습하는 강화학습 의사결정 모델의 기준선(Baseline)이 되는 **선생님 정책(Teacher Model)**을 공개합니다.
+
 
 # RL AI COMPANY DECISION MAKING MODEL (Teacher Baseline)
 
-**CONNECT AI LAB 소속 연구원 Minjung Lee (Highj)**의 기업 의사결정 모델 연구를 위한 **선생님 정책(Teacher Model)** 기준 모델입니다.  
+**CONNECT AI LAB**의 기업 의사결정 AI 연구 프로젝트로, 소속 연구원 **Minjung Lee (Highj)**의 후속 모델 학습을 위해 구축된 **선생님 정책(Teacher Model)** 기준선 모델입니다.  
 회사의 판단 하나(상황 · 질문 · 보기)를 읽고 **보기 글자 하나**로 답하는 의사결정 모델입니다. 보기 글자의 확률이 선택지별 확률, 가장 큰 값이 확신입니다.  
 [CONNECT TYCOON](https://github.com/wonseokjung/connect-tycoon) 기본 시뮬레이터 환경에서 강화학습(PPO)으로 학습된 정책을 `Qwen/Qwen3.5-0.8B`에 전이하여 평가한 베이스라인 모델입니다.
 
@@ -51,7 +49,7 @@ AI 기반 비즈니스 의사결정 자동화와 강화학습 에이전트를 �
 
 * **세부 검증 결과 (Teacher Baseline)**:
   * **시뮬레이터 2달 경영**: 월평균 영업이익 **1,221.2만원**, 고객 만족도 **96.8%** (`sat: 0.9684`), 월 리스크 사고 **8.0건**
-  * **실제 카드 이상거래(FDS)**: 713건 중 실제 부정 결제 177건 대상 **91건/177건 중 146건 적발**, 금전 손실 **72.0% 방어** (`saved: 0.7199`)
+  * **실제 카드 이상거래(FDS)**: 713건 중 실제 부정 결제 177건 대상 **146건 적발**, 금전 손실 **72.0% 방어** (`saved: 0.7199`)
 
 시뮬레이터 기본 PPO 교사 정책을 학습 데이터로 활용한 초기 베이스라인 실험 결과입니다.
 
