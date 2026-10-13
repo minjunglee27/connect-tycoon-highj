@@ -11,8 +11,10 @@ tags: [reinforcement-learning, deep-reinforcement-learning, grpo, decision-makin
 
 <p align="center"><a href="https://colab.research.google.com/github/wonseokjung/connect-tycoon/blob/main/notebooks/rl_decision_model_qwen_colab.ipynb"><img src="https://img.shields.io/badge/Colab-%EC%A7%81%EC%A0%91%20%ED%95%99%EC%8A%B5%ED%95%98%EA%B8%B0-d0f991?style=for-the-badge&logo=googlecolab&logoColor=d0f991&labelColor=050807&color=d0f991" alt="Colab"></a> <a href="https://github.com/wonseokjung/connect-tycoon"><img src="https://img.shields.io/badge/GitHub-CONNECT%20TYCOON-d0f991?style=for-the-badge&logo=github&logoColor=d0f991&labelColor=050807&color=d0f991" alt="GitHub"></a> <a href="https://www.youtube.com/@CONNECT-AI-LAB"><img src="https://img.shields.io/badge/YouTube-CONNECT%20AI%20LAB-d0f991?style=for-the-badge&logo=youtube&logoColor=d0f991&labelColor=050807&color=d0f991" alt="YouTube"></a> <a href="https://www.aicitybuilders.com/robot"><img src="https://img.shields.io/badge/AI%20CITY%20BUILDERS-%EA%B0%95%ED%99%94%ED%95%99%EC%8A%B5%20AI-d0f991?style=for-the-badge&logo=bookstack&logoColor=d0f991&labelColor=050807&color=d0f991" alt="AI CITY BUILDERS"></a></p>
 
+## 만든 사람
 
-
+AI 기반 비즈니스 의사결정 자동화와 강화학습 에이전트를 연구하는 **CONNECT AI LAB 소속 연구원 Minjung Lee (Highj)**입니다.  
+가상 기업 시뮬레이터 환경에서 회사를 직접 경영하며 강화학습으로 판단 능력을 키운 **Qwen3.5 의사결정 모델 connectailab-rl-highj-v1**을 공개합니다. 월평균 362만원 흑자 경영과 96.5%의 고객 만족도를 달성한 첫 번째 공식 마일스톤 모델입니다.
 
 # RL AI COMPANY DECISION MAKING MODEL
 
