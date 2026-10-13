@@ -30,7 +30,8 @@ print("CONNECT TYCOON", ct.__version__, "· GPU", torch.cuda.get_device_name(0) 
     ("md", """## 1 · 선생님 · 내 brain.json 쓰기 또는 새로 학습
 
 **두 가지 중 하나**
-- **게임에서 학습한 모델 쓰기** · `USE_MY_BRAIN`을 켜고 실행하면 파일 선택 창이 뜹니다. CONNECT TYCOON 게임의 "brain.json" 버튼으로 내려받은 파일을 고르세요. 게임에서 정한 회사의 가치도 그대로 가져옵니다.
+- **게임에서 학습한 모델 쓰기** · 먼저 Colab 왼쪽 세로 막대의 **📁(파일)** 을 누르고, 게임에서 저장한 brain.json을 그 창에 **끌어다 놓은 뒤**, `USE_MY_BRAIN`을 켜고 실행하세요. 게임에서 정한 회사의 가치도 그대로 가져옵니다.
+  (파일 선택 버튼은 브라우저 설정에 따라 안 보이거나 멈출 수 있어서, 끌어다 놓는 방법을 기본으로 씁니다)
 - **여기서 새로 학습** · 끈 채로 실행하면 공개 데이터로 맞춘 일반 회사에서 작은 정책이 규칙을 따라 배우고(지도학습) 보상으로 판단을 고칩니다(PPO). CPU 2~3분.
 
 **왜** · 언어 모델에게 가르칠 선생님이 필요합니다. 새로 학습할 때 `VALUES`(이익 · 고객 만족 · 위험 회피)를 바꾸면 다른 판단을 하는 모델이 나옵니다.
@@ -40,9 +41,8 @@ print("CONNECT TYCOON", ct.__version__, "· GPU", torch.cuda.get_device_name(0) 
 VALUES = {"이익": 1.0, "고객 만족": 1.0, "위험": 1.0}      # 새로 학습할 때 회사의 가치 (보상의 가중치)
 
 if USE_MY_BRAIN:                                       # 게임에서 내려받은 brain.json을 선생님으로
-    from google.colab import files
-    uploaded = files.upload()
-    my_brain = ct.CompanyBrain.load(next(iter(uploaded)))
+    from connect_tycoon.colab import find_brain           # 📁 파일 창에 끌어다 놓은 brain.json을 찾습니다
+    my_brain = ct.CompanyBrain.load(find_brain())
     VALUES = dict(my_brain.values)
     company = ct.make_company(profile=my_brain.spec["company"].get("profile") or "general", values=VALUES)
     teacher = my_brain.policy
