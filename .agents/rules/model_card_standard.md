@@ -1,0 +1,43 @@
+# Model Card Standard & Researcher Attribution Rules
+
+## 1. Naming & Case Convention (명명 규칙)
+* **저장소 ID / 코드 / URL**: 반드시 **소문자 (`highj`)** 유지
+  - 예: `minjunglee27/connectailab-rl-highj-v1`
+  - 이유: 리눅스/파이썬 라이브러리 및 웹 URL 호환성 보장
+* **연구원 소속 및 본명 표기**:
+  - 표준 포맷: `CONNECT AI LAB 소속 연구원 Minjung Lee (Highj)`
+  - 본명: Minjung Lee (영문 본명)
+  - 활동명: Highj
+
+## 2. Standard Intro Format (모델 카드 서두 규격)
+> **CONNECT AI LAB 소속 연구원 Minjung Lee (Highj)**가 개발한 기업 의사결정 특화 모델 **connectailab-rl-highj-{version}**입니다.  
+> 회사의 판단 하나(상황 · 질문 · 보기)를 읽고 **보기 글자 하나**로 답하는 의사결정 모델입니다. 보기 글자의 확률이 선택지별 확률, 가장 큰 값이 확신입니다.  
+> [CONNECT TYCOON](https://github.com/wonseokjung/connect-tycoon) 시뮬레이터에서 만든 학습 데이터로 `Qwen/Qwen3.5-0.8B`에 LoRA를 학습했습니다.
+
+## 3. Evaluation Table Convention (성적표 모델명 규격)
+* **성적표 표 안의 모델 행**: 소속 연구실(`connectailab`)과 본인 식별자(`highj`), 버전(`v{N}`)이 모두 포함된 **정식 모델 전체명**을 직접 명시 (방법 B 스타일 적용).
+  - 예: `| **connectailab-rl-highj-{version}** | ... |`
+  - 세부 분석 제목: `* **세부 검증 결과 (connectailab-rl-highj-{version})**:`
+
+## 4. Colab Results Processing Workflow (코랩 결과 처리 및 부연설명 규칙)
+사용자가 코랩 결과(딕셔너리 수치 등)를 가져오면 항상 아래 규격으로 자동 파싱하여 표와 상세 부연설명을 작성한다:
+1. **성적표 비교 테이블 생성**:
+   - `Qwen 학습 전 (Base)` vs `지도학습 (SFT)` vs `**connectailab-rl-highj-v{N}**`
+   - 컬럼: 시험 문제 정답률 | 후회 (작을수록 좋음) | 시뮬레이터 한 달 이익 | 실제 카드 거래 · 손실 줄임
+2. **상세 부연설명 (글머리 기호) 필수 포함**:
+   - **🏢 시뮬레이터 경영 검증**: 운영 개월 수, 월평균 영업이익(흑자/수익률), 고객 만족도(`sat: XX%`), 월 리스크/보안 사고 건수(`incidents: XX건`)
+   - **💳 실제 카드 이상 거래(FDS) 백테스트**: 총 검증 케이스, 실제 부정/사기 결제 건수, 적발 건수(`caught`) 및 적발률, 금전 손실 방어율(`saved: XX%`)
+   - **👨‍🏫 선생님 정책 대비 성장 인사이트**: PPO 전용 기준 모델(`teacher_profit`) 대비 성장 폭 및 비즈니스적 시사점 해설
+3. **로컬 파일 아카이빙**:
+   - `model_cards/v{N}/metrics.json`: 원본 수치 JSON 영구 보존
+   - `model_cards/v{N}/brain.json`: 훈련에 사용된 선생님 강화학습 정책 파일(brain.json) 영구 보관
+   - `model_cards/v{N}/README.md`: 완성된 모델 카드 저장
+   - `model_cards/README.md`: 전체 버전 히스토리 테이블 자동 업데이트
+4. **허깅페이스 실시간 동기화**:
+   - `minjunglee27/connectailab-rl-highj-v{N}`의 `README.md`로 즉시 커밋 & 푸시
+
+## 5. Template & Section Policy
+* **기본 템플릿**: `connectailab-rl-highj-teacher`의 원본 구조 및 레이아웃을 엄격히 준수.
+* **하단 출처 (`## 만든 곳`)**: 원본 템플릿의 링크, 텍스트, 디스클레이머(면책조항)를 **100% 원형 그대로 보존**.
+* **용어 정책**: 임의의 "공동연구" 섹션이나 단어를 추가하지 않고, 공식 연구원 소속(`CONNECT AI LAB 소속 연구원`)으로 일관되게 표현.
+* **사용법 (`## 쓰는 법`)**: `peft_model_id`에 해당 버전의 소문자 저장소 ID 지정.
