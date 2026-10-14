@@ -16,14 +16,15 @@ tags: [reinforcement-learning, deep-reinforcement-learning, grpo, decision-makin
 
 # connectailab-rl-highj-v1
 
-> **만든 사람 · Minjung Lee (Highj)**  
-> CONNECT AI LAB 소속 연구원 및 개발자  
-> 로컬 AI, 피지컬 AI, Micro SaaS를 탐구하고 직접 개발해보며, 기술을 실제 비즈니스로 연결해 나가는 **AI 1인 기업가**입니다.
+## 만든 사람 · Minjung Lee (Highj)
+
+- CONNECT AI LAB 소속 연구원 및 개발자
+- 로컬 AI, 피지컬 AI, Micro SaaS를 탐구하고 직접 개발해보며, 기술을 실제 비즈니스로 연결해 나가는 **AI 1인 기업가**입니다.
 
 CONNECT AI LAB의 **Jay 멘토님**이 제작한 가상 비즈니스 시뮬레이터 환경을 바탕으로, 공개 데이터와 강화학습(RL)을 활용해 **에이전트 자율 의사결정 원리를 공부하고 구현해 본 첫 번째 모델**입니다.  
 
 가상 회사 운영의 6대 영역(인력·재고·마케팅·CS·환불·FDS 보안)에서 상황을 읽고 스스로 판단하는 실험을 진행하였으며, 2개월 시뮬레이터 테스트에서 **월 362만원 흑자와 96.5% 고객 만족도**를 기록하며 강화학습의 가능성을 확인한 학습·연구용 마일스톤입니다.  
-*(※ 가상 시뮬레이터 환경에서 학습된 모델로, 실제 사업 환경에 바로 적용하는 모델은 아닙니다.)*
+(※ 가상 시뮬레이터 환경에서 학습된 모델로, 실제 사업 환경에 바로 적용하는 모델은 아닙니다.)
 
 <p align="center"><img src="https://raw.githubusercontent.com/wonseokjung/connect-tycoon/main/docs/images/hero.gif" alt="모델이 회사를 운영하는 하루" width="88%"></p>
 <p align="center"><sub>시뮬레이터 속 회사 · 맨 위층의 모델이 판단하면 빛줄기가 그 층으로 내려가고, 결과가 돈 · 만족 · 사고로 돌아옵니다</sub></p>
