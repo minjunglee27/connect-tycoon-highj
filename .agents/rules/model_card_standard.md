@@ -11,12 +11,15 @@
 
 ## 2. Standard Header & Intro Format (모델 카드 제목 및 서두 규격)
 * **H1 제목 규격**:
-  - v1, v2 등: `# [CONNECT AI LAB] RL AI COMPANY DECISION MAKING MODEL (Highj v{N})`
-  - Teacher: `# [CONNECT AI LAB] RL AI COMPANY DECISION MAKING MODEL (Teacher Baseline)`
-* **표준 도입부 (이중 작성 금지)**:
-> **CONNECT AI LAB**의 기업 의사결정 AI 연구 프로젝트로, 소속 연구원 **Minjung Lee (Highj)**가 개발한 의사결정 특화 강화학습 모델 **connectailab-rl-highj-{version}**입니다.  
-> 회사의 경영 상황(인력 배치 · 재고 발주 · 마케팅 · 고객센터 · 환불 · 보안)과 질문, 보기를 읽고 **보기 글자 하나**로 답하는 모델입니다. 보기 글자의 확률이 선택지별 확률, 가장 큰 값이 확신입니다.  
-> [CONNECT TYCOON](https://github.com/wonseokjung/connect-tycoon) 시뮬레이터에서 추출한 학습 데이터로 `Qwen/Qwen3.5-0.8B`에 LoRA 미세조정 및 강화학습(RL)을 진행했습니다.
+  - 모델 고유 저장소 ID 사용 (예: `# connectailab-rl-highj-{version}`)
+* **만든 사람 시그니처 블록 (고정 유지)**:
+> **만든 사람 · Minjung Lee (Highj)**  
+> CONNECT AI LAB 소속 연구원 및 개발자  
+> Micro SaaS, 로컬 AI, 피지컬 AI를 공부하며, 기술을 실제 비즈니스로 연결하기 위해 한 걸음씩 준비해 나가는 **AI 1인 기업가**입니다.
+* **모델 소개 표준 도입부 (시뮬레이터 학습 및 Jay 멘토 명시)**:
+> CONNECT AI LAB의 **Jay 멘토님**이 제작한 가상 비즈니스 시뮬레이터 환경을 바탕으로, 공개 데이터와 강화학습(RL)을 활용해 **에이전트 자율 의사결정 원리를 공부하고 구현해 본 {version} 모델**입니다.  
+> 회사의 6대 핵심 영역(인력·재고·마케팅·CS·환불·FDS 보안)에서 상황을 읽고 스스로 판단하는 실험을 진행했습니다.  
+> *(※ 가상 시뮬레이터 환경에서 학습된 모델로, 실제 사업 환경에 바로 적용하는 모델은 아닙니다.)*
 
 ## 3. Evaluation Table Convention (성적표 모델명 규격)
 * **성적표 표 안의 모델 행**: 소속 연구실(`connectailab`)과 본인 식별자(`highj`), 버전(`v{N}`)이 모두 포함된 **정식 모델 전체명**을 직접 명시 (방법 B 스타일 적용).

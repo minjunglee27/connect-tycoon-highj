@@ -14,11 +14,16 @@ tags: [reinforcement-learning, deep-reinforcement-learning, grpo, decision-makin
 
 
 
-# [CONNECT AI LAB] RL AI COMPANY DECISION MAKING MODEL (Teacher Baseline)
+# connectailab-rl-highj-teacher
 
-**CONNECT AI LAB**의 기업 의사결정 AI 연구 프로젝트로, 소속 연구원 **Minjung Lee (Highj)**의 후속 모델 학습을 위해 구축된 **선생님 정책(Teacher Model)** 기준선 모델입니다.  
-회사의 판단 하나(상황 · 질문 · 보기)를 읽고 **보기 글자 하나**로 답하는 의사결정 모델입니다. 보기 글자의 확률이 선택지별 확률, 가장 큰 값이 확신입니다.  
-[CONNECT TYCOON](https://github.com/wonseokjung/connect-tycoon) 기본 시뮬레이터 환경에서 강화학습(PPO)으로 학습된 정책을 `Qwen/Qwen3.5-0.8B`에 전이하여 평가한 베이스라인 모델입니다.
+> **만든 사람 · Minjung Lee (Highj)**  
+> CONNECT AI LAB 소속 연구원 및 개발자  
+> Micro SaaS, 로컬 AI, 피지컬 AI를 공부하며, 기술을 실제 비즈니스로 연결하기 위해 한 걸음씩 준비해 나가는 **AI 1인 기업가**입니다.
+
+CONNECT AI LAB의 **Jay 멘토님**이 설계한 시뮬레이터 기본 환경과 PPO 정책을 바탕으로 구축된 **공식 선생님 기준선(Teacher Baseline)** 모델입니다.  
+
+자율 의사결정 에이전트를 공부하고 만들어가는 과정에서, 제가 학습시키는 후속 모델들이 올바른 방향으로 발전하고 있는지 비교하고 채점하기 위한 나침반 역할을 합니다.  
+(시뮬레이터 기준 성적: 월 이익 1,221만원, 고객 만족도 96.8%)
 
 > 💡 **커스텀 브레인 적용 모델 안내**:  
 > 본 모델은 시뮬레이터 기본 환경으로 단련된 **선생님 베이스라인(Teacher Baseline)**입니다.  
