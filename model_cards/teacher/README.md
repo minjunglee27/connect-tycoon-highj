@@ -18,8 +18,7 @@ tags: [reinforcement-learning, deep-reinforcement-learning, grpo, decision-makin
 
 ## 만든 사람 · Minjung Lee (Highj)
 
-- CONNECT AI LAB 소속 연구원 및 개발자
-- 로컬 AI와 강화학습 AI를 탐구하며, 실용적인 Micro SaaS를 직접 만들어가는 **AI 1인 기업가**입니다.
+CONNECT AI LAB에서 로컬 AI와 강화학습 AI를 공부하고, 이를 실전에 적용해 서비스를 하나씩 만들어 보며 AI 1인 기업가의 꿈을 이뤄가고 있습니다.
 
 CONNECT AI LAB의 **Jay 멘토님**이 설계한 시뮬레이터 기본 환경과 PPO 정책을 바탕으로 구축된 **공식 선생님 기준선(Teacher Baseline)** 모델입니다.  
 
