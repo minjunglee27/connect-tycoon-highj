@@ -7,6 +7,8 @@ CONNECT TYCOON & Qwen 강화학습 의사결정 모델 버전별 기록 저장�
 | :---: | :---: | :---: | :---: | :---: | :---: |
 | [**Teacher Baseline**](./teacher/README.md) | 2026-10-13 | **1,221.2만원** | 96.8% | 72.0% (146/177건 방어) | [minjunglee27/connectailab-rl-highj-teacher](https://huggingface.co/minjunglee27/connectailab-rl-highj-teacher) |
 | [**Highj v1**](./v1/README.md) | 2026-10-14 | **+362.2만원** (흑자) | 96.5% | 37.3% (91/177건 방어) | [minjunglee27/connectailab-rl-highj-v1](https://huggingface.co/minjunglee27/connectailab-rl-highj-v1) |
+| [**Teacher v2**](./v2-teacher/README.md) | 2026-10-15 | **1,176.0만원** | 95.0% | 실전 40개월 고도화 두뇌 (품절일 0.6일) | [minjunglee27/connectailab-rl-highj-v2-teacher](https://huggingface.co/minjunglee27/connectailab-rl-highj-v2-teacher) |
+| [**Highj v2**](./v2/README.md) | 2026-10-15 | **+679.0만원** (흑자) | 97.0% | 70.6% (145/177건 방어) | [minjunglee27/connectailab-rl-highj-v2](https://huggingface.co/minjunglee27/connectailab-rl-highj-v2) |
 
 ---
-*앞으로 v2, v3 학습 시 새로운 폴더(`model_cards/v2/...`)에 순차적으로 자동 아카이빙됩니다.*
+*각 모델의 학습 파라미터와 평가 수치는 해당 버전 디렉터리 내 `metrics.json` 및 `README.md`에 아카이빙됩니다.*

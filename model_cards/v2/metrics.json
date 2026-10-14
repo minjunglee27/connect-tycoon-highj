@@ -1,0 +1,17 @@
+{
+  "version": "v2",
+  "created_at": "2026-10-15",
+  "base_model": "Qwen/Qwen3.5-0.8B",
+  "repo": "minjunglee27/connectailab-rl-highj-v2",
+  "profit": 678.99,
+  "sat": 0.9695125,
+  "incidents": 13.0,
+  "months": 2,
+  "card": {
+    "caught": 145,
+    "fraud": 177,
+    "saved": 0.7060767454543346,
+    "cases": 713
+  },
+  "teacher_profit": 1176
+}
