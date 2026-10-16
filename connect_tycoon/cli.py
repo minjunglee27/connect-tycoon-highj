@@ -147,7 +147,12 @@ def cmd_push(args):
         sys.exit("pip install huggingface_hub 가 필요합니다")
     from .hub import push_brain
     from .llm.hub import make_author
-    print(push_brain(args.brain, repo=args.repo, version=args.version, name=args.name, author=make_author(_about(args))))
+    from .lab import is_lab
+    if is_lab(args.brain):                      # 웹 학습 실험실에서 내려받은 두뇌
+        from .hub import push_lab_brain
+        print(push_lab_brain(args.brain, repo=args.repo, version=args.version, name=args.name, author=make_author(_about(args))))
+    else:
+        print(push_brain(args.brain, repo=args.repo, version=args.version, name=args.name, author=make_author(_about(args))))
 
 
 def _llm_backend(name):

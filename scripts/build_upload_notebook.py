@@ -11,7 +11,7 @@ CELLS = [
 
 **CONNECT AI LAB × AI CITY BUILDERS** · [CONNECT TYCOON](https://github.com/wonseokjung/connect-tycoon)
 
-게임에서 **brain.json 저장**으로 내려받은 강화학습 모델을 내 Hugging Face 계정에 올립니다. GPU가 필요 없습니다.
+게임에서 **brain.json 저장**으로 내려받은 모델, 또는 웹 **학습 실험실**에서 내가 파라미터를 정해 키운 두뇌(brain.json)를 내 Hugging Face 계정에 올립니다. GPU가 필요 없습니다.
 
 1. https://huggingface.co/settings/tokens 에서 **Write** 토큰을 만듭니다.
 2. Colab 왼쪽 🔑(보안 비밀)에 이름 `HF_TOKEN`, 값에 토큰을 넣고 노트북 액세스를 켭니다. 토큰은 코드에 적지 않습니다.
@@ -38,15 +38,21 @@ if USE_EXAMPLE:
     ct.CompanyBrain.default().save("example_brain.json"); BRAIN = "example_brain.json"
 else:
     BRAIN = find_brain(upload_button=UPLOAD_BUTTON)       # 📁에 있으면 그것, 없으면 [파일 선택] 버튼
-b = ct.CompanyBrain.from_file(BRAIN)
-print("모델:", b.name, "· 회사의 가치", b.values, "· 기록된 성적", b.spec["company"].get("results"))""", None),
+from connect_tycoon.lab import LabBrain, is_lab, ALGO_NAME
+if is_lab(BRAIN):                                       # 웹 학습 실험실 두뇌
+    b = LabBrain.from_file(BRAIN)
+    print("학습 실험실 두뇌:", b.name, "·", ALGO_NAME.get(b.algo, b.algo), "· 시험 점수", round(b.test.get("score", 0)), "· 정시", f"{b.test.get('onTimeRate', 0):.0%}")
+else:                                                   # 게임(CONNECT TYCOON) 두뇌
+    b = ct.CompanyBrain.from_file(BRAIN)
+    print("모델:", b.name, "· 회사의 가치", b.values, "· 기록된 성적", b.spec["company"].get("results"))""", None),
     ("md", """## 2 · 이름 · 나를 알리는 글 · 올리기
 
 이름은 영문, 버전은 게임의 버전(v1, v2…)을 적습니다. 나를 알리는 글은 형식 없이 자유롭게 (무엇을 하는 사람인지 · 사업 · 서비스 · 채널 · 연락처). 모델 카드 맨 위 '만든 사람'에 그대로 들어가고, 비워 두면 빠집니다.
 
 ✅ 정상이면 · 1분 안팎 (모델 카드에 넣을 성적을 시험 달로 계산합니다) · 마지막에 내 모델 주소가 나옵니다"""),
     ("code", """from google.colab import userdata
-from connect_tycoon.hub import push_brain
+from connect_tycoon.hub import push_brain, push_lab_brain
+from connect_tycoon.lab import is_lab
 from connect_tycoon.llm.hub import make_author
 
 try:
@@ -62,7 +68,8 @@ VERSION = "v1"                                       #@param {type:"string"}
 ABOUT_ME = '''
 '''
 
-url = push_brain(BRAIN, version=VERSION, name=NAME, author=make_author(ABOUT_ME), token=HF_TOKEN)
+up = push_lab_brain if is_lab(BRAIN) else push_brain        # 실험실 두뇌 → connectailab-rl-이름-버전-logistics
+url = up(BRAIN, version=VERSION, name=NAME, author=make_author(ABOUT_ME), token=HF_TOKEN)
 print("올라갔습니다 ·", url)""", None),
 ]
 

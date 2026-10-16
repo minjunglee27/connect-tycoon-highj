@@ -22,7 +22,9 @@ def find_brain(folder="/content", upload_button=True):
     found = []
     for p in sorted(glob.glob(os.path.join(folder, "*.json")), key=os.path.getmtime, reverse=True):
         try:
-            ct.CompanyBrain.from_file(p)
+            from .lab import is_lab
+            if not is_lab(p):
+                ct.CompanyBrain.from_file(p)
             found.append(p)
         except Exception:
             continue

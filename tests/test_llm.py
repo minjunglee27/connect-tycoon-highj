@@ -114,3 +114,18 @@ def test_notebook_cells_are_valid_python():
             src = "".join(cell["source"])
             ast.parse("\n".join(line[:len(line) - len(line.lstrip())] + "pass" if line.lstrip().startswith(("!", "%")) else line
                                  for line in src.splitlines()))
+
+
+def test_lab_brain_from_web_simulator():
+    """웹 학습 실험실 두뇌(connect-lab-brain/1) · 표 · 신경망 둘 다 행동을 고르고, 모델 카드에 시험 점수가 들어감."""
+    from connect_tycoon.hub import lab_card
+    from connect_tycoon.lab import LabBrain, is_lab
+    base = {"format": "connect-lab-brain/1", "env": "logistics-day/1", "name": "jay", "algo": "q", "actions": ["대기", "도킹"], "observation": ["a", "b"],
+            "test": {"score": 300, "onTimeRate": 0.9, "perDay": {"onTime": 20, "late": 2, "left": 0, "overtime": 3}}, "baselines": {"rule": 238, "random": -150},
+            "config": {"gamma": 0.95, "reward": {"onTime": 12}}, "curve": [{"ep": 20, "real": 100, "valid": 120, "shaped": 100}]}
+    q = LabBrain({**base, "model": {"type": "q-table", "table": {"k1": [0.1, 0.9]}}})
+    assert is_lab(q.spec) and q.act(key="k1") == 1 and q.act(key="없음") == 1
+    m = LabBrain({**base, "algo": "dqn", "model": {"type": "mlp", "sizes": [2, 2], "W": [[1, 0, 0, 1]], "b": [[0, 0]], "head": "q"}})
+    assert m.act(obs=[0.2, 0.8]) == 1 and m.act(obs=[0.9, 0.1]) == 0
+    card = lab_card(base, "me/connectailab-rl-jay-v1-logistics")
+    assert "pipeline_tag: reinforcement-learning" in card and "**300**" in card and "| 규칙 사장" in card and "238" in card
