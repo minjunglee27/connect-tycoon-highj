@@ -132,7 +132,8 @@ tags: [reinforcement-learning, deep-reinforcement-learning, {spec.get("algo")}, 
 # RL AI COMPANY DECISION MAKING MODEL · 물류센터 학습 실험실
 
 CONNECT AI LAB 웹 시뮬레이터의 **학습 실험실**에서, 내가 알고리즘과 파라미터를 정해 강화학습한 물류센터 운영 두뇌입니다.
-환경은 "물류센터 하루"(10분 × 60걸음) · 트럭이 오전 · 오후에 몰려오고, 두뇌는 10분마다 행동 하나를 고릅니다.
+환경은 "물류센터 하루"(10분 × 60걸음) · 트럭이 오전 · 오후에 몰려오고, 중간중간 함정(소나기 · 지게차 고장 · 결근 · VIP 긴급 · 도로 정체 · 시스템 다운 · 피크 폭주)이 터집니다. 두뇌는 10분마다 행동 하나를 고릅니다.
+모든 두뇌가 같은 규격(관측 {len(spec.get("observation", []))} · 행동 {len(spec.get("actions", []))} · 같은 시험 날 · 환경 `{spec.get("env")}`)이라 서로 비교하고 연결할 수 있습니다.
 
 **행동** · {" · ".join(spec.get("actions", []))}
 **관측** · {" · ".join(spec.get("observation", []))}
