@@ -121,6 +121,89 @@ tags: [reinforcement-learning, deep-reinforcement-learning, grpo, decision-makin
 """
 
 
+LAB_URL = "https://www.ezerai.xyz/models/rl"
+
+
+def lab_card(repo, results=None, meta=None, backend="torch", base=BASE_MODEL, author=None):
+    """물류 실험실 두뇌 → Qwen 모델 카드 · 같은 시험 24일(웹 실험실과 같은 날)에서 Qwen이 물류센터를 운영한 점수를 보여 줍니다."""
+    res, m = results or {}, meta or {}
+    rows = []
+    for name, r in res.items():
+        day = f"{r['day_score']:.1f}" if "day_score" in r else "—"
+        ot = f"{r['on_time']:.0%}" if "on_time" in r else "—"
+        rows.append(f"| {name} | {r.get('accuracy', 0):.1%} | {r.get('regret', 0):.2f} | {day} | {ot} |")
+    if m.get("teacher_test") is not None:
+        rows.append(f"| 두뇌 · 선생님 ({m.get('algo', '').upper()}) | — | — | {m['teacher_test']:.1f} | — |")
+    if (m.get("baselines") or {}).get("rule") is not None:
+        rows.append(f"| 규칙 사장 (자리가 있으면 먼저 온 트럭) | — | — | {m['baselines']['rule']:.1f} | — |")
+    table = "\n".join(["| 모델 | 시험 문제 정답률 | 후회 (작을수록 좋음) | 시험 24일 하루 점수 | 제시간 출발 |", "|---|---|---|---|---|"] + rows)
+    cfg = m.get("config") or {}
+    knobs = " · ".join(f"{k} {cfg[k]}" for k in ("gamma", "lr", "episodes", "dream", "curiosity", "coin", "goal") if k in cfg)
+    load = (f'from transformers import AutoModelForCausalLM, AutoTokenizer\nfrom peft import PeftModel\n'
+            f'tok = AutoTokenizer.from_pretrained("{base}")\nmodel = PeftModel.from_pretrained(AutoModelForCausalLM.from_pretrained("{base}"), "{repo}")'
+            if backend != "mlx" else
+            f'from huggingface_hub import snapshot_download\nfrom mlx_lm import load\n'
+            f'model, tok = load("{base}", adapter_path=snapshot_download("{repo}") + "/adapter")   # Mac · MLX')
+    return f"""---
+license: apache-2.0
+base_model: {base}
+library_name: {"mlx" if backend == "mlx" else "peft"}
+language: [ko]
+pipeline_tag: reinforcement-learning
+tags: [reinforcement-learning, deep-reinforcement-learning, {m.get('algo', 'ppo')}, decision-making, logistics, connect-ai-lab, connectailab, lora, qwen3.5]
+---
+
+{brand_header()}
+
+{author_section(author)}
+
+# RL AI DECISION MAKING MODEL · 물류센터
+
+물류센터의 지금 상황(대기 트럭 · 빈 도크 · 팔레트 · 함정)을 읽고, **10분 동안 무엇을 할지** 보기 7개 중 글자 하나로 답하는 의사결정 모델입니다.
+보기 글자의 확률이 선택지별 확률, 가장 큰 값이 확신입니다.
+
+[CONNECT AI LAB 학습 실험실]({LAB_URL})에서 사람이 직접 알고리즘과 파라미터를 골라 강화학습한 두뇌(brain.json)를, `{base}`에 옮겨 담았습니다.
+
+## 만든 방법
+
+1. **두뇌 키우기 (웹 실험실)** · {m.get('algo', '').upper()} · {knobs}
+   소나기 · 지게차 고장 · 결근 · VIP 긴급 · 도로 정체 · 시스템 다운 · 피크 폭주가 중간중간 터지는 어려운 하루 하나에서 배웠습니다.
+2. **문제집** · 두뇌가 하루를 운영하는 동안 10분마다 보기 7개를 하나씩 해 보고, 그 하루를 끝까지 다시 돌려 점수를 매깁니다 (서로 다른 미래 {m.get('futures', 8)}개 평균 · 공식 보상).
+3. **지도학습** · Qwen이 내 두뇌의 답을 따라 배웁니다 (LoRA).
+4. **강화학습** · 두뇌의 답보다 확실히(20점 넘게) 나은 보기는 올리고 나쁜 보기는 내립니다 (지도학습 모델과의 KL로 붙잡아 둠).
+5. **채점** · Qwen을 물류센터장 자리에 앉혀, 웹 실험실과 똑같은 시험 24일을 운영합니다. 점수가 더 높은 쪽을 올렸습니다{f" · 올린 모델: {m['chosen']}" if m.get('chosen') else ""}.
+
+문제 수: {json.dumps(m.get('counts', {}), ensure_ascii=False)} · 환경 `{m.get('env', 'logistics-day/2')}`
+
+## 성적
+
+{table}
+
+## 쓰는 법
+
+```python
+{load}
+```
+
+지시문(system): `{SYSTEM}`
+문제(user): `{{"state": "물류센터 하루 · 오전 10:20 ...", "question": "지금부터 10분 동안 물류센터에서 무엇을 할까요?", "options": [{{"label": "A", ...}}]}}` · 답: 글자 하나
+
+```python
+from connect_tycoon.llm import labdata as L
+L.task(obs)          # 시뮬레이터 관측 16개 → 위 형식의 문제
+L.day_report(pick)   # pick(문제) → 글자 · 시험 24일 운영 점수
+```
+
+## 만든 곳 · CONNECT AI LAB × AI CITY BUILDERS
+
+- [CONNECT AI LAB 유튜브]({YT}) · AI 1인 기업 · 로컬 AI · 강화학습 무료 강의
+- [AI CITY BUILDERS](https://www.aicitybuilders.com) · AI 비즈니스의 정석 · [강화학습 AI 과정](https://www.aicitybuilders.com/robot)
+- [CONNECT TYCOON](https://github.com/wonseokjung/connect-tycoon) · 시뮬레이터 · 학습 코드
+
+합성 물류센터 시뮬레이터 위의 연구 · 교육용 모델입니다. 실제 운영에 쓰기 전에 그 센터의 기록으로 다시 검증하세요.
+"""
+
+
 def repo_name(name, version="v1", kind=None):
     """업로드 이름 규칙 · connectailab-rl-이름-버전 (예: connectailab-rl-jay-v1 · 선생님 정책은 connectailab-rl-jay-v1-teacher).
     rl = 강화학습 의사결정 모델 · 같은 connectailab이라도 다른 종류의 모델과 섞이지 않게 합니다."""
@@ -142,9 +225,15 @@ def push(adapter_dir, repo=None, results=None, meta=None, backend="mlx", token=N
     img = None
     if results_png:                                           # 성적 그래프는 저장소 안에 (모델마다 다르므로)
         api.upload_file(path_or_fileobj=results_png, path_in_repo="assets/results.png", repo_id=repo); img = "assets/results.png"
+    m = meta or {}
+    lab = m.get("kind") == "lab"
     info = {"format": "connectailab/1", "repo": repo, "base_model": BASE_MODEL, "backend": backend,          # 모아서 비교할 때 읽는 정보
             "adapter": "adapter" if backend == "mlx" else ".", "author": author,
-            "values": (meta or {}).get("values"), "profile": (meta or {}).get("profile"), "results": results}
+            "values": m.get("values"), "profile": m.get("profile"), "results": results}
+    if lab:
+        info.update(kind="lab-qwen", industry=m.get("industry"), env=m.get("env"), algo=m.get("algo"), teacher=m.get("teacher"),
+                    teacher_test=m.get("teacher_test"), baselines=m.get("baselines"), config=m.get("config"))
     api.upload_file(path_or_fileobj=json.dumps(info, ensure_ascii=False, indent=1).encode("utf-8"), path_in_repo="connectailab.json", repo_id=repo)
-    api.upload_file(path_or_fileobj=card(repo, results, meta, backend, results_image=img, author=author).encode("utf-8"), path_in_repo="README.md", repo_id=repo)
+    text = lab_card(repo, results, m, backend, author=author) if lab else card(repo, results, meta, backend, results_image=img, author=author)
+    api.upload_file(path_or_fileobj=text.encode("utf-8"), path_in_repo="README.md", repo_id=repo)
     return f"https://huggingface.co/{repo}"

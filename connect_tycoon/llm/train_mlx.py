@@ -54,7 +54,11 @@ class Scorer:
 
 
 def advantages(rows, clip=3.0):
-    """선택지별 장점 = (점수 − 그 문제의 평균) ÷ 전체 문제의 표준편차. 차이가 작은 문제는 작게, 큰 문제는 크게 반영합니다."""
+    """선택지별 장점 = (점수 − 그 문제의 평균) ÷ 전체 문제의 표준편차. 차이가 작은 문제는 작게, 큰 문제는 크게 반영합니다.
+    물류 실험실 문제(dept logistics)는 labdata.advantages · 두뇌의 답을 기준으로 확실한 차이만 씁니다."""
+    if rows and rows[0].get("dept") == "logistics":
+        from .labdata import advantages as lab
+        return lab(rows, clip=clip)
     cen = [[x - sum(r["scores"]) / len(r["scores"]) for x in r["scores"]] for r in rows]
     flat = [x for c in cen for x in c]
     g = (sum(x * x for x in flat) / max(1, len(flat))) ** 0.5 or 1.0

@@ -38,7 +38,10 @@ def find(prefix=PREFIX, limit=500, token=None):
         name = m.id.split("/")[-1]
         if not name.lower().startswith(prefix):
             continue
-        out.append({"repo": m.id, "owner": m.id.split("/")[0], "name": name, "kind": kind_of(s.rfilename for s in (m.siblings or [])),
+        kind = kind_of(s.rfilename for s in (m.siblings or []))
+        if "-logistics" in name.lower():                # 물류 실험실 모델 · 회사 공통 시험지와 문제가 달라 여기서는 채점하지 않습니다
+            kind = "lab-" + kind
+        out.append({"repo": m.id, "owner": m.id.split("/")[0], "name": name, "kind": kind,
                     "downloads": getattr(m, "downloads", 0), "likes": getattr(m, "likes", 0), "updated": str(getattr(m, "last_modified", ""))})
     return sorted(out, key=lambda x: x["repo"])
 

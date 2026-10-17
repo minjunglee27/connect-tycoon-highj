@@ -16,6 +16,7 @@ AI 교육 브랜드 **[CONNECT AI LAB](https://www.youtube.com/@CONNECT-AI-LAB) 
 | 시뮬레이터 프로그램 | 이 저장소 · 아래 [설치](#설치) |
 | 내 RL 모델 바로 올리기 (Colab · 1분) | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/wonseokjung/connect-tycoon/blob/main/notebooks/upload_brain_colab.ipynb) |
 | Qwen으로 옮기기 (Colab) | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/wonseokjung/connect-tycoon/blob/main/notebooks/rl_decision_model_qwen_colab.ipynb) |
+| 물류 두뇌 → Qwen (Colab ③) | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/wonseokjung/connect-tycoon/blob/main/notebooks/logistics_brain_qwen_colab.ipynb) |
 | 첫 결과 (Hugging Face) | [WonseokJayJung/connectailab-rl-jay-v1](https://huggingface.co/WonseokJayJung/connectailab-rl-jay-v1) |
 
 ---
@@ -199,6 +200,35 @@ connect-tycoon llm collect        # (테스트 중) connectailab-rl-로 시작�
 ```
 
 첫 결과 · [WonseokJayJung/connectailab-rl-jay-v1](https://huggingface.co/WonseokJayJung/connectailab-rl-jay-v1) · 학습 전 한 달 −1,340만 → 지도학습 +635만 → 강화학습 +757만 · 실제 사기 거래 손실 37% → 71% 줄임
+
+## 물류 실험실 두뇌 → Qwen
+
+웹 학습 실험실(CONNECT AI LAB · 물류센터 하루)에서 내가 알고리즘(Q러닝 · DQN · PPO) · 파라미터 · 보상 · **연습 세상**(함정 카드 · 보상 토큰)을 정해 키운 brain.json도 Qwen 의사결정 모델이 됩니다.
+
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/wonseokjung/connect-tycoon/blob/main/notebooks/logistics_brain_qwen_colab.ipynb)
+
+1. **같은 시뮬레이터** · `connect_tycoon/labenv.py`는 웹(TypeScript)과 걸음마다 똑같이 움직입니다 (난수 · 정렬 · 반올림까지). 웹에서 본 시험 점수가 파이썬에서도 그대로 나옵니다.
+2. **문제집** · 두뇌가 하루를 운영하는 동안 10분마다 보기 7개를 하나씩 해 보고, 남은 하루를 두뇌로 끝까지 돌립니다 (서로 다른 미래 8개 평균 · 공식 보상).
+3. **지도학습 = 내 두뇌 따라 배우기** · 정답은 두뇌의 답 · 문제는 물류센터장이 보는 화면 글 + 보기 A~G
+4. **강화학습 = 확실한 차이만** · 두뇌의 답보다 20점 넘게 낫거나 나쁜 보기만 올리고 내립니다 (회사 버전과 같은 학습 코드 `train_torch` · `train_mlx`)
+5. **채점** · Qwen을 물류센터장 자리에 앉혀 웹과 같은 시험 24일을 운영 (`labdata.day_report`) · 점수가 높은 쪽을 올립니다
+
+실험으로 정한 이유 (예시 두뇌 · 시험 24일 하루 점수 · 두뇌 279 · 규칙 사장 86)
+- 점수 1등을 정답으로 → 운 좋게 높게 나온 보기만 골라 두뇌보다 나빠짐 (계획으로 돌려도 250)
+- 점수를 그대로 강화학습에 → 점수는 '나머지 하루는 두뇌가 운영한다'는 가정이라 임시 인력 호출이 늘 조금 좋아 보여, Qwen이 그것만 고르고 트럭을 대지 않음 (−805)
+- 두뇌의 답 + 확실히 나은 보기로 고친 정답 → 미리 돌려 보는 계획으로는 336이지만, 화면 글로는 72%만 맞힐 수 있어 Qwen이 배우면 228
+- 두뇌의 답 그대로 1회 → 늘 '급한 트럭 도킹'만 골라 210 (두뇌는 82%가 도킹, 18%가 초과근무)
+- **두뇌의 답 + 드문 답(초과근무) 2번 반복 + 2회 학습 → 정답률 90% · 시험 24일 289점 · 두뇌(279)보다 조금 높음** (Mac MLX · Qwen3.5-0.8B · 학습 전 87점)
+
+```bash
+connect-tycoon llm data --teacher my-logistics-ppo.json --out lab_data     # 웹 실험실 brain.json이면 물류 문제집
+connect-tycoon llm sft  --data lab_data --out adapters/sft
+connect-tycoon llm rl   --data lab_data --from adapters/sft --out adapters/rl
+connect-tycoon llm eval --data lab_data --adapter adapters/sft --adapter adapters/rl --save results.json   # 시험 24일 운영 점수 포함
+connect-tycoon llm push --data lab_data --adapter adapters/rl --results results.json --name jay           # connectailab-rl-jay-v1-logistics-qwen
+```
+
+brain.json이 없으면 `connect_tycoon.lab.example()` (웹 기본값 PPO · 시험 279점 · 규칙 사장 86점)로 해 볼 수 있습니다.
 
 ## 모델이 답하는 모양
 

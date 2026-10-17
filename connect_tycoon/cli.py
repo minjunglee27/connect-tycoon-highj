@@ -147,7 +147,12 @@ def cmd_push(args):
         sys.exit("pip install huggingface_hub 가 필요합니다")
     from .hub import push_brain
     from .llm.hub import make_author
-    print(push_brain(args.brain, repo=args.repo, version=args.version, name=args.name, author=make_author(_about(args))))
+    from .lab import is_lab
+    if is_lab(args.brain):                      # 웹 학습 실험실에서 내려받은 두뇌
+        from .hub import push_lab_brain
+        print(push_lab_brain(args.brain, repo=args.repo, version=args.version, name=args.name, author=make_author(_about(args))))
+    else:
+        print(push_brain(args.brain, repo=args.repo, version=args.version, name=args.name, author=make_author(_about(args))))
 
 
 def _llm_backend(name):
@@ -186,6 +191,12 @@ def cmd_llm(args):
         board = C.leaderboard(res, test)
         print(C.table(board)); print("저장:", C.save(board, out))
         return
+    if args.step == "data" and args.teacher.endswith(".json") and _is_lab(args.teacher):    # 웹 학습 실험실의 물류 두뇌
+        from .lab import LabBrain
+        from .llm import labdata as L
+        splits = {"train": range(30000, 30000 + args.train_days), "valid": range(31000, 31004), "test": range(32000, 32004)}
+        print(L.build(LabBrain.from_file(args.teacher), args.out, splits=splits, stride=args.stride))
+        return
     if args.step == "data":
         co = ct.make_company(profile=args.profile)
         teacher = ct.CompanyBrain.load(args.teacher)
@@ -201,12 +212,16 @@ def cmd_llm(args):
         from .llm.policy import LLMPolicy, report
         co = ct.make_company(profile=args.profile)
         test = D.load(args.data, "test")
+        lab = _meta(args.data).get("kind") == "lab"
         out = {}
         for ad in [None] + (args.adapter or []):                 # 학습 전 Qwen도 같은 시험으로
             sc = M.Scorer(adapter=ad)
             name = "Qwen 학습 전" if ad is None else os.path.basename(os.path.normpath(ad))
             out[name] = D.agreement(test, sc.pick)
-            if args.months:
+            if lab:                                               # 물류센터장 자리에 앉혀 시험 24일 (웹 실험실과 같은 날)
+                from .llm.labdata import day_report
+                out[name].update(day_report(sc.pick, log=None))
+            elif args.months:
                 out[name].update(report(LLMPolicy(sc, co.values), co, months=args.months, demand_months=0))
             print(name, _json.dumps(out[name], ensure_ascii=False))
         if args.save:
@@ -215,12 +230,27 @@ def cmd_llm(args):
     elif args.step == "push":
         from .llm.hub import push
         res = _json.load(open(args.results, encoding="utf-8")) if args.results else None
-        meta = _json.load(open(os.path.join(args.data, "meta.json"), encoding="utf-8")) if args.data and os.path.exists(os.path.join(args.data, "meta.json")) else None
+        meta = _meta(args.data) or None
         from huggingface_hub import HfApi
         from .llm.hub import repo_name
-        repo = args.repo or f"{HfApi().whoami()['name']}/{repo_name(args.name or HfApi().whoami()['name'], args.version)}"
+        kind = "logistics-qwen" if (meta or {}).get("kind") == "lab" else None
+        repo = args.repo or f"{HfApi().whoami()['name']}/{repo_name(args.name or HfApi().whoami()['name'], args.version, kind)}"
         from .llm.hub import make_author
         print(push(args.adapter[0], repo=repo, results=res, meta=meta, author=make_author(_about(args))))
+
+
+def _meta(data_dir):
+    path = os.path.join(data_dir or "", "meta.json")
+    if not data_dir or not os.path.exists(path):
+        return {}
+    import json as _json
+    with open(path, encoding="utf-8") as f:
+        return _json.load(f)
+
+
+def _is_lab(path):
+    from .lab import is_lab
+    return is_lab(path)
 
 
 def _about(args):
@@ -266,8 +296,9 @@ def main(argv=None):
     s.set_defaults(fn=cmd_backtest)
     s = sub.add_parser("llm", help="언어 모델(Qwen)에 옮기고 강화학습 · data → sft → rl → eval → push")
     s.add_argument("step", choices=["data", "sft", "rl", "eval", "push", "collect"])
-    s.add_argument("--teacher", default="default", help="선생님 두뇌 (brain.json · default · hf:아이디/저장소)")
+    s.add_argument("--teacher", default="default", help="선생님 두뇌 (brain.json · default · hf:아이디/저장소 · 웹 실험실의 물류 brain.json도 됩니다)")
     s.add_argument("--profile", default="general", help=PROFILE_HELP); s.add_argument("--train-months", type=int, default=10)
+    s.add_argument("--train-days", type=int, default=30, help="data: 물류 두뇌(웹 실험실 brain.json)일 때 문제집을 만들 날 수")
     s.add_argument("--stride", type=int, default=1); s.add_argument("--data", default="llm_data"); s.add_argument("--out", default="llm_out")
     s.add_argument("--from", dest="start", help="강화학습 출발 어댑터 (보통 sft 결과)"); s.add_argument("--adapter", action="append")
     s.add_argument("--epochs", type=float, default=1.0); s.add_argument("--lr", type=float, help="기본 sft 1e-4 · rl 5e-6")

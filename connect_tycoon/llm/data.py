@@ -75,7 +75,7 @@ def agreement(rows, pick):
     hit, regret = 0, 0.0
     for r in rows:
         k = LETTERS.index(pick(r["task"]))
-        hit += (LETTERS[k] == r["answer"]) if r.get("label") == "teacher" else (r["scores"][k] == max(r["scores"]))
+        hit += (LETTERS[k] == r["answer"]) if r.get("label") in ("teacher", "lab") else (r["scores"][k] == max(r["scores"]))
         regret += max(r["scores"]) - r["scores"][k]
     n = max(1, len(rows))
     return {"accuracy": hit / n, "regret": regret / n, "n": len(rows)}
