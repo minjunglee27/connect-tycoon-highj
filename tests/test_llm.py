@@ -156,6 +156,8 @@ def test_lab_brain_to_qwen_problems(tmp_path):
     assert len(r["task"]["options"]) == len(r["scores"]) == 7 and r["label"] == "lab" and r["dept"] == "logistics"
     assert "물류센터" in r["task"]["state"] and r["answer"] in "ABCDEFG"
     assert all(r["answer"] == r["teacher"] for r in rows)                                                       # 지도학습 정답 = 두뇌의 답
+    fake = [{"answer": "C"}] * 80 + [{"answer": "D"}] * 20
+    assert sum(r["answer"] == "D" for r in L.balanced(fake)) == 40                                             # 드문 답(초과근무)은 √4 = 2번
     assert L.label([0, 5, 30, 0, 0, 0, 0], chosen=1, margin=10) == 2 and L.label([0, 5, 12, 0, 0, 0, 0], chosen=1, margin=10) == 1
     task = rows[0]["task"]
     adv = L.advantages([{"scores": [0, 5, 30, 0, 0, -40, 99], "teacher": "B", "temp": 3, "task": task}])[0]

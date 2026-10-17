@@ -96,13 +96,14 @@ results = {"Qwen 학습 전": D.agreement(test, base.pick)}
 results["Qwen 학습 전"].update(L.day_report(base.pick, log=None))
 print(results["Qwen 학습 전"])
 del base; torch.cuda.empty_cache()""", None),
-    ("md", """## 4 · 지도학습 · 내 두뇌의 답을 따라 배우기 (T4 약 20분)
+    ("md", """## 4 · 지도학습 · 내 두뇌의 답을 따라 배우기 (T4 약 40분)
 
 **무엇을** · 두뇌가 고른 보기 글자를 맞히도록 LoRA를 학습합니다 (모델 전체가 아니라 작은 덧붙임 층만).
 **왜** · 두뇌(작은 신경망)가 숫자로 하던 판단을, 언어 모델이 글을 읽고 하도록 옮깁니다.
+**드문 답은 여러 번** · 두뇌가 82%는 '급한 트럭 도킹', 18%는 '초과근무'를 고르면, 그대로 배운 Qwen은 언제 초과근무를 할지 배우기 전에 늘 도킹만 고릅니다. 그래서 드문 답을 몇 번 반복해 보여 줍니다.
 
 ✅ **정상이면** · 정답률 85% 안팎 · 하루 점수가 두뇌 가까이 올라옵니다"""),
-    ("code", """sft = T.sft("lab_data", "adapters/sft", epochs=1, lr=1e-4, batch=8)
+    ("code", """sft = T.sft("lab_data", "adapters/sft", epochs=2, lr=1e-4, batch=8)
 results["지도학습"] = D.agreement(test, sft.pick)
 results["지도학습"].update(L.day_report(sft.pick, log=None))
 print(results["지도학습"])

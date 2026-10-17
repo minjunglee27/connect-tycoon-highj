@@ -129,6 +129,22 @@ def rows_for_day(policy, seed, stride=1, futures=8, margin=None, min_gap=1e-6):
     return out
 
 
+def balanced(rows, cap=4):
+    """드문 답을 √(가장 흔한 답 수 ÷ 그 답 수)번 반복 (최대 cap번). 두뇌가 82%는 C(급한 트럭 도킹), 18%는 D(초과근무)를 고르면
+    Qwen이 '언제 초과근무를 할지'를 배우기 전에 늘 C만 고르게 됩니다 (그대로 배우면 시험 24일 210점 · 늘 C만 고르면 87점)."""
+    import math
+    import random
+    n = {}
+    for r in rows:
+        n[r["answer"]] = n.get(r["answer"], 0) + 1
+    top = max(n.values()) if n else 1
+    out = []
+    for r in rows:
+        out += [r] * min(cap, max(1, round(math.sqrt(top / n[r["answer"]]))))
+    random.Random(0).shuffle(out)
+    return out
+
+
 def build(brain, out_dir, splits=None, stride=1, futures=8, margin=None, log=print):
     """문제집을 만듭니다. brain은 lab.LabBrain. 반환: {split: 문제 수}. 하루 ≈ 60문제 · CPU 3~5초."""
     splits = splits or SPLITS
@@ -141,7 +157,7 @@ def build(brain, out_dir, splits=None, stride=1, futures=8, margin=None, log=pri
             rows += rows_for_day(policy, s, stride=stride, futures=futures, margin=margin)
             if log and (i + 1) % 10 == 0 or log and i + 1 == len(seeds): log(f"{name} {i + 1}/{len(seeds)}일 · 문제 {len(rows)}개")
         with open(os.path.join(out_dir, "sft", f"{name}.jsonl"), "w", encoding="utf-8") as f:
-            for r in rows:
+            for r in (balanced(rows) if name == "train" else rows):
                 f.write(json.dumps({"messages": messages(r["task"], r["answer"])}, ensure_ascii=False) + "\n")
         with open(os.path.join(out_dir, "rl", f"{name}.jsonl"), "w", encoding="utf-8") as f:
             for r in rows:
