@@ -16,6 +16,7 @@ AI 교육 브랜드 **[CONNECT AI LAB](https://www.youtube.com/@CONNECT-AI-LAB) 
 | 시뮬레이터 프로그램 | 이 저장소 · 아래 [설치](#설치) |
 | 내 RL 모델 바로 올리기 (Colab · 1분) | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/wonseokjung/connect-tycoon/blob/main/notebooks/upload_brain_colab.ipynb) |
 | Qwen으로 옮기기 (Colab) | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/wonseokjung/connect-tycoon/blob/main/notebooks/rl_decision_model_qwen_colab.ipynb) |
+| 물류 두뇌 → Qwen (Colab ③) | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/wonseokjung/connect-tycoon/blob/main/notebooks/logistics_brain_qwen_colab.ipynb) |
 | 첫 결과 (Hugging Face) | [WonseokJayJung/connectailab-rl-jay-v1](https://huggingface.co/WonseokJayJung/connectailab-rl-jay-v1) |
 
 ---
@@ -199,6 +200,29 @@ connect-tycoon llm collect        # (테스트 중) connectailab-rl-로 시작�
 ```
 
 첫 결과 · [WonseokJayJung/connectailab-rl-jay-v1](https://huggingface.co/WonseokJayJung/connectailab-rl-jay-v1) · 학습 전 한 달 −1,340만 → 지도학습 +635만 → 강화학습 +757만 · 실제 사기 거래 손실 37% → 71% 줄임
+
+## 물류 실험실 두뇌 → Qwen
+
+웹 학습 실험실(CONNECT AI LAB · 물류센터 하루)에서 내가 알고리즘(Q러닝 · DQN · PPO) · 파라미터 · 보상 · **연습 세상**(함정 카드 · 보상 토큰)을 정해 키운 brain.json도 Qwen 의사결정 모델이 됩니다.
+
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/wonseokjung/connect-tycoon/blob/main/notebooks/logistics_brain_qwen_colab.ipynb)
+
+1. **같은 시뮬레이터** · `connect_tycoon/labenv.py`는 웹(TypeScript)과 걸음마다 똑같이 움직입니다 (난수 · 정렬 · 반올림까지). 웹에서 본 시험 점수가 파이썬에서도 그대로 나옵니다.
+2. **문제집** · 두뇌가 하루를 운영하는 동안 10분마다 보기 7개를 하나씩 해 보고, 남은 하루를 두뇌로 끝까지 돌립니다 (서로 다른 미래 8개 평균 · 공식 보상).
+3. **정답 = 두뇌 + 시뮬레이터의 첨삭** · 두뇌의 답을 쓰고, 다른 보기가 10점 넘게 확실히 나을 때만 바꿉니다.
+   점수 1등을 그대로 정답으로 쓰면 운 좋게 높게 나온 보기만 고르게 되어 두뇌보다 나빠집니다 (예시 두뇌 시험 24일 279 → 250). 확실할 때만 바꾸면 279 → 336.
+4. **지도학습 → 강화학습** · 회사 버전과 같은 학습 코드 (`train_torch` · `train_mlx`) · 문제는 물류센터장이 보는 화면 글 + 보기 A~G
+5. **채점** · Qwen을 물류센터장 자리에 앉혀 웹과 같은 시험 24일을 운영 (`labdata.day_report`)
+
+```bash
+connect-tycoon llm data --teacher my-logistics-ppo.json --out lab_data     # 웹 실험실 brain.json이면 물류 문제집
+connect-tycoon llm sft  --data lab_data --out adapters/sft
+connect-tycoon llm rl   --data lab_data --from adapters/sft --out adapters/rl
+connect-tycoon llm eval --data lab_data --adapter adapters/sft --adapter adapters/rl --save results.json   # 시험 24일 운영 점수 포함
+connect-tycoon llm push --data lab_data --adapter adapters/rl --results results.json --name jay           # connectailab-rl-jay-v1-logistics-qwen
+```
+
+brain.json이 없으면 `connect_tycoon.lab.example()` (웹 기본값 PPO · 시험 279점 · 규칙 사장 86점)로 해 볼 수 있습니다.
 
 ## 모델이 답하는 모양
 

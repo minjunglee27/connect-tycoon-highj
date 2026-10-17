@@ -129,3 +129,41 @@ def test_lab_brain_from_web_simulator():
     assert m.act(obs=[0.2, 0.8]) == 1 and m.act(obs=[0.9, 0.1]) == 0
     card = lab_card(base, "me/connectailab-rl-jay-v1-logistics")
     assert "pipeline_tag: reinforcement-learning" in card and "**300**" in card and "| 규칙 사장" in card and "238" in card
+
+
+def test_python_lab_env_matches_web():
+    """파이썬 물류센터 하루가 웹(TypeScript)과 걸음마다 같음 · 예시 두뇌의 웹 시험 점수 · 규칙 사장 점수가 그대로 나옴."""
+    from connect_tycoon import labenv as E
+    from connect_tycoon.lab import example
+    b = example()
+    assert b.spec["env"] == E.ENV_ID
+    assert abs(E.evaluate(b.policy())["score"] - b.test["score"]) < 1e-9
+    assert abs(E.evaluate(E.rule_policy)["score"] - b.spec["baselines"]["rule"]) < 1e-9
+
+
+def test_lab_brain_to_qwen_problems(tmp_path):
+    """물류 두뇌 → Qwen 문제집 · 보기 7개 · 점수 · 정답(두뇌 + 첨삭) · 기존 지도학습 형식 그대로 · Qwen을 센터장으로 앉히는 정책."""
+    from connect_tycoon import labenv as E
+    from connect_tycoon.lab import example
+    from connect_tycoon.llm import data as D
+    from connect_tycoon.llm import labdata as L
+    from connect_tycoon.llm.hub import lab_card, repo_name
+    b = example()
+    counts = L.build(b, str(tmp_path), splits={"train": range(30000, 30001), "test": range(32000, 32001)}, futures=1, log=None)
+    rows = D.load(str(tmp_path), "train")
+    assert counts["train"] == len(rows) > 30
+    r = rows[0]
+    assert len(r["task"]["options"]) == len(r["scores"]) == 7 and r["label"] == "lab" and r["dept"] == "logistics"
+    assert "물류센터" in r["task"]["state"] and r["answer"] in "ABCDEFG"
+    assert L.label([0, 5, 30, 0, 0, 0, 0], chosen=1) == 2 and L.label([0, 5, 12, 0, 0, 0, 0], chosen=1) == 1     # 확실할 때만 고침
+    assert L.label([0, 5, 0, 0, 0, 0, 99], chosen=1, temp=3) == 1                                               # 임시 인력이 있으면 다시 부르지 않음
+    line = json.loads(open(tmp_path / "sft" / "train.jsonl", encoding="utf-8").readline())
+    assert line["messages"][2]["content"] in "ABCDEFG"
+    assert D.agreement(rows, lambda t: "B")["n"] == len(rows)
+    total, acts, _ = E.run_day(L.as_policy(lambda t: "B"), 90001)
+    assert set(acts) == {1}
+    meta = json.load(open(tmp_path / "meta.json", encoding="utf-8"))
+    assert meta["kind"] == "lab" and meta["teacher_test"] == b.test["score"]
+    md = lab_card("me/x", {"지도학습": {"accuracy": 0.8, "regret": 1.0, "day_score": 300.0, "on_time": 0.8}}, meta)
+    assert "시험 24일 하루 점수" in md and "300.0" in md and "규칙 사장" in md
+    assert repo_name("Jay", "v1", "logistics-qwen") == "connectailab-rl-jay-v1-logistics-qwen"
