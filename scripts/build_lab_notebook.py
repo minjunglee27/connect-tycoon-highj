@@ -18,9 +18,9 @@ CELLS = [
 1. **두뇌 불러오기** · 내 brain.json (없으면 예시 두뇌)
 2. **문제집** · 두뇌가 하루를 운영하는 동안 10분마다 보기 7개를 하나씩 해 보고, 하루 끝까지 다시 돌려 점수를 매깁니다
 3. **학습 전 Qwen** · 아무것도 배우지 않은 Qwen을 물류센터장 자리에 앉혀 봅니다
-4. **지도학습** · 정답 보기를 따라 배웁니다 (LoRA)
-5. **강화학습** · 점수가 높은 보기의 확률을 올립니다
-6. **공개** · Hugging Face에 `connectailab-rl-이름-버전-logistics-qwen`
+4. **지도학습** · Qwen이 내 두뇌의 답을 그대로 배웁니다 (LoRA)
+5. **강화학습** · 두뇌의 답보다 확실히 나은 보기는 올리고, 확실히 나쁜 보기는 내립니다
+6. **공개** · 시험 24일 점수가 더 높은 쪽을 Hugging Face에 `connectailab-rl-이름-버전-logistics-qwen`
 
 > 메뉴 **런타임 → 런타임 유형 변경 → GPU (T4 이상)**. 왼쪽 🔑(보안 비밀)에 `HF_TOKEN`(Write 권한)을 넣어 두면 마지막 셀에서 바로 올라갑니다."""),
     ("code", f"""# 설치 (2~3분)
@@ -61,8 +61,12 @@ print(f"시험 24일 하루 점수 {mine['score']:.1f} (웹 {brain.test.get('sco
 **무엇을** · 두뇌가 하루를 운영하는 동안, 10분마다 보기 7개(대기 · 먼저 온 트럭 도킹 · 급한 트럭 도킹 · 초과근무 · 지게차 집중 · 검수 강화 · 임시 인력)를 하나씩 해 보고, 남은 하루를 두뇌로 끝까지 돌립니다.
 보기마다 '그렇게 했으면 남은 하루의 보상이 얼마였나'(서로 다른 미래 8개의 평균)가 점수입니다. 연습 때 보상을 어떻게 바꿨든, 점수는 **공식 보상**으로만 매깁니다.
 
-**정답 고르는 법** · 두뇌의 답이 정답이고, 다른 보기가 **확실히** 더 나을 때(10점 넘게)만 그 보기로 바꿉니다 = 두뇌 + 시뮬레이터의 첨삭.
-점수 1등을 그대로 정답으로 쓰면 운 좋게 높게 나온 보기를 고르게 되어 오히려 나빠집니다 (예시 두뇌 279 → 250). 확실할 때만 바꾸면 330 안팎으로 두뇌보다 나아집니다.
+**정답** · 지도학습의 정답은 **내 두뇌의 답**입니다. 언어 모델이 먼저 내 두뇌를 그대로 배웁니다.
+**점수** · 강화학습에서 씁니다. 두뇌의 답보다 20점 넘게 낫거나 나쁜 보기만 반영합니다.
+
+**왜 이렇게 (예시 두뇌로 해 본 실험)**
+- 점수 1등을 정답으로 쓰면 → 운 좋게 높게 나온 보기만 골라 두뇌보다 나빠짐 (279 → 250)
+- 점수를 그대로 강화학습에 쓰면 → 점수는 '나머지 하루는 두뇌가 운영한다'는 가정이라 임시 인력 호출이 늘 조금 좋아 보여, 모델이 그것만 고르고 트럭을 대지 않음 (−805점)
 
 **모양** · 상황(사람이 읽는 화면 글) · 질문 · 보기 A~G → 답은 글자 하나
 
@@ -72,11 +76,13 @@ TRAIN_DAYS = 30                                        # 늘릴수록 문제가 
 splits = {"train": range(30000, 30000 + TRAIN_DAYS), "valid": range(31000, 31004), "test": range(32000, 32004)}
 print(L.build(brain, "lab_data", splits=splits, log=None))
 rows = D.load("lab_data", "train")
-print(f"두뇌의 답을 그대로 쓴 문제 {sum(r['answer'] == r['teacher'] for r in rows) / len(rows):.0%} · 시뮬레이터가 고친 문제 {sum(r['answer'] != r['teacher'] for r in rows) / len(rows):.0%}")
-ex = next(r for r in D.load("lab_data", "test") if r["answer"] != r["teacher"])
+adv = L.advantages(rows)
+print(f"강화학습 신호가 있는 문제 {sum(any(a) for a in adv)}개 / {len(rows)}개 (두뇌의 답보다 20점 넘게 차이 나는 보기가 있는 문제)")
+k = next(i for i, a in enumerate(adv) if any(a))
+ex = rows[k]
 print(); print(ex["task"]["state"]); print(ex["task"]["question"])
-for o, s in zip(ex["task"]["options"], ex["scores"]): print(f"  {o['label']} {o['description'][:34]:36s} 점수 {s:.1f}")
-print("정답", ex["answer"], "· 두뇌의 답", ex["teacher"])""", None),
+for o, s, a in zip(ex["task"]["options"], ex["scores"], adv[k]): print(f"  {o['label']} {o['description'][:34]:36s} 점수 {s:6.1f}  장점 {a:+.2f}")
+print("정답(두뇌의 답)", ex["answer"])""", None),
     ("md", """## 3 · 학습 전 Qwen · 물류센터장 자리에 앉혀 보기 (약 2분)
 
 **무엇을** · 아무것도 배우지 않은 Qwen에게 시험 문제를 풀게 하고, 웹 실험실과 똑같은 시험 24일 동안 물류센터를 맡깁니다.
@@ -90,12 +96,12 @@ results = {"Qwen 학습 전": D.agreement(test, base.pick)}
 results["Qwen 학습 전"].update(L.day_report(base.pick, log=None))
 print(results["Qwen 학습 전"])
 del base; torch.cuda.empty_cache()""", None),
-    ("md", """## 4 · 지도학습 · 정답 보기를 따라 배우기 (T4 약 20분)
+    ("md", """## 4 · 지도학습 · 내 두뇌의 답을 따라 배우기 (T4 약 20분)
 
-**무엇을** · 정답 보기 글자를 맞히도록 LoRA를 학습합니다 (모델 전체가 아니라 작은 덧붙임 층만).
+**무엇을** · 두뇌가 고른 보기 글자를 맞히도록 LoRA를 학습합니다 (모델 전체가 아니라 작은 덧붙임 층만).
 **왜** · 두뇌(작은 신경망)가 숫자로 하던 판단을, 언어 모델이 글을 읽고 하도록 옮깁니다.
 
-✅ **정상이면** · 시험 정답률이 크게 오르고, 하루 점수가 두뇌 가까이 올라옵니다"""),
+✅ **정상이면** · 정답률 85% 안팎 · 하루 점수가 두뇌 가까이 올라옵니다"""),
     ("code", """sft = T.sft("lab_data", "adapters/sft", epochs=1, lr=1e-4, batch=8)
 results["지도학습"] = D.agreement(test, sft.pick)
 results["지도학습"].update(L.day_report(sft.pick, log=None))
@@ -103,17 +109,20 @@ print(results["지도학습"])
 del sft; torch.cuda.empty_cache()""", None),
     ("md", """## 5 · 강화학습 · 시뮬레이터 점수로 고치기 (T4 약 15분)
 
-**무엇을** · 보기 전체를 한 묶음으로 보고, 점수가 평균보다 높은 보기의 확률은 올리고 낮은 보기는 내립니다. 지도학습 모델에서 너무 멀어지지 않게 붙잡아 둡니다(KL).
+**무엇을** · 두뇌의 답보다 확실히(20점 넘게) 나은 보기의 확률은 올리고, 확실히 나쁜 보기는 내립니다. 지도학습 모델에서 너무 멀어지지 않게 붙잡아 둡니다(KL).
+임시 인력이 이미 근무 중일 때 또 부르기는 좋아 보여도 올리지 않습니다.
 **손실** · −Σ p(보기) · 장점(보기) + β · KL(p ‖ 지도학습 모델)
 
-✅ **정상이면** · **후회**(고른 답이 최고점에서 모자란 정도)가 줄어듭니다. 하루 점수는 비슷하거나 조금 오릅니다"""),
+✅ **정상이면** · 하루 점수가 지도학습과 비슷하거나 오릅니다. 마지막 셀은 **시험 24일 점수가 더 높은 쪽**(지도학습 또는 강화학습)을 올립니다"""),
     ("code", """rlm, hist = T.rl("lab_data", "adapters/sft", "adapters/rl", steps=100, batch=8, lr=5e-6, beta=0.2, max_rows=1500)
 results["강화학습"] = D.agreement(test, rlm.pick)
 results["강화학습"].update(L.day_report(rlm.pick, log=None))
 print(f"{'':12s} 정답률  후회   하루 점수  제시간")
 for k, v in results.items(): print(f"{k:12s} {v['accuracy']:.1%}  {v['regret']:.2f}  {v['day_score']:7.1f}   {v['on_time']:.0%}")
 print(f"{'두뇌':12s}   —      —    {mine['score']:7.1f}   {mine['onTimeRate']:.0%}")
-print(f"{'규칙 사장':12s}   —      —    {rule['score']:7.1f}   {rule['onTimeRate']:.0%}")""", None),
+print(f"{'규칙 사장':12s}   —      —    {rule['score']:7.1f}   {rule['onTimeRate']:.0%}")
+BEST = "adapters/rl" if results["강화학습"]["day_score"] >= results["지도학습"]["day_score"] else "adapters/sft"
+print("올릴 모델 ·", "강화학습" if BEST.endswith("rl") else "지도학습", "(시험 24일 점수가 더 높은 쪽)")""", None),
     ("md", """## 6 · Hugging Face에 올리기
 
 1. https://huggingface.co/settings/tokens 에서 **Write** 토큰을 만듭니다.
@@ -147,7 +156,8 @@ ABOUT_ME = '''
 author = make_author(ABOUT_ME)
 
 meta = json.load(open("lab_data/meta.json"))
-url = push("adapters/rl", repo=f"{me}/{MODEL_NAME}", results=results, meta=meta, backend="torch", token=HF_TOKEN, private=PRIVATE, author=author)
+meta["chosen"] = "강화학습" if BEST.endswith("rl") else "지도학습"
+url = push(BEST, repo=f"{me}/{MODEL_NAME}", results=results, meta=meta, backend="torch", token=HF_TOKEN, private=PRIVATE, author=author)
 print("올라갔습니다 ·", url)
 if PUSH_BRAIN:
     from connect_tycoon.hub import push_lab_brain

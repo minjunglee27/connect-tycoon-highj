@@ -155,8 +155,13 @@ def test_lab_brain_to_qwen_problems(tmp_path):
     r = rows[0]
     assert len(r["task"]["options"]) == len(r["scores"]) == 7 and r["label"] == "lab" and r["dept"] == "logistics"
     assert "물류센터" in r["task"]["state"] and r["answer"] in "ABCDEFG"
-    assert L.label([0, 5, 30, 0, 0, 0, 0], chosen=1) == 2 and L.label([0, 5, 12, 0, 0, 0, 0], chosen=1) == 1     # 확실할 때만 고침
-    assert L.label([0, 5, 0, 0, 0, 0, 99], chosen=1, temp=3) == 1                                               # 임시 인력이 있으면 다시 부르지 않음
+    assert all(r["answer"] == r["teacher"] for r in rows)                                                       # 지도학습 정답 = 두뇌의 답
+    assert L.label([0, 5, 30, 0, 0, 0, 0], chosen=1, margin=10) == 2 and L.label([0, 5, 12, 0, 0, 0, 0], chosen=1, margin=10) == 1
+    task = rows[0]["task"]
+    adv = L.advantages([{"scores": [0, 5, 30, 0, 0, -40, 99], "teacher": "B", "temp": 3, "task": task}])[0]
+    assert adv[1] == 0 and adv[0] == 0 and adv[2] > 0 and adv[5] < 0 and adv[6] == 0                                          # 20점 안쪽은 0 · 임시 인력 근무 중 재호출은 올리지 않음
+    from connect_tycoon.llm.train_mlx import advantages
+    assert advantages([{"scores": [0, 50, 0, 0, 0, 0, 0], "teacher": "A", "dept": "logistics", "task": task}])[0][1] > 0
     line = json.loads(open(tmp_path / "sft" / "train.jsonl", encoding="utf-8").readline())
     assert line["messages"][2]["content"] in "ABCDEFG"
     assert D.agreement(rows, lambda t: "B")["n"] == len(rows)

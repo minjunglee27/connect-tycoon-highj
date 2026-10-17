@@ -2,9 +2,15 @@
 
 두뇌가 물류센터 하루를 운영하는 동안, 10분(한 걸음)마다 보기 7개를 하나씩 해 보고 그 하루를 끝까지 두뇌로 다시 돌립니다.
 보기마다 '그렇게 했으면 남은 하루의 보상이 얼마였나'(서로 다른 미래 8개의 평균)가 점수입니다.
-정답은 두뇌의 답이고, 다른 보기가 확실히 더 나을 때(margin점 넘게)만 그 보기로 바꿉니다 = 두뇌 + 시뮬레이터의 첨삭.
-(점수 1등을 그대로 정답으로 쓰면 운 좋게 높게 나온 보기를 고르게 되어 오히려 두뇌보다 나빠집니다 · 시험 24일 279 → 250.
- 확실할 때만 바꾸면 279 → 330 안팎으로 두뇌보다 나은 답이 됩니다.)
+
+정답(지도학습) · 두뇌의 답. 언어 모델은 먼저 내 두뇌를 그대로 배웁니다.
+장점(강화학습) · 두뇌의 답보다 확실히(dead점 넘게) 낫거나 나쁜 보기만 · 그 사이는 0.
+
+실험으로 정한 이유 (예시 두뇌 · 시험 24일)
+- 점수 1등을 정답으로 · 운 좋게 높게 나온 보기만 골라 두뇌보다 나빠짐 (279 → 250)
+- 점수를 그대로 장점으로 강화학습 · 점수는 '나머지 하루는 두뇌가 운영한다'는 가정이라, 임시 인력 호출이 늘 조금씩 좋아 보여
+  모델이 그것만 고르고 트럭을 대지 않게 됨 (−805점). 그래서 두뇌의 답을 기준으로 확실한 차이만 씁니다.
+- 두뇌의 답 + 10점 넘게 나은 보기로 고친 정답은 계획(미리 돌려 보기)으로는 336점이지만, 화면 글로는 72%만 맞힐 수 있어 따라 배우기 어려움
 점수는 공식 보상(시험 세상)으로만 매깁니다. 연습할 때 보상을 어떻게 바꿨든, 모두가 같은 기준으로 비교됩니다.
 
     sft/train.jsonl   {"messages": [system, user(문제), assistant(정답 글자)]}     ← train_torch.sft · train_mlx.sft 그대로
@@ -97,14 +103,16 @@ def scores_now(env, policy, seed, futures=4):
     return scores
 
 
-def label(scores, chosen, temp=0, margin=10.0):
-    """정답 글자 번호 · 두뇌의 답, 단 다른 보기가 margin점 넘게 나으면 그 보기 (임시 인력이 이미 있으면 다시 부르기는 빼고)."""
+def label(scores, chosen, temp=0, margin=None):
+    """정답 글자 번호 · 두뇌의 답 (margin을 주면 다른 보기가 margin점 넘게 나을 때 그 보기 · 임시 인력이 이미 있으면 다시 부르기는 빼고)."""
+    if margin is None:
+        return chosen
     ok = [i for i in range(len(scores)) if not (temp > 0 and i == 6)]
     best = max(ok, key=lambda i: scores[i])
     return best if scores[best] - scores[chosen] > margin else chosen
 
 
-def rows_for_day(policy, seed, stride=1, futures=8, margin=10.0, min_gap=1e-6):
+def rows_for_day(policy, seed, stride=1, futures=8, margin=None, min_gap=1e-6):
     """두뇌(policy)가 운영하는 하루 · 걸음마다 보기 7개를 하나씩 해 보고 하루 끝까지 다시 돌린 점수 (공식 보상)."""
     env, out, done = E.DayEnv(), [], False
     env.reset(seed)
@@ -116,12 +124,12 @@ def rows_for_day(policy, seed, stride=1, futures=8, margin=10.0, min_gap=1e-6):
             if max(scores) - min(scores) >= min_gap:              # 무엇을 해도 결과가 같은 순간은 배울 것이 없습니다
                 best = label(scores, chosen, env.temp, margin)
                 out.append({"task": task(o["obs"], env.temp), "scores": [round(s, 4) for s in scores], "answer": LETTERS[best], "label": "lab",
-                            "teacher": LETTERS[chosen], "dept": "logistics", "seed": seed, "index": env.t})
+                            "teacher": LETTERS[chosen], "temp": env.temp, "dept": "logistics", "seed": seed, "index": env.t})
         _, done, _ = env.step(chosen)
     return out
 
 
-def build(brain, out_dir, splits=None, stride=1, futures=8, margin=10.0, log=print):
+def build(brain, out_dir, splits=None, stride=1, futures=8, margin=None, log=print):
     """문제집을 만듭니다. brain은 lab.LabBrain. 반환: {split: 문제 수}. 하루 ≈ 60문제 · CPU 3~5초."""
     splits = splits or SPLITS
     policy = brain.policy()
@@ -146,6 +154,23 @@ def build(brain, out_dir, splits=None, stride=1, futures=8, margin=10.0, log=pri
     with open(os.path.join(out_dir, "meta.json"), "w", encoding="utf-8") as f:
         json.dump(meta, f, ensure_ascii=False, indent=1)
     return counts
+
+
+def advantages(rows, dead=20.0, clip=3.0):
+    """강화학습 장점 · 두뇌의 답과 비교해 dead점 넘게 나으면 +, 나쁘면 − (그 사이와 두뇌의 답은 0).
+    임시 인력이 이미 근무 중일 때 다시 부르기는 더 낫게 보여도 0 (계속 부르기만 하는 버릇을 막습니다)."""
+    out = []
+    for r in rows:
+        s, k = r["scores"], LETTERS.index(r["teacher"])
+        temp = r.get("temp", 1 if "임시 인력 근무 중" in r["task"]["state"] else 0)
+        adv = []
+        for i, x in enumerate(s):
+            d = x - s[k]
+            if abs(d) <= dead or (d > 0 and temp > 0 and i == 6):
+                d = 0.0
+            adv.append(max(-clip, min(clip, d / (2 * dead))))
+        out.append(adv)
+    return out
 
 
 def as_policy(pick):
