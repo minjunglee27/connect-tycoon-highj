@@ -1,6 +1,6 @@
 ---
 license: apache-2.0
-language: [ko]
+language: [ko, en]
 library_name: numpy
 pipeline_tag: reinforcement-learning
 tags: [connect-ai-lab, deep-reinforcement-learning, gymnasium, connect-company, connect-tycoon, jev, jev-style, reinforcement-learning, ppo, decision-making, prefrontal-cortex, korean, highj, teacher]
@@ -14,6 +14,18 @@ tags: [connect-ai-lab, deep-reinforcement-learning, gymnasium, connect-company, 
 
 
 # connectailab-rl-highj-v2-teacher · AI 사장 (CONNECT TYCOON)
+
+## English Overview
+**connectailab-rl-highj-v2-teacher** is a high-performance reinforcement learning decision policy (Numpy-based `brain.json`) trained via PPO in the CONNECT TYCOON simulator. It serves as the core teacher model that distilled balanced business decision-making capabilities into `connectailab-rl-highj-v2`.
+
+### Performance Highlights (40-Month Unseen Simulation)
+- **Monthly Net Profit**: **11.76M KRW** (vs 3.24M KRW rule-based CEO, +263% increase)
+- **Customer Satisfaction**: **95.0%** (vs 79.0%)
+- **Risk Incidents**: **2.5 / month** (vs 7.8 / month, -68% risk reduction)
+- **Stockout Days**: **0.6 days / month** (near-zero inventory stockouts across 40 months)
+- **Balanced Values**: Profit 1.0, Customer Satisfaction 1.0, Risk Aversion 1.0
+
+---
 
 ## 만든 사람 · Minjung Lee (Highj)
 
@@ -35,7 +47,7 @@ CONNECT AI LAB의 **Jay 멘토님**이 설계한 [CONNECT TYCOON](https://github
 <p align="center"><sub>시뮬레이터 속 회사 · 맨 위층의 모델이 판단하면 빛줄기가 그 층으로 내려가고, 결과가 돈 · 만족 · 사고로 돌아옵니다</sub></p>
 
 
-## JEV로 묻고 답하기
+## JEV로 묻고 답하기 (API Usage)
 
 ```python
 import connect_tycoon as ct
@@ -63,7 +75,7 @@ brain({"model": "typesafe/jev-1.13", "state": {"department": "refund", "reason":
 }
 ```
 
-## 게임에서 사장으로 앉히기
+## 게임에서 사장으로 앉히기 (Play in Game)
 
 ```bash
 pip install "connect-tycoon[game]"

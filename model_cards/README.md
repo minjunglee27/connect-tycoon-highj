@@ -1,7 +1,7 @@
 # Highj Decision Models - Version History
 
 CONNECT TYCOON & Qwen 강화학습 의사결정 모델 버전별 기록 저장소입니다.  
-* **연구원**: Minjung Lee (Highj) · CONNECT AI LAB
+* Minjung Lee (Highj) · CONNECT AI LAB
 
 | 버전 | 일자 | 월평균 이익 | 고객 만족도 | FDS 사기 손실 방어 | Hugging Face 저장소 |
 | :---: | :---: | :---: | :---: | :---: | :---: |
