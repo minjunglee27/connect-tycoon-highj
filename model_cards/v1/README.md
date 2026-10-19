@@ -16,7 +16,6 @@ tags: [reinforcement-learning, deep-reinforcement-learning, grpo, decision-makin
 
 # connectailab-rl-highj-v1
 
-## English Overview
 **connectailab-rl-highj-v1** is an autonomous business decision-making language model based on `Qwen/Qwen3.5-0.8B`, trained using LoRA fine-tuning on decision trajectories from the CONNECT TYCOON simulator. It was the first milestone model exploring autonomous decision-making across 6 key enterprise operational areas.
 
 ### Key Highlights

@@ -16,7 +16,6 @@ tags: [reinforcement-learning, deep-reinforcement-learning, grpo, decision-makin
 
 # connectailab-rl-highj-teacher
 
-## English Overview
 **connectailab-rl-highj-teacher** is the baseline teacher decision model trained via PPO in the default CONNECT TYCOON simulator environment, providing an objective comparison and benchmarking standard.
 
 ### Key Highlights

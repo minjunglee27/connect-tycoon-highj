@@ -15,7 +15,6 @@ tags: [connect-ai-lab, deep-reinforcement-learning, gymnasium, connect-company, 
 
 # connectailab-rl-highj-v2-teacher · AI 사장 (CONNECT TYCOON)
 
-## English Overview
 **connectailab-rl-highj-v2-teacher** is a high-performance reinforcement learning decision policy (Numpy-based `brain.json`) trained via PPO in the CONNECT TYCOON simulator. It serves as the core teacher model that distilled balanced business decision-making capabilities into `connectailab-rl-highj-v2`.
 
 ### Performance Highlights (40-Month Unseen Simulation)
