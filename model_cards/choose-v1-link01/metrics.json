@@ -1,0 +1,49 @@
+{
+  "task": "choose_object",
+  "contract": "link01-decision/choose_object/obs26-act4/walker51-14/v1",
+  "course": "9814f10c",
+  "base_model": "Qwen/Qwen3.5-0.8B",
+  "dataset_split": {
+    "train": 601,
+    "valid": 122,
+    "test": 173
+  },
+  "teacher": "내 AI (PPO)",
+  "selected_policy": "강화학습 (RL/DPO)",
+  "results": {
+    "두뇌 (선생님)": {
+      "accuracy": 1.0,
+      "drive_success": 1.0,
+      "drive_collide": 0.0,
+      "drive_wrong": 0.0,
+      "drive_time_s": 12.95,
+      "drive_runs": 20
+    },
+    "학습 전 (Base Qwen)": {
+      "accuracy": 0.9538,
+      "drive_success": 1.0,
+      "drive_collide": 0.0,
+      "drive_wrong": 0.0,
+      "drive_time_s": 12.95,
+      "drive_runs": 20
+    },
+    "지도학습 (SFT)": {
+      "accuracy": 1.0,
+      "regret": 0.00142,
+      "drive_success": 1.0,
+      "drive_collide": 0.0,
+      "drive_wrong": 0.0,
+      "drive_time_s": 12.95,
+      "drive_runs": 20
+    },
+    "강화학습 (RL)": {
+      "accuracy": 1.0,
+      "regret": 0.00142,
+      "drive_success": 1.0,
+      "drive_collide": 0.0,
+      "drive_wrong": 0.0,
+      "drive_time_s": 12.95,
+      "drive_runs": 20
+    }
+  }
+}
