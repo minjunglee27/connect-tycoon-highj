@@ -46,7 +46,7 @@ By distilling decision-making capabilities from a high-performing PPO teacher br
 
 CONNECT AI LAB에서 로컬 AI와 강화학습 AI를 공부하고, 이를 실전에 적용해 서비스를 하나씩 만들어 보며 AI 1인 기업가의 꿈을 이뤄가고 있습니다.
 
-- **LunarLander-v2** 환경에서 정밀 Reward Shaping 및 DQN 하이퍼파라미터 최적화로 **267.9점 고득점 안정 착륙 달성** ([`connectailab-rl-highj-v1-lunarlander`](https://huggingface.co/minjunglee27/connectailab-rl-highj-v1-lunarlander))
+- **LunarLander** 환경에서 267.9점 고득점 안정 착륙([`v1-lunarlander`](https://huggingface.co/minjunglee27/connectailab-rl-highj-v1-lunarlander)) 및 우측 쏠림을 잡은 정중앙 정밀 착륙 달성([`v2-lunarlander`](https://huggingface.co/minjunglee27/connectailab-rl-highj-v2-lunarlander))
 - **Connect Tycoon** 비즈니스 의사결정 모델 구축 ([`connectailab-rl-highj-v1`](https://huggingface.co/minjunglee27/connectailab-rl-highj-v1))
 - **LINK-01** 4족 보행 로봇 시뮬레이터에서 PPO 결정 두뇌 지식을 언어 모델로 전이(LoRA)하는 의사결정 에이전트 구현
 - [CONNECT AI LAB](https://www.youtube.com/@CONNECT-AI-LAB) × [AI CITY BUILDERS](https://www.aicitybuilders.com/robot) 공동 연구 참여
