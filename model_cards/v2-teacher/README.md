@@ -30,6 +30,16 @@ tags: [connect-ai-lab, deep-reinforcement-learning, gymnasium, connect-company, 
 
 CONNECT AI LAB에서 로컬 AI와 강화학습 AI를 공부하고, 이를 실전에 적용해 서비스를 하나씩 만들어 보며 AI 1인 기업가의 꿈을 이뤄가고 있습니다.
 
+- **LunarLander** 환경에서 267.9점 고득점 안정 착륙([`v1-lunarlander`](https://huggingface.co/minjunglee27/connectailab-rl-highj-v1-lunarlander)) 및 우측 쏠림을 잡은 정중앙 정밀 착륙 달성([`v2-lunarlander`](https://huggingface.co/minjunglee27/connectailab-rl-highj-v2-lunarlander))
+- **CartPole** 환경에서 DQN 파라미터를 93% 축소한 초경량 의사결정 모델 구축 ([`connectailab-rl-highj-v1-cartpole-lite`](https://huggingface.co/minjunglee27/connectailab-rl-highj-v1-cartpole-lite))
+- **Connect Tycoon** 비즈니스 의사결정 모델 구축 ([`connectailab-rl-highj-v1`](https://huggingface.co/minjunglee27/connectailab-rl-highj-v1) · 고도화 버전: [`v2`](https://huggingface.co/minjunglee27/connectailab-rl-highj-v2))
+- **LINK-01** 4족 보행 로봇 시뮬레이터 장애물 회피 자율주행 모델 구축 ([`connectailab-rl-highj-v1-link01`](https://huggingface.co/minjunglee27/connectailab-rl-highj-v1-link01))
+- [CONNECT AI LAB](https://www.youtube.com/@CONNECT-AI-LAB) × [AI CITY BUILDERS](https://www.aicitybuilders.com/robot) 공동 연구 참여
+
+---
+
+### 모델 배경 및 소개
+
 CONNECT AI LAB의 **Jay 멘토님**이 설계한 [CONNECT TYCOON](https://github.com/wonseokjung/connect-tycoon) 환경에서, 회사의 3대 핵심 가치(이익 1.0, 고객 만족 1.0, 위험 회피 1.0)를 균형 있게 추구하도록 집중 훈련된 **고성능 교사 정책(Teacher Brain · v2)**입니다.
 
 처음 보는 40개월 동안 회사를 직접 경영하는 시험에서 **월평균 순이익 1,176만원**과 **고객 만족도 95%**, **품절일 0.6일(결품 제로 수렴)**을 달성하여 기본 규칙 사장(324만원) 대비 압도적인 경영 성과를 입증했습니다.  

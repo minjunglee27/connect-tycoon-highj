@@ -30,6 +30,16 @@ tags: [reinforcement-learning, deep-reinforcement-learning, grpo, decision-makin
 
 CONNECT AI LAB에서 로컬 AI와 강화학습 AI를 공부하고, 이를 실전에 적용해 서비스를 하나씩 만들어 보며 AI 1인 기업가의 꿈을 이뤄가고 있습니다.
 
+- **LunarLander** 환경에서 267.9점 고득점 안정 착륙([`v1-lunarlander`](https://huggingface.co/minjunglee27/connectailab-rl-highj-v1-lunarlander)) 및 우측 쏠림을 잡은 정중앙 정밀 착륙 달성([`v2-lunarlander`](https://huggingface.co/minjunglee27/connectailab-rl-highj-v2-lunarlander))
+- **CartPole** 환경에서 DQN 파라미터를 93% 축소한 초경량 의사결정 모델 구축 ([`connectailab-rl-highj-v1-cartpole-lite`](https://huggingface.co/minjunglee27/connectailab-rl-highj-v1-cartpole-lite))
+- **Connect Tycoon** 비즈니스 의사결정 모델 구축 ([`connectailab-rl-highj-v1`](https://huggingface.co/minjunglee27/connectailab-rl-highj-v1) · 후속작: [`v2`](https://huggingface.co/minjunglee27/connectailab-rl-highj-v2))
+- **LINK-01** 4족 보행 로봇 시뮬레이터 장애물 회피 자율주행 모델 구축 ([`connectailab-rl-highj-v1-link01`](https://huggingface.co/minjunglee27/connectailab-rl-highj-v1-link01))
+- [CONNECT AI LAB](https://www.youtube.com/@CONNECT-AI-LAB) × [AI CITY BUILDERS](https://www.aicitybuilders.com/robot) 공동 연구 참여
+
+---
+
+### 모델 배경 및 소개
+
 CONNECT AI LAB의 **Jay 멘토님**이 제작한 가상 비즈니스 시뮬레이터 환경을 바탕으로, 공개 데이터와 강화학습(RL)을 활용해 **에이전트 자율 의사결정 원리를 공부하고 구현해 본 첫 번째 모델**입니다.  
 
 가상 회사 운영의 6대 영역(인력·재고·마케팅·CS·환불·FDS 보안)에서 상황을 읽고 스스로 판단하는 실험을 진행하였으며, 2개월 시뮬레이터 테스트에서 **월 362만원 흑자와 96.5% 고객 만족도**를 기록하며 강화학습의 가능성을 확인한 학습·연구용 마일스톤입니다.  
