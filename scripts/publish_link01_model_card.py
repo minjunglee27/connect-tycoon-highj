@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 publish_link01_model_card.py
-minjunglee27/connectailab-rl-highj-v1-link01 허깅페이스 모델 카드 업로드 스크립트
+minjunglee27/connectailab-rl-highj-goto-v1-link01 허깅페이스 모델 카드 업로드 스크립트
 """
 import os
 import sys
