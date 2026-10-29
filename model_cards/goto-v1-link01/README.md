@@ -16,9 +16,9 @@ tags: [reinforcement-learning, deep-reinforcement-learning, ppo, robotics, decis
   <a href="https://www.aicitybuilders.com/robot"><img src="https://img.shields.io/badge/AI%20CITY%20BUILDERS-%EA%B0%95%ED%99%94%ED%95%99%EC%8A%B5%20AI-d0f991?style=for-the-badge&logo=bookstack&logoColor=d0f991&labelColor=050807&color=d0f991" alt="AI CITY BUILDERS"></a>
 </p>
 
-# connectailab-rl-highj-v1-link01
+# connectailab-rl-highj-goto-v1-link01
 
-**connectailab-rl-highj-v1-link01** is an autonomous robot decision-making language model based on `Qwen/Qwen3.5-0.8B`, fine-tuned with LoRA (PEFT) on sensory-decision trajectories from the LINK-01 quadruped simulation environment. It serves as an embodied AI decision policy that guides the robot to avoid dynamic obstacles and navigate towards the target destination (`goto_target` task).
+**connectailab-rl-highj-goto-v1-link01** is an autonomous robot decision-making language model based on `Qwen/Qwen3.5-0.8B`, fine-tuned with LoRA (PEFT) on sensory-decision trajectories from the LINK-01 quadruped simulation environment. It serves as an embodied AI decision policy that guides the robot to avoid dynamic obstacles and navigate towards the target destination (`goto_target` task).
 
 By distilling decision-making capabilities from a high-performing PPO teacher brain (`brain.json`) trained in the [CONNECT AI WORLD Robot Lab](https://www.ezerai.xyz/robot-lab/world/), the language model reads 21-dimensional numeric observations (target relative vector, 11-directional LiDAR distance readings, linear/angular velocities, and past action history) converted into natural structured text every 0.5 seconds, and outputs the optimal discrete locomotion action (forward, turn left, turn right, spin in place) at 2Hz.
 
@@ -36,7 +36,7 @@ By distilling decision-making capabilities from a high-performing PPO teacher br
 
 ## 모델 개요 (Overview)
 
-**connectailab-rl-highj-v1-link01**은 `Qwen/Qwen3.5-0.8B` 언어 모델을 바탕으로, **LINK-01 4족 보행 로봇의 자율 주행 의사결정(Decision Making)**을 수행하도록 학습된 AI 모델입니다.
+**connectailab-rl-highj-goto-v1-link01**은 `Qwen/Qwen3.5-0.8B` 언어 모델을 바탕으로, **LINK-01 4족 보행 로봇의 자율 주행 의사결정(Decision Making)**을 수행하도록 학습된 AI 모델입니다.
 
 [CONNECT AI WORLD 로봇 웹 학습기](https://www.ezerai.xyz/robot-lab/world/)에서 PPO로 훈련시킨 **LINK-01 결정 두뇌(PPO Brain)**를 선생님 삼아, 0.5초마다 주어지는 21차원 센서 수치(목표 거리·각도, 11개 거리 센서, 속도)를 글로 읽고 최적의 보행 방향(직진·좌회전·우회전 등 5개 행동)을 결정합니다.
 
@@ -49,7 +49,7 @@ CONNECT AI LAB에서 로컬 AI와 강화학습 AI를 공부하고, 이를 실전
 - **LunarLander** 환경에서 267.9점 고득점 안정 착륙([`connectailab-rl-highj-v1-lunarlander`](https://huggingface.co/minjunglee27/connectailab-rl-highj-v1-lunarlander)) 및 우측 쏠림을 잡은 정중앙 정밀 착륙 달성([`connectailab-rl-highj-v2-lunarlander`](https://huggingface.co/minjunglee27/connectailab-rl-highj-v2-lunarlander))
 - **CartPole** 환경에서 DQN 파라미터를 93% 축소한 초경량 의사결정 모델 구축 ([`connectailab-rl-highj-v1-cartpole-lite`](https://huggingface.co/minjunglee27/connectailab-rl-highj-v1-cartpole-lite))
 - **Connect Tycoon** 비즈니스 의사결정 모델 구축 ([`connectailab-rl-highj-v1`](https://huggingface.co/minjunglee27/connectailab-rl-highj-v1) · 고도화 버전: [`connectailab-rl-highj-v2`](https://huggingface.co/minjunglee27/connectailab-rl-highj-v2))
-- **LINK-01** 4족 보행 로봇 시뮬레이터에서 PPO 결정 두뇌 지식을 언어 모델로 전이(LoRA)하는 의사결정 에이전트 구현 ([`connectailab-rl-highj-v1-link01`](https://huggingface.co/minjunglee27/connectailab-rl-highj-v1-link01))
+- **LINK-01** 4족 보행 로봇 시뮬레이터 목표 지점 자율주행 모델 구축 ([`connectailab-rl-highj-goto-v1-link01`](https://huggingface.co/minjunglee27/connectailab-rl-highj-goto-v1-link01))
 - [CONNECT AI LAB](https://www.youtube.com/@CONNECT-AI-LAB) × [AI CITY BUILDERS](https://www.aicitybuilders.com/robot) 공동 연구 참여
 
 <p align="center"><img src="https://raw.githubusercontent.com/wonseokjung/connect-tycoon/main/docs/images/hero.gif" alt="LINK-01 로봇 자율주행 시뮬레이션" width="88%"></p>
@@ -92,7 +92,7 @@ from transformers import AutoModelForCausalLM, AutoTokenizer
 from peft import PeftModel
 
 # 모델 및 LoRA 어댑터 로드
-repo_id = "minjunglee27/connectailab-rl-highj-v1-link01"
+repo_id = "minjunglee27/connectailab-rl-highj-goto-v1-link01"
 tok = AutoTokenizer.from_pretrained("Qwen/Qwen3.5-0.8B")
 model = PeftModel.from_pretrained(
     AutoModelForCausalLM.from_pretrained("Qwen/Qwen3.5-0.8B"), 

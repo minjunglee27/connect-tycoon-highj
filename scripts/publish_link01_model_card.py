@@ -8,9 +8,9 @@ import sys
 from pathlib import Path
 from huggingface_hub import HfApi
 
-REPO_ID = "minjunglee27/connectailab-rl-highj-v1-link01"
+REPO_ID = "minjunglee27/connectailab-rl-highj-goto-v1-link01"
 BASE_DIR = Path(__file__).resolve().parent.parent
-MODEL_CARD_PATH = BASE_DIR / "model_cards" / "link01-v1" / "README.md"
+MODEL_CARD_PATH = BASE_DIR / "model_cards" / "goto-v1-link01" / "README.md"
 TOKEN_PATH = Path.home() / ".cache" / "huggingface" / "token"
 
 def main():

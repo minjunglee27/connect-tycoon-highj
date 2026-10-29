@@ -33,7 +33,7 @@ CONNECT AI LAB에서 로컬 AI와 강화학습 AI를 공부하고, 이를 실전
 - **LunarLander** 환경에서 267.9점 고득점 안정 착륙([`connectailab-rl-highj-v1-lunarlander`](https://huggingface.co/minjunglee27/connectailab-rl-highj-v1-lunarlander)) 및 우측 쏠림을 잡은 정중앙 정밀 착륙 달성([`connectailab-rl-highj-v2-lunarlander`](https://huggingface.co/minjunglee27/connectailab-rl-highj-v2-lunarlander))
 - **CartPole** 환경에서 DQN 파라미터를 93% 축소한 초경량 의사결정 모델 구축 ([`connectailab-rl-highj-v1-cartpole-lite`](https://huggingface.co/minjunglee27/connectailab-rl-highj-v1-cartpole-lite))
 - **Connect Tycoon** 비즈니스 의사결정 모델 구축 ([`connectailab-rl-highj-v1`](https://huggingface.co/minjunglee27/connectailab-rl-highj-v1) · 후속작: [`connectailab-rl-highj-v2`](https://huggingface.co/minjunglee27/connectailab-rl-highj-v2))
-- **LINK-01** 4족 보행 로봇 시뮬레이터 장애물 회피 자율주행 모델 구축 ([`connectailab-rl-highj-v1-link01`](https://huggingface.co/minjunglee27/connectailab-rl-highj-v1-link01))
+- **LINK-01** 4족 보행 로봇 시뮬레이터 목표 지점 자율주행 모델 구축 ([`connectailab-rl-highj-goto-v1-link01`](https://huggingface.co/minjunglee27/connectailab-rl-highj-goto-v1-link01))
 - [CONNECT AI LAB](https://www.youtube.com/@CONNECT-AI-LAB) × [AI CITY BUILDERS](https://www.aicitybuilders.com/robot) 공동 연구 참여
 
 ---
