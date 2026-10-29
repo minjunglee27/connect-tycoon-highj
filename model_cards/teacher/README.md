@@ -79,7 +79,7 @@ CONNECT AI LAB의 **Jay 멘토님**이 설계한 시뮬레이터 기본 환경�
 시뮬레이터 기본 PPO 교사 정책을 학습 데이터로 활용한 초기 베이스라인 실험 결과입니다.
 
 
-## 쓰는 법 (Quickstart)
+## 쓰는 법
 
 ```python
 from transformers import AutoModelForCausalLM, AutoTokenizer

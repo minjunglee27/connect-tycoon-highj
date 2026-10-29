@@ -34,7 +34,7 @@ By distilling decision-making capabilities from a high-performing PPO teacher br
 
 ---
 
-## 📌 모델 개요 (Korean Overview)
+## 모델 개요
 
 **connectailab-rl-highj-v1-link01**은 `Qwen/Qwen3.5-0.8B` 언어 모델을 바탕으로, **LINK-01 4족 보행 로봇의 자율 주행 의사결정(Decision Making)**을 수행하도록 학습된 AI 모델입니다.
 
@@ -57,11 +57,11 @@ CONNECT AI LAB에서 로컬 AI와 강화학습 AI를 공부하고, 이를 실전
 
 ---
 
-## 만든 방법 (학습 파이프라인)
+## 만든 방법
 
 1. **두뇌 키우기 (웹 학습기)**
    - 과제 `goto_target` (코스 `057d7cd9`)에서 PPO 알고리즘으로 보행 및 장애물 회피를 자율 학습한 21차원 관측 기반 결정 두뇌(`brain.json`)를 생성했습니다.
-2. **문제집 구성 (Dataset Generation)**
+2. **문제집 구성**
    - 두뇌가 코스를 걷는 동안 0.5초마다 본 숫자(목표 상대 위치, 11방향 거리 센서, 선속도·각속도)를 텍스트 문제집 프롬프트로 변환했습니다. (훈련: 586건, 검증: 167건, 시험: 240건)
 3. **지도학습 (SFT)**
    - 두뇌가 고른 행동을 정답 삼아 `Qwen3.5-0.8B`에 LoRA 어댑터를 붙여 기본 주행 패턴을 집중 학습했습니다.
@@ -72,7 +72,7 @@ CONNECT AI LAB에서 로컬 AI와 강화학습 AI를 공부하고, 이를 실전
 
 ---
 
-## 성적 (Evaluation Results)
+## 성적
 
 | 모델 | 시험 문제 정답률 (두뇌 일치율) | 같은 코스 20판 성공률 | 부딪힌 판 (충돌률) | 성공한 판 평균 시간 |
 |---|:---:|:---:|:---:|:---:|
@@ -85,7 +85,7 @@ CONNECT AI LAB에서 로컬 AI와 강화학습 AI를 공부하고, 이를 실전
 
 ---
 
-## 쓰는 법 (Quickstart)
+## 쓰는 법
 
 ```python
 from transformers import AutoModelForCausalLM, AutoTokenizer

@@ -24,6 +24,8 @@ CONNECT AI LAB에서 로컬 AI와 강화학습 AI를 공부하고, 이를 실전
 - [CONNECT AI LAB](https://www.youtube.com/@CONNECT-AI-LAB) × [AI CITY BUILDERS](https://www.aicitybuilders.com/robot) 공동 연구 참여
 
 > **링크 규칙**: 소개란에 언급되는 모든 이전 포트폴리오 모델은 공식 Hugging Face 저장소 URL로 연결하고, 협업 기관은 공식 웹사이트/채널 URL로 반드시 하이퍼링크 처리한다.
+* **한글 섹션 제목 단일화 (영어 병기 금지)**:
+  - `## 모델 개요`, `## 만든 방법`, `## 성적`, `## 쓰는 법` 등 한글 헤딩 옆에 괄호로 영어 번역(`(Korean Overview)`, `(Evaluation Results)`, `(Quickstart)` 등)을 병기하지 않고 순수 한글로만 간결하게 작성한다.
 * **모델 소개 표준 도입부 (시뮬레이터 학습 및 Jay 멘토 명시)**:
 CONNECT AI LAB의 **Jay 멘토님**이 제작한 가상 비즈니스 시뮬레이터 환경을 바탕으로, 공개 데이터와 강화학습(RL)을 활용해 **에이전트 자율 의사결정 원리를 공부하고 구현해 본 {version} 모델**입니다.  
 회사의 6대 핵심 영역(인력·재고·마케팅·CS·환불·FDS 보안)에서 상황을 읽고 스스로 판단하는 실험을 진행했습니다.  

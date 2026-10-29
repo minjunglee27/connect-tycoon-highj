@@ -74,7 +74,7 @@ CONNECT AI LAB의 **Jay 멘토님**이 제작한 가상 비즈니스 시뮬레�
 첫 실험 결과입니다. 회사 운영은 처음 보는 2달 평균이라 표본이 작고, 선생님 정책(시뮬레이터에서 PPO로 배운 작은 모델)보다는 아직 아래입니다.
 
 
-## 쓰는 법 (Quickstart)
+## 쓰는 법
 
 ```python
 from transformers import AutoModelForCausalLM, AutoTokenizer

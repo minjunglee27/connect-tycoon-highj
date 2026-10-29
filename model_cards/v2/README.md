@@ -75,7 +75,7 @@ v1 대비 경영 실전 수익성을 대폭 향상시켰으며, 특히 실제 �
 v1 대비 표본 운영 수익이 큰 폭으로 향상되었으며, 금융 보안 판단에서도 강력한 사기 방어 성능을 확인했습니다.
 
 
-## 쓰는 법 (Quickstart)
+## 쓰는 법
 
 ```python
 from transformers import AutoModelForCausalLM, AutoTokenizer
