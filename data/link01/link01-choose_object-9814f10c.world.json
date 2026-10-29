@@ -1,0 +1,33 @@
+{
+ "format": "connect-world-course/1",
+ "world": "link01-decision",
+ "task": "choose_object",
+ "name": "내 코스 1",
+ "goal": {
+  "task": "choose_object",
+  "ko": "물건 중 고르기",
+  "desc": "단서가 가리키는 물건으로 가기 · 틀리면 실패"
+ },
+ "layout": {
+  "start": [
+   -1.3345,
+   0.1702,
+   -1.6455
+  ],
+  "obst": [],
+  "targets": [
+   [
+    "mug",
+    -0.2443,
+    1.6174
+   ],
+   [
+    "plant",
+    1.5,
+    0
+   ]
+  ],
+  "cue": "mug"
+ },
+ "hash": "9814f10c"
+}
