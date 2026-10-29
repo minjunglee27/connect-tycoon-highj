@@ -58,7 +58,7 @@ CONNECT AI LAB의 **Jay 멘토님**이 제작한 가상 비즈니스 시뮬레�
 
 회사 분포: `general` (공개 데이터로 맞춘 일반 회사) · 문제 수: {"train": 4082, "valid": 832, "test": 840}
 
-## 성적
+## 성적 (Evaluation Results)
 
 | 모델 | 시험 문제 정답률 | 후회 (작을수록 좋음) | 시뮬레이터 한 달 이익 | 실제 카드 거래 · 손실 줄임 |
 |---|---|---|---|---|
@@ -74,7 +74,7 @@ CONNECT AI LAB의 **Jay 멘토님**이 제작한 가상 비즈니스 시뮬레�
 첫 실험 결과입니다. 회사 운영은 처음 보는 2달 평균이라 표본이 작고, 선생님 정책(시뮬레이터에서 PPO로 배운 작은 모델)보다는 아직 아래입니다.
 
 
-## 쓰는 법
+## 쓰는 법 (Quickstart)
 
 ```python
 from transformers import AutoModelForCausalLM, AutoTokenizer

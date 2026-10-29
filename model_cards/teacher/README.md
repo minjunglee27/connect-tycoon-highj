@@ -63,7 +63,7 @@ CONNECT AI LAB의 **Jay 멘토님**이 설계한 시뮬레이터 기본 환경�
 
 회사 분포: `general` (공개 데이터로 맞춘 일반 회사) · 문제 수: {"train": 4082, "valid": 832, "test": 840}
 
-## 성적
+## 성적 (Evaluation Results)
 
 | 모델 | 시험 문제 정답률 | 후회 (작을수록 좋음) | 시뮬레이터 한 달 이익 | 실제 카드 거래 · 손실 줄임 |
 |---|---|---|---|---|
@@ -79,7 +79,7 @@ CONNECT AI LAB의 **Jay 멘토님**이 설계한 시뮬레이터 기본 환경�
 시뮬레이터 기본 PPO 교사 정책을 학습 데이터로 활용한 초기 베이스라인 실험 결과입니다.
 
 
-## 쓰는 법
+## 쓰는 법 (Quickstart)
 
 ```python
 from transformers import AutoModelForCausalLM, AutoTokenizer

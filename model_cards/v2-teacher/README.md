@@ -56,7 +56,7 @@ CONNECT AI LAB의 **Jay 멘토님**이 설계한 [CONNECT TYCOON](https://github
 <p align="center"><sub>시뮬레이터 속 회사 · 맨 위층의 모델이 판단하면 빛줄기가 그 층으로 내려가고, 결과가 돈 · 만족 · 사고로 돌아옵니다</sub></p>
 
 
-## JEV로 묻고 답하기
+## JEV로 묻고 답하기 (API Usage)
 
 ```python
 import connect_tycoon as ct
@@ -84,7 +84,7 @@ brain({"model": "typesafe/jev-1.13", "state": {"department": "refund", "reason":
 }
 ```
 
-## 게임에서 사장으로 앉히기
+## 게임에서 사장으로 앉히기 (Play in Game)
 
 ```bash
 pip install "connect-tycoon[game]"
