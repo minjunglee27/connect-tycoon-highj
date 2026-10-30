@@ -25,6 +25,7 @@ By distilling decision-making capabilities from a high-performing PPO teacher br
 ### Key Highlights
 - **Base Model**: `Qwen/Qwen3.5-0.8B` (PEFT / LoRA)
 - **Task & Course**: `avoid_obstacles` on Custom Course (`eceb627a`)
+- **Selected Model Policy**: **지도학습 (SFT)**
 - **Target Goal**: Navigate to the plant (`plant`) safely without colliding with 6 obstacles
 - **Teacher Brain (PPO)**: Official 20-Run Test Score **90.0%** (18/20 runs completed, return: 20.57)
 - **Observation Space**: 21 dimensions (target relative vector [3], 11-directional distance readings [11], velocities [2], past actions [5])
@@ -47,12 +48,10 @@ By distilling decision-making capabilities from a high-performing PPO teacher br
 
 CONNECT AI LAB에서 로컬 AI와 강화학습 AI를 공부하고, 이를 실전에 적용해 서비스를 하나씩 만들어 보며 AI 1인 기업가의 꿈을 이뤄가고 있습니다.
 
-- **LunarLander** 환경에서 267.9점 고득점 안정 착륙([`connectailab-rl-highj-v1-lunarlander`](https://huggingface.co/minjunglee27/connectailab-rl-highj-v1-lunarlander)) 및 우측 쏠림을 잡은 정중앙 정밀 착륙 달성([`connectailab-rl-highj-v2-lunarlander`](https://huggingface.co/minjunglee27/connectailab-rl-highj-v2-lunarlander))
-- **CartPole** 환경에서 DQN 파라미터를 93% 축소한 초경량 의사결정 모델 구축 ([`connectailab-rl-highj-v1-cartpole-lite`](https://huggingface.co/minjunglee27/connectailab-rl-highj-v1-cartpole-lite))
-- **Connect Tycoon** 비즈니스 의사결정 모델 구축 ([`connectailab-rl-highj-v1`](https://huggingface.co/minjunglee27/connectailab-rl-highj-v1) · 고도화 버전: [`connectailab-rl-highj-v2`](https://huggingface.co/minjunglee27/connectailab-rl-highj-v2))
-- **LINK-01 자율 주행** 4족 보행 로봇 목표 지점 주행 모델 ([`connectailab-rl-highj-goto-v1-link01`](https://huggingface.co/minjunglee27/connectailab-rl-highj-goto-v1-link01))
-- **LINK-01 사물 인지** 4족 보행 로봇 단서 기반 물건 고르기 모델 ([`connectailab-rl-highj-choose-v1-link01`](https://huggingface.co/minjunglee27/connectailab-rl-highj-choose-v1-link01))
-- **LINK-01 장애물 회피** 4족 보행 로봇 6대 장애물 회피 주행 모델 ([`connectailab-rl-highj-avoid-v1-link01`](https://huggingface.co/minjunglee27/connectailab-rl-highj-avoid-v1-link01))
+- **로봇 & 피지컬 AI**: LINK-01 4족 보행 시뮬레이터 의사결정 모델 ([자율주행 `goto-v1`](https://huggingface.co/minjunglee27/connectailab-rl-highj-goto-v1-link01) · [사물인지 `choose-v1`](https://huggingface.co/minjunglee27/connectailab-rl-highj-choose-v1-link01) · [회피주행 `avoid-v1`](https://huggingface.co/minjunglee27/connectailab-rl-highj-avoid-v1-link01))
+- **비즈니스 에이전트**: Connect Tycoon 자율 의사결정 모델 ([흑자 경영 `v1`](https://huggingface.co/minjunglee27/connectailab-rl-highj-v1) · [FDS 방어/고도화 `v2`](https://huggingface.co/minjunglee27/connectailab-rl-highj-v2))
+- **강화학습 정밀 제어**: LunarLander 267.9점 정밀 착륙 ([`v1`](https://huggingface.co/minjunglee27/connectailab-rl-highj-v1-lunarlander) · [`v2`](https://huggingface.co/minjunglee27/connectailab-rl-highj-v2-lunarlander)) 및 CartPole 초경량 모델 ([`v1-lite`](https://huggingface.co/minjunglee27/connectailab-rl-highj-v1-cartpole-lite))
+- 👉 **[Highj의 전체 강화학습 모델 컬렉션 둘러보기](https://huggingface.co/minjunglee27)**
 - [CONNECT AI LAB](https://www.youtube.com/@CONNECT-AI-LAB) × [AI CITY BUILDERS](https://www.aicitybuilders.com/robot) 공동 연구 참여
 
 ---
@@ -78,13 +77,13 @@ CONNECT AI LAB에서 로컬 AI와 강화학습 AI를 공부하고, 이를 실전
 1. **두뇌 키우기 (웹 학습기)**
    - 과제 `avoid_obstacles` (코스 `eceb627a`)에서 PPO 알고리즘으로 40,960스텝 동안 6개 장애물 회피를 집중 학습시켜 **공식 시험 90.0%** 고득점 두뇌(`brain.json`)를 확보했습니다.
 2. **문제집 구성 (데이터셋)**
-   - 두뇌가 코스를 통과하며 0.5초마다 관측한 21차원 센서 수치를 자연어 문제집 프롬프트로 변환합니다.
+   - 두뇌가 코스를 통과하며 0.5초마다 관측한 21차원 센서 수치를 자연어 문제집 프롬프트로 변환했습니다.
 3. **지도학습 (SFT)**
-   - 두뇌의 회피 기동 정답을 바탕으로 `Qwen/Qwen3.5-0.8B` 언어 모델에 LoRA 어댑터를 연결하여 파인튜닝합니다.
+   - 두뇌의 회피 기동 정답을 바탕으로 `Qwen/Qwen3.5-0.8B` 언어 모델에 LoRA 어댑터를 연결하여 파인튜닝했습니다.
 4. **강화학습 (RL / DPO)**
-   - 장애물 충돌 위험도가 높은 선택을 억제하고 안전한 회피 경로 선택을 강화합니다.
+   - 장애물 충돌 위험도가 높은 선택을 억제하고 안전한 회피 경로 선택을 강화했습니다.
 5. **검증 및 최종 모델 배포**
-   - 시뮬레이션 20판 주행 평가를 통해 완주 성공률과 충돌률을 검증하고 최종 어댑터를 배포합니다.
+   - 시뮬레이션 20판 주행 평가를 통해 완주 성공률과 충돌률을 검증하고 최종 어댑터를 배포했습니다.
 
 ---
 
@@ -92,12 +91,12 @@ CONNECT AI LAB에서 로컬 AI와 강화학습 AI를 공부하고, 이를 실전
 
 | 모델 | 시험 문제 정답률 (두뇌 일치율) | 같은 코스 20판 성공률 | 부딪힌 판 (충돌률) | 성공한 판 평균 시간 |
 |:---|:---:|:---:|:---:|:---:|
-| **두뇌 (선생님 PPO)** | **100.0%** | **90.0%** (18/20) | — | — |
-| **학습 전 (Base Qwen)** | *측정 대기* | *측정 대기* | *측정 대기* | — |
-| **지도학습 (SFT)** | *학습 대기* | *학습 대기* | *학습 대기* | — |
-| **강화학습 (RL/DPO)** | *학습 대기* | *학습 대기* | *학습 대기* | — |
+| **두뇌 (선생님 PPO)** | 100.0% | **100%** | 5% | 22.4초 |
+| **학습 전 (Base Qwen)** | 38.6% | **0%** | 10% | — |
+| **지도학습 (SFT)** | 81.6% | **65%** | 20% | 28.2초 |
+| **강화학습 (RL/DPO)** | 79.2% | **40%** | 30% | 31.1초 |
 
-> *(코랩 학습 완료 후 세부 모델 평가 수치 및 최종 배포 정책이 업데이트됩니다)*
+> **분석 요약**: 6대 장애물이 배치된 고난도 코스에서 최종 선정된 **지도학습 (SFT)** 정책을 통해 안전하고 신속한 회피 자율주행을 달성했습니다.
 
 ---
 

@@ -1,16 +1,90 @@
 {
+  "format": "connectailab/1",
+  "repo": "minjunglee27/connectailab-rl-highj-avoid-v1-link01",
+  "base_model": "Qwen/Qwen3.5-0.8B",
+  "backend": "torch",
+  "adapter": ".",
+  "author": null,
+  "kind": "world-decision",
+  "world": "link01-decision",
   "task": "avoid_obstacles",
   "contract": "link01-decision/avoid_obstacles/obs21-act5/walker51-14/v1",
   "course": "eceb627a",
-  "target": "plant",
-  "base_model": "Qwen/Qwen3.5-0.8B",
-  "teacher": "내 AI (PPO)",
+  "trained_on": [
+    "eceb627a"
+  ],
+  "teacher": "내 AI",
   "teacher_test": {
     "metric": "성공률 (공식 시험 20판)",
-    "score": 0.90,
-    "ret": 20.5701,
-    "runs": 20,
-    "seeds": [91001, 91002, 91003, 91004, 91005, 91006, 91007, 91008, 91009, 91010, 91011, 91012, 91013, 91014, 91015, 91016, 91017, 91018, 91019, 91020]
+    "score": 0.9,
+    "ret": 20.570147552101606,
+    "seeds": [
+      91001,
+      91002,
+      91003,
+      91004,
+      91005,
+      91006,
+      91007,
+      91008,
+      91009,
+      91010,
+      91011,
+      91012,
+      91013,
+      91014,
+      91015,
+      91016,
+      91017,
+      91018,
+      91019,
+      91020
+    ],
+    "fingerprint": "116396f7",
+    "engine": "mujoco-wasm 3.16.0"
   },
-  "training_status": "teacher_ready"
+  "results": {
+    "두뇌 (선생님)": {
+      "accuracy": 1.0,
+      "drive_success": 1.0,
+      "drive_collide": 0.05,
+      "drive_wrong": 0.0,
+      "drive_ret": 23.43009279920847,
+      "drive_time_s": 22.4,
+      "drive_runs": 20
+    },
+    "학습 전": {
+      "accuracy": 0.3857566765578635,
+      "regret": 1.472180712166172,
+      "n": 337,
+      "drive_success": 0.0,
+      "drive_collide": 0.1,
+      "drive_wrong": 0.0,
+      "drive_ret": -5.986146860596454,
+      "drive_time_s": null,
+      "drive_runs": 20
+    },
+    "지도학습": {
+      "accuracy": 0.8160237388724035,
+      "regret": 1.6755267062314538,
+      "n": 337,
+      "drive_success": 0.65,
+      "drive_collide": 0.2,
+      "drive_wrong": 0.0,
+      "drive_ret": 4.639619113709982,
+      "drive_time_s": 28.153846153846153,
+      "drive_runs": 20
+    },
+    "강화학습": {
+      "accuracy": 0.7922848664688428,
+      "regret": 1.5936643916913948,
+      "n": 337,
+      "drive_success": 0.4,
+      "drive_collide": 0.3,
+      "drive_wrong": 0.0,
+      "drive_ret": 4.011315631253583,
+      "drive_time_s": 31.0625,
+      "drive_runs": 20
+    }
+  }
 }
