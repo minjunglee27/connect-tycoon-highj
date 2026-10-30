@@ -12,15 +12,17 @@
 ## 2. Standard Header & Intro Format (모델 카드 제목 및 서두 규격)
 * **H1 제목 규격**:
   - 모델 고유 저장소 ID 사용 (예: `# connectailab-rl-highj-{version}`)
-* **만든 사람 시그니처 블록 (고정 유지, 불릿 목록 규격)**:
+* **만든 사람 시그니처 블록 (큐레이션 및 프로필 링크 표준)**:
+모든 모델을 단순 나열하여 본문 가독성을 해치지 않도록, **3대 핵심 도메인 대표 마일스톤**만 하이라이트하고 전체 모델은 Hugging Face 프로필 허브 링크로 연결하는 '세련된 큐레이션' 구조를 적용한다:
+
 ## 만든 사람 · Minjung Lee (Highj)
 
 CONNECT AI LAB에서 로컬 AI와 강화학습 AI를 공부하고, 이를 실전에 적용해 서비스를 하나씩 만들어 보며 AI 1인 기업가의 꿈을 이뤄가고 있습니다.
 
-- **LunarLander** 환경에서 267.9점 고득점 안정 착륙([`connectailab-rl-highj-v1-lunarlander`](https://huggingface.co/minjunglee27/connectailab-rl-highj-v1-lunarlander)) 및 우측 쏠림을 잡은 정중앙 정밀 착륙 달성([`connectailab-rl-highj-v2-lunarlander`](https://huggingface.co/minjunglee27/connectailab-rl-highj-v2-lunarlander))
-- **CartPole** 환경에서 DQN 파라미터를 93% 축소한 초경량 의사결정 모델 구축 ([`connectailab-rl-highj-v1-cartpole-lite`](https://huggingface.co/minjunglee27/connectailab-rl-highj-v1-cartpole-lite))
-- **Connect Tycoon** 비즈니스 의사결정 모델 구축 ([`connectailab-rl-highj-v1`](https://huggingface.co/minjunglee27/connectailab-rl-highj-v1) · 고도화 버전: [`connectailab-rl-highj-v2`](https://huggingface.co/minjunglee27/connectailab-rl-highj-v2))
-- **LINK-01** 4족 보행 로봇 시뮬레이터 목표 지점 자율주행 모델 구축 ([`connectailab-rl-highj-goto-v1-link01`](https://huggingface.co/minjunglee27/connectailab-rl-highj-goto-v1-link01))
+- **로봇 & 피지컬 AI**: LINK-01 4족 보행 시뮬레이터 의사결정 모델 ([자율주행 `goto-v1`](https://huggingface.co/minjunglee27/connectailab-rl-highj-goto-v1-link01) · [사물인지 `choose-v1`](https://huggingface.co/minjunglee27/connectailab-rl-highj-choose-v1-link01) · [회피주행 `avoid-v1`](https://huggingface.co/minjunglee27/connectailab-rl-highj-avoid-v1-link01))
+- **비즈니스 에이전트**: Connect Tycoon 자율 의사결정 모델 ([흑자 경영 `v1`](https://huggingface.co/minjunglee27/connectailab-rl-highj-v1) · [FDS 방어/고도화 `v2`](https://huggingface.co/minjunglee27/connectailab-rl-highj-v2))
+- **강화학습 정밀 제어**: LunarLander 267.9점 정밀 착륙 ([`v1`](https://huggingface.co/minjunglee27/connectailab-rl-highj-v1-lunarlander) · [`v2`](https://huggingface.co/minjunglee27/connectailab-rl-highj-v2-lunarlander)) 및 CartPole 초경량 모델 ([`v1-lite`](https://huggingface.co/minjunglee27/connectailab-rl-highj-v1-cartpole-lite))
+- 👉 **[Highj의 전체 강화학습 모델 컬렉션 둘러보기](https://huggingface.co/minjunglee27)**
 - [CONNECT AI LAB](https://www.youtube.com/@CONNECT-AI-LAB) × [AI CITY BUILDERS](https://www.aicitybuilders.com/robot) 공동 연구 참여
 
 > **링크 규칙**: 소개란에 언급되는 모든 이전 포트폴리오 모델은 공식 Hugging Face 저장소 URL로 연결하고, 협업 기관은 공식 웹사이트/채널 URL로 반드시 하이퍼링크 처리한다.
@@ -57,6 +59,8 @@ CONNECT AI LAB의 **Jay 멘토님**이 제작한 가상 비즈니스 시뮬레�
    - **기술 산출물 선별 커밋**: `connect-tycoon`은 기술/개발 코드베이스이므로 모델 카드(`model_cards/`), 데이터셋(`data/`), 학습 노트북(`notebooks/`), 스크립트(`scripts/`)만 커밋 대상에 포함한다.
    - **지식메모리/기획 문서 격리**: 로컬에서 생성된 비즈니스 기획서, A/B 테스트 스펙, `지식메모리/` 폴더 문서는 별도 저장소에서 관리되므로 `connect-tycoon`에 함께 스테이징하거나 푸시하지 않고 배제(Untracked 유지 또는 언스테이징)한다.
    - 유의미한 작업이 완료될 때마다 선별된 기술 산출물만 커밋하고 `origin main`으로 즉시 `git push`를 수행한다.
+6. **Colab 대화형 폼(Form) 보존 규칙**:
+   - Colab 업로드 셀(`push_decision_model`) 스니펫을 사용자에게 제공할 때는, 우측 대화형 폼(`#@param`)이 깨지지 않도록 전체 셀 코드를 통째로 바꾸지 않고 `ABOUT_ME = '''...'''` 내부 본문 텍스트만 명확하게 전달한다.
 
 ## 5. Template & Section Policy
 * **기본 템플릿**: `connectailab-rl-highj-teacher`의 원본 구조 및 레이아웃을 엄격히 준수.
