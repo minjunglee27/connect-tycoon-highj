@@ -1,0 +1,16 @@
+{
+  "task": "avoid_obstacles",
+  "contract": "link01-decision/avoid_obstacles/obs21-act5/walker51-14/v1",
+  "course": "eceb627a",
+  "target": "plant",
+  "base_model": "Qwen/Qwen3.5-0.8B",
+  "teacher": "내 AI (PPO)",
+  "teacher_test": {
+    "metric": "성공률 (공식 시험 20판)",
+    "score": 0.90,
+    "ret": 20.5701,
+    "runs": 20,
+    "seeds": [91001, 91002, 91003, 91004, 91005, 91006, 91007, 91008, 91009, 91010, 91011, 91012, 91013, 91014, 91015, 91016, 91017, 91018, 91019, 91020]
+  },
+  "training_status": "teacher_ready"
+}

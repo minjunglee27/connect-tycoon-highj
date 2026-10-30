@@ -11,6 +11,7 @@ CONNECT TYCOON & Qwen 강화학습 의사결정 모델 버전별 기록 저장�
 | [**Highj v2**](./v2/README.md) | 2026-10-15 | **+679.0만원** (흑자) | 97.0% | 70.6% (145/177건 방어) | [minjunglee27/connectailab-rl-highj-v2](https://huggingface.co/minjunglee27/connectailab-rl-highj-v2) |
 | [**LINK-01 goto v1**](./goto-v1-link01/README.md) | 2026-10-30 | **코스 완주 55%** | 68.3% (두뇌 일치율) | 4족 보행 로봇 장애물 회피 자율주행 (목표로 가기) | [minjunglee27/connectailab-rl-highj-goto-v1-link01](https://huggingface.co/minjunglee27/connectailab-rl-highj-goto-v1-link01) |
 | [**LINK-01 choose v1**](./choose-v1-link01/README.md) | 2026-10-30 | **20판 성공률 100%** | 100.0% (두뇌 일치율) | 4족 보행 로봇 단서 기반 사물 선택 의사결정 (오선택 0건) | [minjunglee27/connectailab-rl-highj-choose-v1-link01](https://huggingface.co/minjunglee27/connectailab-rl-highj-choose-v1-link01) |
+| [**LINK-01 avoid v1**](./avoid-v1-link01/README.md) | 2026-10-30 | **두뇌 시험 90%** | 21차원 거리 센서 | 4족 보행 로봇 6대 장애물 회피 자율주행 (화분 목표) | [minjunglee27/connectailab-rl-highj-avoid-v1-link01](https://huggingface.co/minjunglee27/connectailab-rl-highj-avoid-v1-link01) |
 
 ---
 *각 모델의 학습 파라미터와 평가 수치는 해당 버전 디렉터리 내 `metrics.json` 및 `README.md`에 아카이빙됩니다.*
