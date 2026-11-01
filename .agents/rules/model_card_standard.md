@@ -18,11 +18,11 @@
   - 공통: `autonomous-agent`, `decision-agent`, `business-simulation`, `fraud-detection`, `fintech`, `decision-making`, `gymnasium`, `qwen3.5`, `qwen`, `peft`, `local-ai`, `highj`, `connectailab`
 
 ## 1-2. LINK-01 Embodied AI 환경 확장 릴리스 명명 규칙 (Environment Expansion)
-* **신규 코스 맵 학습 모델의 `v2` 명명 표준**:
-  - LINK-01 로봇 자율주행 모델군(예: `avoid_obstacles`)에서 이전 맵(예: `eceb627a`, 장애물 6개)과 레이아웃/장애물 배치가 완전히 다른 신규 코스(예: `2ee8e71b`, 장애물 7개)를 학습한 모델은 **"환경 다양성 및 난이도 확장(Environment/Difficulty Expansion)"**의 의미로 `v2` 버전을 부여한다.
+* **신규 코스 맵 학습 모델의 순차적 버전 승격(v2, v3, ...) 명명 표준**:
+  - LINK-01 로봇 자율주행 모델군(`avoid_obstacles`, `goto_target`, `follow_route` 등)에서 이전 맵과 레이아웃, 장애물 개수, 주행 경로가 완전히 다른 신규 코스를 학습할 때마다 **"환경 다양성 및 난이도 확장(Environment/Difficulty Expansion)"**의 의미로 순차적으로 버전을 승격(`v2`, `v3`, `v4`, ...)하여 부여한다.
   - 이는 단순 하이퍼파라미터 튜닝을 넘어, 새로운 미로/장애물 배치에서도 레이저 센서(11방향) 기반의 일반화된 회피 지능을 성공적으로 발휘함을 입증하는 독립적인 고도화 릴리스이다.
 * **모델 카드 서두의 버전 배경 명시 의무**:
-  - 모델 카드 개요(Overview)에 *"본 모델(v2)은 단순 수치 변경이 아닌, 7개 장애물로 난이도가 확장된 신규 코스(내 코스 3) 환경에 대응하도록 학습된 확장 릴리스"*임을 명시하여, 맵에 과적합(암기)되지 않은 진정한 공간 적응형 정책임을 기술적으로 명확히 전달한다.
+  - 모델 카드 개요(Overview)에 *"본 모델(v{N})은 단순 수치 변경이 아닌, [신규 맵/장애물 특징]으로 환경 및 난이도가 확장된 신규 코스([코스명/해시]) 환경에 대응하도록 학습된 확장 릴리스"*임을 항상 명시하여, 특정 맵에 과적합(암기)되지 않은 진정한 공간 적응형 정책임을 기술적으로 명확히 전달한다.
 
 ## 2. Standard Header & Intro Format (모델 카드 제목 및 서두 규격)
 * **H1 제목 규격**:
