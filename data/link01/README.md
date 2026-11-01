@@ -53,7 +53,7 @@
   - `머그컵`, `사과`, `랜턴`, `화분` (단서에 일치하는 올바른 물건 타겟팅 결정)
 - **신경망 구조**: MLP `[26, 64, 64, 4]` (tanh 활성화 함수, 로짓 출력)
 
-### 5. `link01-avoid_obstacles-eceb627a.world.json` (코스 맵 데이터 · 장애물 피하기)
+### 5. `link01-avoid_obstacles-eceb627a.world.json` (코스 맵 데이터 · 장애물 피하기 v1)
 - **과제 (Task)**: `avoid_obstacles` (장애물 피하기 · 장애물에 부딪히지 않고 화분까지 주행)
 - **코스 이름**: 내 코스 1
 - **코스 해시**: `eceb627a`
@@ -63,11 +63,36 @@
   - 목표 지점: 화분 (`plant`, 좌표: `[1.7, -0.5392]`)
 - **연계 모델**: [`connectailab-rl-highj-avoid-v1-link01`](https://huggingface.co/minjunglee27/connectailab-rl-highj-avoid-v1-link01)
 
-### 6. `link01-avoid_obstacles-mine-brain.json` (선생님 결정 두뇌 · 장애물 피하기)
+### 6. `link01-avoid_obstacles-mine-brain.json` (선생님 결정 두뇌 · 장애물 피하기 v1)
 - **두뇌 이름**: 내 AI
 - **학습 알고리즘**: PPO (Proximal Policy Optimization)
 - **학습 코스**: `eceb627a` (장애물 회피 및 목표 도달 집중 훈련)
 - **공식 시험 20판 점수**: **90.0% (`score: 0.90`)** (보상합: 20.57)
+- **계약 규격 (Contract)**: `link01-decision/avoid_obstacles/obs21-act5/walker51-14/v1`
+- **관측 차원 (21개)**:
+  - 목표 거리, 목표 방향 sin/cos
+  - 11방향 거리 센서 (-100° ~ +100°)
+  - 전진 속도, 회전 속도
+  - 직전 선택 행동 5개
+- **행동 공간 (5개)**:
+  - `직진`, `왼쪽으로`, `오른쪽으로`, `제자리 좌회전`, `제자리 우회전`
+- **신경망 구조**: MLP `[21, 64, 64, 5]` (tanh 활성화 함수, 로짓 출력)
+
+### 7. `link01-avoid_obstacles-2ee8e71b.world.json` (코스 맵 데이터 · 장애물 피하기 v2)
+- **과제 (Task)**: `avoid_obstacles` (장애물 피하기 · 장애물에 부딪히지 않고 화분까지 주행)
+- **코스 이름**: 내 코스 3
+- **코스 해시**: `2ee8e71b`
+- **내용**:
+  - 시작 좌표: `[-1.7, 0.3309, -0.2825]`
+  - 배치된 장애물 7개 (위치, 회전각, 크기 - v1과 다른 새로운 맵 배치)
+  - 목표 지점: 화분 (`plant`, 좌표: `[1.1903, -0.7339]`)
+- **연계 모델**: `connectailab-rl-highj-avoid-v2-link01` (예정)
+
+### 8. `link01-avoid_obstacles-mine-brain-v2.json` (선생님 결정 두뇌 · 장애물 피하기 v2)
+- **두뇌 이름**: 내 AI
+- **학습 알고리즘**: PPO (Proximal Policy Optimization)
+- **학습 코스**: `2ee8e71b` ("내 코스 3" 맵 맞춤형 집중 훈련)
+- **공식 시험 20판 점수**: **85.0% (`score: 0.85`)** (보상합: 20.86, 61,440회 판단)
 - **계약 규격 (Contract)**: `link01-decision/avoid_obstacles/obs21-act5/walker51-14/v1`
 - **관측 차원 (21개)**:
   - 목표 거리, 목표 방향 sin/cos
@@ -83,4 +108,5 @@
 ## 🔗 연계 모델 목록
 - 목표로 가기: [minjunglee27/connectailab-rl-highj-goto-v1-link01](https://huggingface.co/minjunglee27/connectailab-rl-highj-goto-v1-link01)
 - 물건 고르기: [minjunglee27/connectailab-rl-highj-choose-v1-link01](https://huggingface.co/minjunglee27/connectailab-rl-highj-choose-v1-link01)
-- 장애물 피하기: [minjunglee27/connectailab-rl-highj-avoid-v1-link01](https://huggingface.co/minjunglee27/connectailab-rl-highj-avoid-v1-link01)
+- 장애물 피하기 (v1): [minjunglee27/connectailab-rl-highj-avoid-v1-link01](https://huggingface.co/minjunglee27/connectailab-rl-highj-avoid-v1-link01)
+- 장애물 피하기 (v2): `connectailab-rl-highj-avoid-v2-link01` (학습/배포 예정)
