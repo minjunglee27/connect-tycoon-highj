@@ -4,7 +4,7 @@ base_model: Qwen/Qwen3.5-0.8B
 library_name: peft
 language: [ko, en]
 pipeline_tag: reinforcement-learning
-tags: [reinforcement-learning, deep-reinforcement-learning, grpo, decision-making, gymnasium, connect-tycoon, connect-ai-lab, connectailab, lora, qwen3.5, highj, teacher]
+tags: [reinforcement-learning, deep-reinforcement-learning, grpo, autonomous-agent, decision-agent, business-simulation, fraud-detection, fintech, decision-making, gymnasium, connect-tycoon, connect-ai-lab, connectailab, lora, qwen3.5, qwen, peft, local-ai, highj, teacher]
 ---
 
 <p align="center"><img src="https://raw.githubusercontent.com/wonseokjung/connect-tycoon/main/docs/brand/banner.gif" alt="RL AI COMPANY DECISION MAKING MODEL" width="100%"></p>

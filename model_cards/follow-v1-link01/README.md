@@ -4,7 +4,7 @@ base_model: Qwen/Qwen3.5-0.8B
 library_name: peft
 language: [ko, en]
 pipeline_tag: reinforcement-learning
-tags: [reinforcement-learning, deep-reinforcement-learning, ppo, robotics, decision-making, link01, follow-route, connect-ai-world, connect-ai-lab, connectailab, lora, highj]
+tags: [reinforcement-learning, deep-reinforcement-learning, ppo, robotics, autonomous-navigation, path-tracking, waypoint-navigation, embodied-ai, decision-making, link01, follow-route, connect-ai-world, connect-ai-lab, connectailab, lora, qwen3.5, qwen, peft, local-ai, highj]
 ---
 
 <p align="center"><img src="https://raw.githubusercontent.com/wonseokjung/connect-tycoon/main/docs/brand/banner.gif" alt="RL AI DECISION MAKING MODEL" width="100%"></p>
@@ -139,3 +139,4 @@ CONNECT AI LAB과 AI CITY BUILDERS가 함께 연구하고 개발합니다.
 - [CONNECT TYCOON](https://github.com/wonseokjung/connect-tycoon) · 학습 코드 저장소
 
 시뮬레이터 위의 연구 · 교육용 모델입니다. 실제 로봇에 쓰기 전에 그 로봇 · 그 공간에서 다시 검증하세요.
+

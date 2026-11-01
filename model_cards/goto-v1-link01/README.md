@@ -4,7 +4,7 @@ base_model: Qwen/Qwen3.5-0.8B
 library_name: peft
 language: [ko, en]
 pipeline_tag: reinforcement-learning
-tags: [reinforcement-learning, deep-reinforcement-learning, ppo, robotics, decision-making, link01, connect-ai-world, connect-ai-lab, connectailab, lora, highj]
+tags: [reinforcement-learning, deep-reinforcement-learning, ppo, robotics, autonomous-navigation, obstacle-avoidance, embodied-ai, decision-making, link01, connect-ai-world, connect-ai-lab, connectailab, lora, qwen3.5, qwen, peft, local-ai, highj]
 ---
 
 <p align="center"><img src="https://raw.githubusercontent.com/wonseokjung/connect-tycoon/main/docs/brand/banner.gif" alt="RL AI DECISION MAKING MODEL" width="100%"></p>

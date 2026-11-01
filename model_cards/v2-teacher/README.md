@@ -3,7 +3,7 @@ license: apache-2.0
 language: [ko, en]
 library_name: numpy
 pipeline_tag: reinforcement-learning
-tags: [connect-ai-lab, deep-reinforcement-learning, gymnasium, connect-company, connect-tycoon, jev, jev-style, reinforcement-learning, ppo, decision-making, prefrontal-cortex, korean, highj, teacher]
+tags: [connect-ai-lab, deep-reinforcement-learning, gymnasium, connect-company, connect-tycoon, jev, jev-style, reinforcement-learning, ppo, autonomous-agent, decision-agent, business-simulation, fraud-detection, fintech, decision-making, prefrontal-cortex, korean, highj, teacher]
 ---
 
 <p align="center"><img src="https://raw.githubusercontent.com/wonseokjung/connect-tycoon/main/docs/brand/banner.gif" alt="RL AI COMPANY DECISION MAKING MODEL" width="100%"></p>

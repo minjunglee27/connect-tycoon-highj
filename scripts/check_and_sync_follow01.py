@@ -252,3 +252,4 @@ CONNECT AI LAB과 AI CITY BUILDERS가 함께 연구하고 개발합니다.
 if __name__ == "__main__":
     code = check_and_sync()
     sys.exit(code)
+

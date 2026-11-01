@@ -9,6 +9,14 @@
   - 본명: Minjung Lee (영문 본명)
   - 활동명: Highj
 
+## 1-1. Authentic Global Discovery Tags (도메인별 실체 부합 글로벌 태그 규칙)
+허깅페이스 글로벌 검색 유입(SEO)을 극대화하되, 허위·과장 태그(예: GGUF 미지원 모델에 GGUF 태그 등)는 일체 배제하고 **해당 모델의 실제 기능과 직접 일치하는 정직한 글로벌 전문 태그**만을 보강한다:
+* **로봇 & 피지컬 AI 모델 (LINK-01 시리즈)**:
+  - 공통: `robotics`, `embodied-ai`, `decision-making`, `qwen3.5`, `qwen`, `peft`, `local-ai`, `highj`, `connectailab`
+  - 과제별: `autonomous-navigation`, `obstacle-avoidance` (goto/avoid), `cognitive-decision-making`, `object-selection` (choose), `path-tracking`, `waypoint-navigation` (follow)
+* **비즈니스 자율 에이전트 모델 (Connect Tycoon 시리즈)**:
+  - 공통: `autonomous-agent`, `decision-agent`, `business-simulation`, `fraud-detection`, `fintech`, `decision-making`, `gymnasium`, `qwen3.5`, `qwen`, `peft`, `local-ai`, `highj`, `connectailab`
+
 ## 2. Standard Header & Intro Format (모델 카드 제목 및 서두 규격)
 * **H1 제목 규격**:
   - 모델 고유 저장소 ID 사용 (예: `# connectailab-rl-highj-{version}`)
