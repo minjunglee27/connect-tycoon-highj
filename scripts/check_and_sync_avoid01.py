@@ -203,8 +203,6 @@ prompt = Q.task_of("avoid_obstacles", obs)
 
 ## 만든 곳 · CONNECT AI LAB × AI CITY BUILDERS
 
-CONNECT AI LAB과 AI CITY BUILDERS가 함께 연구하고 개발합니다.
-
 - [CONNECT AI LAB 유튜브](https://www.youtube.com/@CONNECT-AI-LAB) · AI 1인 기업 · 로컬 AI · 강화학습 무료 강의
 - [AI CITY BUILDERS](https://www.aicitybuilders.com) · [강화학습 AI 과정](https://www.aicitybuilders.com/robot)
 - [CONNECT TYCOON](https://github.com/wonseokjung/connect-tycoon) · 학습 코드 저장소
