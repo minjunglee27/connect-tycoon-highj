@@ -30,11 +30,20 @@ tags: [reinforcement-learning, deep-reinforcement-learning, grpo, autonomous-age
 
 CONNECT AI LAB에서 로컬 AI와 강화학습 AI를 공부하고, 이를 실전에 적용해 서비스를 하나씩 만들어 보며 AI 1인 기업가의 꿈을 이뤄가고 있습니다.
 
-- **LunarLander** 환경에서 267.9점 고득점 안정 착륙([`connectailab-rl-highj-v1-lunarlander`](https://huggingface.co/minjunglee27/connectailab-rl-highj-v1-lunarlander)) 및 우측 쏠림을 잡은 정중앙 정밀 착륙 달성([`connectailab-rl-highj-v2-lunarlander`](https://huggingface.co/minjunglee27/connectailab-rl-highj-v2-lunarlander))
-- **CartPole** 환경에서 DQN 파라미터를 93% 축소한 초경량 의사결정 모델 구축 ([`connectailab-rl-highj-v1-cartpole-lite`](https://huggingface.co/minjunglee27/connectailab-rl-highj-v1-cartpole-lite))
-- **Connect Tycoon** 비즈니스 의사결정 모델 구축 ([`connectailab-rl-highj-v1`](https://huggingface.co/minjunglee27/connectailab-rl-highj-v1) · 후속작: [`connectailab-rl-highj-v2`](https://huggingface.co/minjunglee27/connectailab-rl-highj-v2))
-- **LINK-01** 4족 보행 로봇 시뮬레이터 목표 지점 자율주행 모델 구축 ([`connectailab-rl-highj-goto-v1-link01`](https://huggingface.co/minjunglee27/connectailab-rl-highj-goto-v1-link01))
-- [CONNECT AI LAB](https://www.youtube.com/@CONNECT-AI-LAB) × [AI CITY BUILDERS](https://www.aicitybuilders.com/robot) 공동 연구 참여
+- **CONNECT TYCOON 의사결정 모델 연구 (논문 공동 연구)**:
+  - **Part 1. CONNECT TYCOON**: 가상 기업 자율 경영 및 FDS 이상 결제 방어 모델
+    - [`connectailab-rl-highj-v1`](https://huggingface.co/minjunglee27/connectailab-rl-highj-v1) · 월 362만원 흑자 경영 달성
+    - [`connectailab-rl-highj-v2`](https://huggingface.co/minjunglee27/connectailab-rl-highj-v2) · FDS 사기 손실 70.6% 방어 고도화
+  - **Part 2. CONNECT AI WORLD**: 4족 보행 로봇 LINK-01 자율주행 의사결정 모델
+    - [`connectailab-rl-highj-goto-v1-link01`](https://huggingface.co/minjunglee27/connectailab-rl-highj-goto-v1-link01) · 장애물 회피 목표 자율주행
+    - [`connectailab-rl-highj-choose-v1-link01`](https://huggingface.co/minjunglee27/connectailab-rl-highj-choose-v1-link01) · 단서 기반 다중 물건 선택 (성공률 100%)
+    - [`connectailab-rl-highj-avoid-v1-link01`](https://huggingface.co/minjunglee27/connectailab-rl-highj-avoid-v1-link01) · 6대 장애물 회피 자율주행
+- **강화학습 기초 및 정밀 제어 (멘토링 실습)**:
+  - [`connectailab-rl-highj-lunarlander-v1`](https://huggingface.co/minjunglee27/connectailab-rl-highj-lunarlander-v1) · 267.9점 안정 착륙
+  - [`connectailab-rl-highj-lunarlander-v2`](https://huggingface.co/minjunglee27/connectailab-rl-highj-lunarlander-v2) · 정중앙 정밀 착륙
+  - [`connectailab-rl-highj-cartpole-lite-v1`](https://huggingface.co/minjunglee27/connectailab-rl-highj-cartpole-lite-v1) · DQN 93% 축소 초경량 제어
+
+[CONNECT AI LAB](https://www.youtube.com/@CONNECT-AI-LAB) × [AI CITY BUILDERS](https://www.aicitybuilders.com/robot) 공동 연구 참여
 
 ---
 

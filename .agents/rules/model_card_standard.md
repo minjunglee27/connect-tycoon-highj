@@ -35,10 +35,14 @@
 CONNECT AI LAB에서 로컬 AI와 강화학습 AI를 공부하고, 이를 실전에 적용해 서비스를 하나씩 만들어 보며 AI 1인 기업가의 꿈을 이뤄가고 있습니다.
 
 - **CONNECT TYCOON 의사결정 모델 연구 (논문 공동 연구)**:
-  - **Part 1. CONNECT TYCOON**: 가상 기업 자율 경영 및 FDS 이상 결제 방어 모델 ([`highj-v1` (흑자 경영)](https://huggingface.co/minjunglee27/connectailab-rl-highj-v1) · [`highj-v2` (FDS 사기 방어)](https://huggingface.co/minjunglee27/connectailab-rl-highj-v2))
+  - **Part 1. CONNECT TYCOON**: 가상 기업 자율 경영 및 FDS 이상 결제 방어 모델
+    - [`connectailab-rl-highj-v1`](https://huggingface.co/minjunglee27/connectailab-rl-highj-v1) · 월 362만원 흑자 경영 달성
+    - [`connectailab-rl-highj-v2`](https://huggingface.co/minjunglee27/connectailab-rl-highj-v2) · FDS 사기 손실 70.6% 방어 고도화
   - **Part 2. CONNECT AI WORLD**: 4족 보행 로봇 LINK-01 자율주행 의사결정 모델 (하단 연구 컬렉션 표 참조)
 - **강화학습 기초 및 정밀 제어 (멘토링 실습)**:
-  - [`highj-v1-lunarlander` (안정 착륙)](https://huggingface.co/minjunglee27/connectailab-rl-highj-v1-lunarlander) · [`highj-v2-lunarlander` (정밀 착륙)](https://huggingface.co/minjunglee27/connectailab-rl-highj-v2-lunarlander) · [`highj-v1-cartpole-lite` (초경량 제어)](https://huggingface.co/minjunglee27/connectailab-rl-highj-v1-cartpole-lite)
+  - [`connectailab-rl-highj-lunarlander-v1`](https://huggingface.co/minjunglee27/connectailab-rl-highj-lunarlander-v1) · 267.9점 안정 착륙
+  - [`connectailab-rl-highj-lunarlander-v2`](https://huggingface.co/minjunglee27/connectailab-rl-highj-lunarlander-v2) · 정중앙 정밀 착륙
+  - [`connectailab-rl-highj-cartpole-lite-v1`](https://huggingface.co/minjunglee27/connectailab-rl-highj-cartpole-lite-v1) · DQN 93% 축소 초경량 제어
 
 [CONNECT AI LAB](https://www.youtube.com/@CONNECT-AI-LAB) × [AI CITY BUILDERS](https://www.aicitybuilders.com/robot) 공동 연구 참여
 
@@ -64,9 +68,9 @@ LINK-01 시리즈 모델 카드 하단에 수록되는 '연구 컬렉션(Embodie
    - '배포 예정'이나 플레이스홀더 행은 표에 일체 기재하지 않는다.
    - 허깅페이스에 실제 가중치 및 평가 성적표가 배포 완료된 모델만 배포된 순서(1번 `goto-v1` → 2번 `choose-v1` → 3번 `avoid-v1` → ...)대로 한 행씩 누적하여 기재한다.
 3. **표 표준 레이아웃**:
-   - 컬럼 구성: `공식 과제명 (Task)` | `버전` | `핵심 특징 및 연구 목표` | `맵 / 환경 제원` | `Hugging Face 모델`
-4. **링크 표기 간결화 규격**:
-   - '바로가기' 등의 불필요한 부연 문구 없이 모델 식별자 자체에 깔끔하게 링크를 연결한다 (예: [`goto-v1`](https://...)).
+   - 컬럼 구성: `공식 과제명 (Task)` | `버전` | `핵심 특징 및 연구 목표` | `맵 / 환경 제원` | `Hugging Face 모델 저장소`
+4. **링크 표기 규격**:
+   - 'Hugging Face 모델 저장소' 컬럼에는 '바로가기' 등의 부연어 없이 정식 저장소 풀네임 자체에 깔끔하게 링크를 연결한다 (예: [`connectailab-rl-highj-goto-v1-link01`](https://...)).
 
 ## 3. Evaluation Table Convention (성적표 모델명 규격)
 * **성적표 표 안의 모델 행**: 소속 연구실(`connectailab`)과 본인 식별자(`highj`), 버전(`v{N}`)이 모두 포함된 **정식 모델 전체명**을 직접 명시 (방법 B 스타일 적용).

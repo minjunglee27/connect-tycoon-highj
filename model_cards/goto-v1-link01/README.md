@@ -47,20 +47,24 @@ By distilling decision-making capabilities from a high-performing PPO teacher br
 CONNECT AI LAB에서 로컬 AI와 강화학습 AI를 공부하고, 이를 실전에 적용해 서비스를 하나씩 만들어 보며 AI 1인 기업가의 꿈을 이뤄가고 있습니다.
 
 - **CONNECT TYCOON 의사결정 모델 연구 (논문 공동 연구)**:
-  - **Part 1. CONNECT TYCOON**: 가상 기업 자율 경영 및 FDS 이상 결제 방어 모델 ([`highj-v1` (흑자 경영)](https://huggingface.co/minjunglee27/connectailab-rl-highj-v1) · [`highj-v2` (FDS 사기 방어)](https://huggingface.co/minjunglee27/connectailab-rl-highj-v2))
+  - **Part 1. CONNECT TYCOON**: 가상 기업 자율 경영 및 FDS 이상 결제 방어 모델
+    - [`connectailab-rl-highj-v1`](https://huggingface.co/minjunglee27/connectailab-rl-highj-v1) · 월 362만원 흑자 경영 달성
+    - [`connectailab-rl-highj-v2`](https://huggingface.co/minjunglee27/connectailab-rl-highj-v2) · FDS 사기 손실 70.6% 방어 고도화
   - **Part 2. CONNECT AI WORLD**: 4족 보행 로봇 LINK-01 자율주행 의사결정 모델 (하단 연구 컬렉션 표 참조)
 - **강화학습 기초 및 정밀 제어 (멘토링 실습)**:
-  - [`highj-v1-lunarlander` (안정 착륙)](https://huggingface.co/minjunglee27/connectailab-rl-highj-v1-lunarlander) · [`highj-v2-lunarlander` (정밀 착륙)](https://huggingface.co/minjunglee27/connectailab-rl-highj-v2-lunarlander) · [`highj-v1-cartpole-lite` (초경량 제어)](https://huggingface.co/minjunglee27/connectailab-rl-highj-v1-cartpole-lite)
+  - [`connectailab-rl-highj-lunarlander-v1`](https://huggingface.co/minjunglee27/connectailab-rl-highj-lunarlander-v1) · 267.9점 안정 착륙
+  - [`connectailab-rl-highj-lunarlander-v2`](https://huggingface.co/minjunglee27/connectailab-rl-highj-lunarlander-v2) · 정중앙 정밀 착륙
+  - [`connectailab-rl-highj-cartpole-lite-v1`](https://huggingface.co/minjunglee27/connectailab-rl-highj-cartpole-lite-v1) · DQN 93% 축소 초경량 제어
 
 [CONNECT AI LAB](https://www.youtube.com/@CONNECT-AI-LAB) × [AI CITY BUILDERS](https://www.aicitybuilders.com/robot) 공동 연구 참여
 
 ### 🤖 LINK-01 4족 보행 로봇 의사결정 연구 컬렉션 (Embodied AI Suite)
 
-| 공식 과제명 (Task) | 버전 | 핵심 특징 및 연구 목표 | 맵 / 환경 제원 | Hugging Face 모델 |
+| 공식 과제명 (Task) | 버전 | 핵심 특징 및 연구 목표 | 맵 / 환경 제원 | Hugging Face 모델 저장소 |
 | :--- | :---: | :--- | :--- | :---: |
-| **목표로 가기**<br>`goto_target` | `v1` | 장애물 7개 배치 환경 머그컵 자율 주행 | 내 코스 1 (`057d7cd9`) | [`goto-v1`](https://huggingface.co/minjunglee27/connectailab-rl-highj-goto-v1-link01) |
-| **물건 고르기**<br>`choose_object` | `v1` | 4종 물건 중 단서 일치 물건 인지/선택 (오선택 0%) | 내 코스 1 (`9814f10c`) | [`choose-v1`](https://huggingface.co/minjunglee27/connectailab-rl-highj-choose-v1-link01) |
-| **장애물 피하기**<br>`avoid_obstacles` | `v1` | 6대 장애물 회피 화분 목표 주행 (기본 맵) | 내 코스 1 (`eceb627a`) | [`avoid-v1`](https://huggingface.co/minjunglee27/connectailab-rl-highj-avoid-v1-link01) |
+| **목표로 가기**<br>`goto_target` | `v1` | 장애물 7개 배치 환경 머그컵 자율 주행 | 내 코스 1 (`057d7cd9`) | [`connectailab-rl-highj-goto-v1-link01`](https://huggingface.co/minjunglee27/connectailab-rl-highj-goto-v1-link01) |
+| **물건 고르기**<br>`choose_object` | `v1` | 4종 물건 중 단서 일치 물건 인지/선택 (오선택 0%) | 내 코스 1 (`9814f10c`) | [`connectailab-rl-highj-choose-v1-link01`](https://huggingface.co/minjunglee27/connectailab-rl-highj-choose-v1-link01) |
+| **장애물 피하기**<br>`avoid_obstacles` | `v1` | 6대 장애물 회피 화분 목표 주행 (기본 맵) | 내 코스 1 (`eceb627a`) | [`connectailab-rl-highj-avoid-v1-link01`](https://huggingface.co/minjunglee27/connectailab-rl-highj-avoid-v1-link01) |
 
 <p align="center"><img src="https://raw.githubusercontent.com/wonseokjung/connect-tycoon/main/docs/images/hero.gif" alt="LINK-01 로봇 자율주행 시뮬레이션" width="88%"></p>
 <p align="center"><sub>LINK-01 의사결정 시뮬레이션 · 로봇의 시각/거리 센서 수치를 언어 모델이 해석하여 장애물을 피하고 목표(머그컵)로 안내합니다</sub></p>
