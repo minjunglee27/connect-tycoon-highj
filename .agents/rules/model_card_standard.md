@@ -35,8 +35,8 @@
 CONNECT AI LAB에서 로컬 AI와 강화학습 AI를 공부하고, 이를 실전에 적용해 서비스를 하나씩 만들어 보며 AI 1인 기업가의 꿈을 이뤄가고 있습니다.
 
 - **CONNECT TYCOON 의사결정 모델 연구 (논문 공동 연구)**:
-  - **Part 1. 비즈니스 자율 경영**: [`highj-v1` (흑자 경영)](https://huggingface.co/minjunglee27/connectailab-rl-highj-v1) · [`highj-v2` (FDS 사기 방어)](https://huggingface.co/minjunglee27/connectailab-rl-highj-v2)
-  - **Part 2. LINK-01 로봇 자율주행**: 4족 보행 로봇 시뮬레이터 의사결정 모델 (하단 연구 컬렉션 표 참조)
+  - **Part 1. CONNECT TYCOON**: 가상 기업 자율 경영 및 FDS 이상 결제 방어 모델 ([`highj-v1` (흑자 경영)](https://huggingface.co/minjunglee27/connectailab-rl-highj-v1) · [`highj-v2` (FDS 사기 방어)](https://huggingface.co/minjunglee27/connectailab-rl-highj-v2))
+  - **Part 2. CONNECT AI WORLD**: 4족 보행 로봇 LINK-01 자율주행 의사결정 모델 (하단 연구 컬렉션 표 참조)
 - **강화학습 기초 및 정밀 제어 (멘토링 실습)**:
   - [`highj-v1-lunarlander` (안정 착륙)](https://huggingface.co/minjunglee27/connectailab-rl-highj-v1-lunarlander) · [`highj-v2-lunarlander` (정밀 착륙)](https://huggingface.co/minjunglee27/connectailab-rl-highj-v2-lunarlander) · [`highj-v1-cartpole-lite` (초경량 제어)](https://huggingface.co/minjunglee27/connectailab-rl-highj-v1-cartpole-lite)
 
