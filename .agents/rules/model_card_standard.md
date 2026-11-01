@@ -17,6 +17,13 @@
 * **비즈니스 자율 에이전트 모델 (Connect Tycoon 시리즈)**:
   - 공통: `autonomous-agent`, `decision-agent`, `business-simulation`, `fraud-detection`, `fintech`, `decision-making`, `gymnasium`, `qwen3.5`, `qwen`, `peft`, `local-ai`, `highj`, `connectailab`
 
+## 1-2. LINK-01 Embodied AI 환경 확장 릴리스 명명 규칙 (Environment Expansion)
+* **신규 코스 맵 학습 모델의 `v2` 명명 표준**:
+  - LINK-01 로봇 자율주행 모델군(예: `avoid_obstacles`)에서 이전 맵(예: `eceb627a`, 장애물 6개)과 레이아웃/장애물 배치가 완전히 다른 신규 코스(예: `2ee8e71b`, 장애물 7개)를 학습한 모델은 **"환경 다양성 및 난이도 확장(Environment/Difficulty Expansion)"**의 의미로 `v2` 버전을 부여한다.
+  - 이는 단순 하이퍼파라미터 튜닝을 넘어, 새로운 미로/장애물 배치에서도 레이저 센서(11방향) 기반의 일반화된 회피 지능을 성공적으로 발휘함을 입증하는 독립적인 고도화 릴리스이다.
+* **모델 카드 서두의 버전 배경 명시 의무**:
+  - 모델 카드 개요(Overview)에 *"본 모델(v2)은 단순 수치 변경이 아닌, 7개 장애물로 난이도가 확장된 신규 코스(내 코스 3) 환경에 대응하도록 학습된 확장 릴리스"*임을 명시하여, 맵에 과적합(암기)되지 않은 진정한 공간 적응형 정책임을 기술적으로 명확히 전달한다.
+
 ## 2. Standard Header & Intro Format (모델 카드 제목 및 서두 규격)
 * **H1 제목 규격**:
   - 모델 고유 저장소 ID 사용 (예: `# connectailab-rl-highj-{version}`)
@@ -67,8 +74,9 @@ CONNECT AI LAB의 **Jay 멘토님**이 제작한 가상 비즈니스 시뮬레�
    - **기술 산출물 선별 커밋**: `connect-tycoon`은 기술/개발 코드베이스이므로 모델 카드(`model_cards/`), 데이터셋(`data/`), 학습 노트북(`notebooks/`), 스크립트(`scripts/`)만 커밋 대상에 포함한다.
    - **지식메모리/기획 문서 격리**: 로컬에서 생성된 비즈니스 기획서, A/B 테스트 스펙, `지식메모리/` 폴더 문서는 별도 저장소에서 관리되므로 `connect-tycoon`에 함께 스테이징하거나 푸시하지 않고 배제(Untracked 유지 또는 언스테이징)한다.
    - 유의미한 작업이 완료될 때마다 선별된 기술 산출물만 커밋하고 `origin main`으로 즉시 `git push`를 수행한다.
-6. **Colab 대화형 폼(Form) 보존 규칙**:
-   - Colab 업로드 셀(`push_decision_model`) 스니펫을 사용자에게 제공할 때는, 우측 대화형 폼(`#@param`)이 깨지지 않도록 전체 셀 코드를 통째로 바꾸지 않고 `ABOUT_ME = '''...'''` 내부 본문 텍스트만 명확하게 전달한다.
+6. **Colab 대화형 폼(Form) 보존 및 2단계 모델 카드 라이프사이클**:
+   - **1단계 (Colab 실행 단계)**: 우측 대화형 폼(`#@param`)이 깨지지 않도록 `ABOUT_ME = '''...'''` 내부 본문 텍스트(핵심 3개 도메인 큐레이션)만 전달하여 허깅페이스 초기 업로드를 안전하게 완료한다.
+   - **2단계 (허깅페이스 업로드 후 고도화 단계)**: 업로드 완료 즉시, 코랩이 기록한 실제 `metrics.json`(코스 완주율, 두뇌 일치율 등)과 코스 원천 데이터(`world.json`, 장애물 수, 좌표)를 조합하여 완성도 높은 고품질 모델 카드로 자동 생성하고, 허깅페이스 리포지토리(`README.md`)에 직접 덮어쓰기(Overwrite) 동기화한다.
 
 ## 5. Template & Section Policy
 * **기본 템플릿**: `connectailab-rl-highj-teacher`의 원본 구조 및 레이아웃을 엄격히 준수.
