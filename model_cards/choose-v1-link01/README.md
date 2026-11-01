@@ -60,9 +60,9 @@ CONNECT AI LAB에서 로컬 AI와 강화학습 AI를 공부하고, 이를 실전
 
 | 공식 과제명 (Task) | 버전 | 핵심 특징 및 연구 목표 | 맵 / 환경 제원 | Hugging Face 모델 |
 | :--- | :---: | :--- | :--- | :---: |
-| **목표로 가기**<br>`goto_target` | `v1` | 장애물 7개 배치 환경 머그컵 자율 주행 | 내 코스 1 (`057d7cd9`) | [goto-v1 바로가기](https://huggingface.co/minjunglee27/connectailab-rl-highj-goto-v1-link01) |
-| **물건 고르기**<br>`choose_object` | `v1` | 4종 물건 중 단서 일치 물건 인지/선택 (오선택 0%) | 내 코스 1 (`9814f10c`) | [choose-v1 바로가기](https://huggingface.co/minjunglee27/connectailab-rl-highj-choose-v1-link01) |
-| **장애물 피하기**<br>`avoid_obstacles` | `v1` | 6대 장애물 회피 화분 목표 주행 (기본 맵) | 내 코스 1 (`eceb627a`) | [avoid-v1 바로가기](https://huggingface.co/minjunglee27/connectailab-rl-highj-avoid-v1-link01) |
+| **목표로 가기**<br>`goto_target` | `v1` | 장애물 7개 배치 환경 머그컵 자율 주행 | 내 코스 1 (`057d7cd9`) | [`goto-v1`](https://huggingface.co/minjunglee27/connectailab-rl-highj-goto-v1-link01) |
+| **물건 고르기**<br>`choose_object` | `v1` | 4종 물건 중 단서 일치 물건 인지/선택 (오선택 0%) | 내 코스 1 (`9814f10c`) | [`choose-v1`](https://huggingface.co/minjunglee27/connectailab-rl-highj-choose-v1-link01) |
+| **장애물 피하기**<br>`avoid_obstacles` | `v1` | 6대 장애물 회피 화분 목표 주행 (기본 맵) | 내 코스 1 (`eceb627a`) | [`avoid-v1`](https://huggingface.co/minjunglee27/connectailab-rl-highj-avoid-v1-link01) |
 
 ---
 
