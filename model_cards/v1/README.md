@@ -34,7 +34,7 @@ CONNECT AI LAB에서 로컬 AI와 강화학습 AI를 공부하고, 이를 실전
   - **Part 1. CONNECT TYCOON**: 가상 기업 자율 경영 및 FDS 이상 결제 방어 모델
     - [`connectailab-rl-highj-v1`](https://huggingface.co/minjunglee27/connectailab-rl-highj-v1) · 월 362만원 흑자 경영 달성
     - [`connectailab-rl-highj-v2`](https://huggingface.co/minjunglee27/connectailab-rl-highj-v2) · FDS 사기 손실 70.6% 방어 고도화
-  - **Part 2. CONNECT AI WORLD**: 4족 보행 로봇 LINK-01 자율주행 의사결정 모델
+  - **Part 2. CONNECT AI WORLD**: 자율보행 로봇 LINK-01 자율주행 의사결정 모델
     - [`connectailab-rl-highj-goto-v1-link01`](https://huggingface.co/minjunglee27/connectailab-rl-highj-goto-v1-link01) · 장애물 회피 목표 자율주행
     - [`connectailab-rl-highj-choose-v1-link01`](https://huggingface.co/minjunglee27/connectailab-rl-highj-choose-v1-link01) · 단서 기반 다중 물건 선택 (성공률 100%)
     - [`connectailab-rl-highj-avoid-v1-link01`](https://huggingface.co/minjunglee27/connectailab-rl-highj-avoid-v1-link01) · 6대 장애물 회피 자율주행

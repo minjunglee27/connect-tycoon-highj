@@ -89,7 +89,7 @@ tags: [reinforcement-learning, deep-reinforcement-learning, ppo, robotics, decis
 
 # connectailab-rl-highj-avoid-v1-link01
 
-**connectailab-rl-highj-avoid-v1-link01** is an embodied obstacle avoidance decision-making language model based on `Qwen/Qwen3.5-0.8B`, fine-tuned with LoRA (PEFT) on sensory-decision trajectories from the LINK-01 quadruped simulation environment. It serves as an autonomous decision policy for the `avoid_obstacles` task, navigating past complex static and dynamic obstacles towards the target destination (`plant`).
+**connectailab-rl-highj-avoid-v1-link01** is an embodied obstacle avoidance decision-making language model based on `Qwen/Qwen3.5-0.8B`, fine-tuned with LoRA (PEFT) on sensory-decision trajectories from the LINK-01 autonomous locomotion robot simulation environment. It serves as an autonomous decision policy for the `avoid_obstacles` task, navigating past complex static and dynamic obstacles towards the target destination (`plant`).
 
 By distilling decision-making capabilities from a high-performing PPO teacher brain (`brain.json`, official 20-run test success rate **90.0%**) trained in the [CONNECT AI WORLD Robot Lab](https://www.ezerai.xyz/robot-lab/world/), the language model reads 21-dimensional numeric observations (target relative vector, 11-directional LiDAR distance readings, linear/angular velocities, and past action history) converted into natural structured text every 0.5 seconds, and outputs the optimal discrete locomotion action (forward, turn left, turn right, spin in place) at 2Hz.
 
@@ -109,7 +109,7 @@ By distilling decision-making capabilities from a high-performing PPO teacher br
 
 ## 모델 개요 (Overview)
 
-**connectailab-rl-highj-avoid-v1-link01**은 `Qwen/Qwen3.5-0.8B` 언어 모델을 바탕으로, **LINK-01 4족 보행 로봇의 고난도 장애물 회피 자율주행(Obstacle Avoidance Decision Making)**을 수행하도록 학습된 AI 모델입니다.
+**connectailab-rl-highj-avoid-v1-link01**은 `Qwen/Qwen3.5-0.8B` 언어 모델을 바탕으로, **LINK-01 자율보행 로봇의 고난도 장애물 회피 자율주행(Obstacle Avoidance Decision Making)**을 수행하도록 학습된 AI 모델입니다.
 
 [CONNECT AI WORLD 로봇 웹 학습기](https://www.ezerai.xyz/robot-lab/world/)에서 PPO로 40,960스텝 훈련되어 **공식 시험 성공률 90.0%**를 기록한 **LINK-01 고성능 회피 두뇌(PPO Brain)**의 판단 지식을 증류(Distillation)하여, 0.5초마다 주어지는 21차원 센서 수치(목표 거리·각도, 11방향 거리 센서, 속도, 이전 선택)를 언어 모델이 읽고 장애물에 부딪히지 않는 최적의 회피 보행 방향을 결정합니다.
 
@@ -119,7 +119,7 @@ By distilling decision-making capabilities from a high-performing PPO teacher br
 
 CONNECT AI LAB에서 로컬 AI와 강화학습 AI를 공부하고, 이를 실전에 적용해 서비스를 하나씩 만들어 보며 AI 1인 기업가의 꿈을 이뤄가고 있습니다.
 
-- **로봇 & 피지컬 AI**: LINK-01 4족 보행 시뮬레이터 의사결정 모델 ([자율주행 `goto-v1`](https://huggingface.co/minjunglee27/connectailab-rl-highj-goto-v1-link01) · [사물인지 `choose-v1`](https://huggingface.co/minjunglee27/connectailab-rl-highj-choose-v1-link01) · [회피주행 `avoid-v1`](https://huggingface.co/minjunglee27/connectailab-rl-highj-avoid-v1-link01))
+- **로봇 & 피지컬 AI**: LINK-01 자율보행 시뮬레이터 의사결정 모델 ([자율주행 `goto-v1`](https://huggingface.co/minjunglee27/connectailab-rl-highj-goto-v1-link01) · [사물인지 `choose-v1`](https://huggingface.co/minjunglee27/connectailab-rl-highj-choose-v1-link01) · [회피주행 `avoid-v1`](https://huggingface.co/minjunglee27/connectailab-rl-highj-avoid-v1-link01))
 - **비즈니스 에이전트**: Connect Tycoon 자율 의사결정 모델 ([흑자 경영 `v1`](https://huggingface.co/minjunglee27/connectailab-rl-highj-v1) · [FDS 방어/고도화 `v2`](https://huggingface.co/minjunglee27/connectailab-rl-highj-v2))
 - **강화학습 정밀 제어**: LunarLander 267.9점 정밀 착륙 ([`v1`](https://huggingface.co/minjunglee27/connectailab-rl-highj-v1-lunarlander) · [`v2`](https://huggingface.co/minjunglee27/connectailab-rl-highj-v2-lunarlander)) 및 CartPole 초경량 모델 ([`v1-lite`](https://huggingface.co/minjunglee27/connectailab-rl-highj-v1-cartpole-lite))
 - 👉 **[Highj의 전체 강화학습 모델 컬렉션 둘러보기](https://huggingface.co/minjunglee27)**
@@ -232,8 +232,8 @@ prompt = Q.task_of("avoid_obstacles", obs)
         text = summary_path.read_text(encoding="utf-8")
         succ_val = results.get("강화학습", {}).get("drive_success") or results.get("지도학습", {}).get("drive_success", 0.9)
         succ_str = f"20판 성공률 {succ_val:.0%}"
-        old_line = '| [**LINK-01 avoid v1**](./avoid-v1-link01/README.md) | 2026-10-30 | **두뇌 시험 90%** | 21차원 거리 센서 | 4족 보행 로봇 6대 장애물 회피 자율주행 (화분 목표) | [minjunglee27/connectailab-rl-highj-avoid-v1-link01](https://huggingface.co/minjunglee27/connectailab-rl-highj-avoid-v1-link01) |'
-        new_line = f'| [**LINK-01 avoid v1**](./avoid-v1-link01/README.md) | 2026-10-30 | **{succ_str}** | 21차원 거리 센서 | 4족 보행 로봇 6대 장애물 회피 자율주행 (화분 목표) | [minjunglee27/connectailab-rl-highj-avoid-v1-link01](https://huggingface.co/minjunglee27/connectailab-rl-highj-avoid-v1-link01) |'
+        old_line = '| [**LINK-01 avoid v1**](./avoid-v1-link01/README.md) | 2026-10-30 | **두뇌 시험 90%** | 21차원 거리 센서 | 자율보행 로봇 6대 장애물 회피 자율주행 (화분 목표) | [minjunglee27/connectailab-rl-highj-avoid-v1-link01](https://huggingface.co/minjunglee27/connectailab-rl-highj-avoid-v1-link01) |'
+        new_line = f'| [**LINK-01 avoid v1**](./avoid-v1-link01/README.md) | 2026-10-30 | **{succ_str}** | 21차원 거리 센서 | 자율보행 로봇 6대 장애물 회피 자율주행 (화분 목표) | [minjunglee27/connectailab-rl-highj-avoid-v1-link01](https://huggingface.co/minjunglee27/connectailab-rl-highj-avoid-v1-link01) |'
         if old_line in text:
             text = text.replace(old_line, new_line)
             summary_path.write_text(text, encoding="utf-8")

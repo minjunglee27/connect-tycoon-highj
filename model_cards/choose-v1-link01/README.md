@@ -18,7 +18,7 @@ tags: [reinforcement-learning, deep-reinforcement-learning, ppo, robotics, embod
 
 # connectailab-rl-highj-choose-v1-link01
 
-**connectailab-rl-highj-choose-v1-link01** is an embodied cognitive decision-making language model based on `Qwen/Qwen3.5-0.8B`, fine-tuned with LoRA (PEFT) on sensory-decision trajectories from the LINK-01 quadruped simulation environment. It operates as the cognitive policy for the `choose_object` task, where the robot reads environmental cues and multi-object spatial observations to select and navigate towards the correct target object among multiple choices.
+**connectailab-rl-highj-choose-v1-link01** is an embodied cognitive decision-making language model based on `Qwen/Qwen3.5-0.8B`, fine-tuned with LoRA (PEFT) on sensory-decision trajectories from the LINK-01 autonomous locomotion robot simulation environment. It operates as the cognitive policy for the `choose_object` task, where the robot reads environmental cues and multi-object spatial observations to select and navigate towards the correct target object among multiple choices.
 
 By distilling cognitive and spatial decision capabilities from a PPO teacher brain (`brain.json`) trained in the [CONNECT AI WORLD Robot Lab](https://www.ezerai.xyz/robot-lab/world/), the model reads 26-dimensional structured observations (target cues, spatial coordinates for 4 candidate objects, velocities, and previous decisions) converted into natural structured text every 0.5 seconds, and outputs the optimal discrete item choice (`머그컵`, `사과`, `랜턴`, `화분`).
 
@@ -38,7 +38,7 @@ By distilling cognitive and spatial decision capabilities from a PPO teacher bra
 
 ## 모델 개요 (Overview)
 
-**connectailab-rl-highj-choose-v1-link01**은 `Qwen/Qwen3.5-0.8B` 언어 모델을 바탕으로, **LINK-01 4족 보행 로봇의 시각 인지 및 다중 사물 선택 의사결정(Cognitive Decision Making)**을 수행하도록 학습된 AI 모델입니다.
+**connectailab-rl-highj-choose-v1-link01**은 `Qwen/Qwen3.5-0.8B` 언어 모델을 바탕으로, **LINK-01 자율보행 로봇의 시각 인지 및 다중 사물 선택 의사결정(Cognitive Decision Making)**을 수행하도록 학습된 AI 모델입니다.
 
 [CONNECT AI WORLD 로봇 웹 학습기](https://www.ezerai.xyz/robot-lab/world/)에서 PPO로 훈련된 26차원 인지 결정 두뇌(`brain.json`)의 판단 지식을 증류(Distillation)하여, 0.5초마다 주어지는 단서(Cue)와 4개 사물의 공간 좌표 데이터를 텍스트로 읽고 혼란을 주는 유혹체(Decoy) 사이에서 올바른 목표 대상을 정확하게 식별하고 선택합니다.
 
@@ -52,7 +52,7 @@ CONNECT AI LAB에서 로컬 AI와 강화학습 AI를 공부하고, 이를 실전
   - **Part 1. CONNECT TYCOON**: 가상 기업 자율 경영 및 FDS 이상 결제 방어 모델
     - [`connectailab-rl-highj-v1`](https://huggingface.co/minjunglee27/connectailab-rl-highj-v1) · 월 362만원 흑자 경영 달성
     - [`connectailab-rl-highj-v2`](https://huggingface.co/minjunglee27/connectailab-rl-highj-v2) · FDS 사기 손실 70.6% 방어 고도화
-  - **Part 2. CONNECT AI WORLD**: 4족 보행 로봇 LINK-01 자율주행 의사결정 모델 (하단 연구 컬렉션 표 참조)
+  - **Part 2. CONNECT AI WORLD**: 자율보행 로봇 LINK-01 자율주행 의사결정 모델 (하단 연구 컬렉션 표 참조)
 - **강화학습 기초 및 정밀 제어 (멘토링 실습)**:
   - [`connectailab-rl-highj-lunarlander-v1`](https://huggingface.co/minjunglee27/connectailab-rl-highj-lunarlander-v1) · 267.9점 안정 착륙
   - [`connectailab-rl-highj-lunarlander-v2`](https://huggingface.co/minjunglee27/connectailab-rl-highj-lunarlander-v2) · 정중앙 정밀 착륙
@@ -60,7 +60,7 @@ CONNECT AI LAB에서 로컬 AI와 강화학습 AI를 공부하고, 이를 실전
 
 [CONNECT AI LAB](https://www.youtube.com/@CONNECT-AI-LAB) × [AI CITY BUILDERS](https://www.aicitybuilders.com/robot) 공동 연구 참여
 
-### 🤖 LINK-01 4족 보행 로봇 의사결정 연구 컬렉션 (Embodied AI Suite)
+### 🤖 LINK-01 자율보행 로봇 의사결정 연구 컬렉션 (Embodied AI Suite)
 
 | 공식 과제명 (Task) | 버전 | 핵심 특징 및 연구 목표 | 맵 / 환경 제원 | Hugging Face 모델 저장소 |
 | :--- | :---: | :--- | :--- | :---: |
