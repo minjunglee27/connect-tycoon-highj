@@ -48,11 +48,13 @@ By distilling decision-making capabilities from a high-performing PPO teacher br
 
 CONNECT AI LAB에서 로컬 AI와 강화학습 AI를 공부하고, 이를 실전에 적용해 서비스를 하나씩 만들어 보며 AI 1인 기업가의 꿈을 이뤄가고 있습니다.
 
-- **🤖 로봇 & 피지컬 AI**: LINK-01 4족 보행 시뮬레이터 의사결정 모델 시리즈 (아래 [연구 컬렉션 표](#-link-01-4족-보행-로봇-의사결정-연구-컬렉션-embodied-ai-suite) 수록)
-- **🏢 비즈니스 에이전트**: Connect Tycoon 자율 의사결정 모델 ([흑자 경영 `v1`](https://huggingface.co/minjunglee27/connectailab-rl-highj-v1) · [FDS 방어/고도화 `v2`](https://huggingface.co/minjunglee27/connectailab-rl-highj-v2))
-- **🎯 강화학습 정밀 제어**: LunarLander 267.9점 정밀 착륙 ([`v1`](https://huggingface.co/minjunglee27/connectailab-rl-highj-v1-lunarlander) · [`v2`](https://huggingface.co/minjunglee27/connectailab-rl-highj-v2-lunarlander)) 및 CartPole 초경량 모델 ([`v1-lite`](https://huggingface.co/minjunglee27/connectailab-rl-highj-v1-cartpole-lite))
-- 👉 **[Highj의 전체 강화학습 모델 컬렉션 둘러보기](https://huggingface.co/minjunglee27)**
-- [CONNECT AI LAB](https://www.youtube.com/@CONNECT-AI-LAB) × [AI CITY BUILDERS](https://www.aicitybuilders.com/robot) 공동 연구 참여
+- **CONNECT TYCOON 의사결정 모델 연구 (논문 공동 연구)**:
+  - **Part 1. 비즈니스 자율 경영**: [`highj-v1` (흑자 경영)](https://huggingface.co/minjunglee27/connectailab-rl-highj-v1) · [`highj-v2` (FDS 사기 방어)](https://huggingface.co/minjunglee27/connectailab-rl-highj-v2)
+  - **Part 2. LINK-01 로봇 자율주행**: 4족 보행 로봇 시뮬레이터 의사결정 모델 (하단 연구 컬렉션 표 참조)
+- **강화학습 기초 및 정밀 제어 (멘토링 실습)**:
+  - [`highj-v1-lunarlander` (안정 착륙)](https://huggingface.co/minjunglee27/connectailab-rl-highj-v1-lunarlander) · [`highj-v2-lunarlander` (정밀 착륙)](https://huggingface.co/minjunglee27/connectailab-rl-highj-v2-lunarlander) · [`highj-v1-cartpole-lite` (초경량 제어)](https://huggingface.co/minjunglee27/connectailab-rl-highj-v1-cartpole-lite)
+
+[CONNECT AI LAB](https://www.youtube.com/@CONNECT-AI-LAB) × [AI CITY BUILDERS](https://www.aicitybuilders.com/robot) 공동 연구 참여
 
 ### 🤖 LINK-01 4족 보행 로봇 의사결정 연구 컬렉션 (Embodied AI Suite)
 

@@ -27,18 +27,20 @@
 ## 2. Standard Header & Intro Format (모델 카드 제목 및 서두 규격)
 * **H1 제목 규격**:
   - 모델 고유 저장소 ID 사용 (예: `# connectailab-rl-highj-{version}`)
-* **만든 사람 시그니처 블록 (큐레이션 및 프로필 링크 표준)**:
-모든 모델을 단순 나열하여 본문 가독성을 해치지 않도록, **3대 핵심 도메인 대표 마일스톤**만 하이라이트하고 전체 모델은 Hugging Face 프로필 허브 링크로 연결하는 '세련된 큐레이션' 구조를 적용한다:
+* **만든 사람 시그니처 블록 (Connect Tycoon 2부작 연구 및 실습 표준)**:
+모든 모델을 단순 나열하거나 불필요한 프로필 링크를 남발하지 않고, **CONNECT TYCOON 연구 여정(Part 1 비즈니스 자율 경영 / Part 2 LINK-01 로봇 자율주행 논문 공동 연구)**과 **강화학습 멘토링 실습**의 명확한 맥락 구조를 적용한다:
 
 ## 만든 사람 · Minjung Lee (Highj)
 
 CONNECT AI LAB에서 로컬 AI와 강화학습 AI를 공부하고, 이를 실전에 적용해 서비스를 하나씩 만들어 보며 AI 1인 기업가의 꿈을 이뤄가고 있습니다.
 
-- **로봇 & 피지컬 AI**: LINK-01 4족 보행 시뮬레이터 의사결정 모델 ([자율주행 `goto-v1`](https://huggingface.co/minjunglee27/connectailab-rl-highj-goto-v1-link01) · [사물인지 `choose-v1`](https://huggingface.co/minjunglee27/connectailab-rl-highj-choose-v1-link01) · [회피주행 `avoid-v1`](https://huggingface.co/minjunglee27/connectailab-rl-highj-avoid-v1-link01))
-- **비즈니스 에이전트**: Connect Tycoon 자율 의사결정 모델 ([흑자 경영 `v1`](https://huggingface.co/minjunglee27/connectailab-rl-highj-v1) · [FDS 방어/고도화 `v2`](https://huggingface.co/minjunglee27/connectailab-rl-highj-v2))
-- **강화학습 정밀 제어**: LunarLander 267.9점 정밀 착륙 ([`v1`](https://huggingface.co/minjunglee27/connectailab-rl-highj-v1-lunarlander) · [`v2`](https://huggingface.co/minjunglee27/connectailab-rl-highj-v2-lunarlander)) 및 CartPole 초경량 모델 ([`v1-lite`](https://huggingface.co/minjunglee27/connectailab-rl-highj-v1-cartpole-lite))
-- 👉 **[Highj의 전체 강화학습 모델 컬렉션 둘러보기](https://huggingface.co/minjunglee27)**
-- [CONNECT AI LAB](https://www.youtube.com/@CONNECT-AI-LAB) × [AI CITY BUILDERS](https://www.aicitybuilders.com/robot) 공동 연구 참여
+- **CONNECT TYCOON 의사결정 모델 연구 (논문 공동 연구)**:
+  - **Part 1. 비즈니스 자율 경영**: [`highj-v1` (흑자 경영)](https://huggingface.co/minjunglee27/connectailab-rl-highj-v1) · [`highj-v2` (FDS 사기 방어)](https://huggingface.co/minjunglee27/connectailab-rl-highj-v2)
+  - **Part 2. LINK-01 로봇 자율주행**: 4족 보행 로봇 시뮬레이터 의사결정 모델 (하단 연구 컬렉션 표 참조)
+- **강화학습 기초 및 정밀 제어 (멘토링 실습)**:
+  - [`highj-v1-lunarlander` (안정 착륙)](https://huggingface.co/minjunglee27/connectailab-rl-highj-v1-lunarlander) · [`highj-v2-lunarlander` (정밀 착륙)](https://huggingface.co/minjunglee27/connectailab-rl-highj-v2-lunarlander) · [`highj-v1-cartpole-lite` (초경량 제어)](https://huggingface.co/minjunglee27/connectailab-rl-highj-v1-cartpole-lite)
+
+[CONNECT AI LAB](https://www.youtube.com/@CONNECT-AI-LAB) × [AI CITY BUILDERS](https://www.aicitybuilders.com/robot) 공동 연구 참여
 
 > **링크 규칙**: 소개란에 언급되는 모든 이전 포트폴리오 모델은 공식 Hugging Face 저장소 URL로 연결하고, 협업 기관은 공식 웹사이트/채널 URL로 반드시 하이퍼링크 처리한다.
 * **글로벌 하이브리드 섹션 제목 규격**:
