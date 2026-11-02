@@ -67,6 +67,7 @@ CONNECT AI LAB에서 로컬 AI와 강화학습 AI를 공부하고, 이를 실전
 | **목표로 가기**<br>`goto_target` | `v1` | 장애물 7개 배치 환경 머그컵 자율 주행 | 내 코스 1 (`057d7cd9`) | [`connectailab-rl-highj-goto-v1-link01`](https://huggingface.co/minjunglee27/connectailab-rl-highj-goto-v1-link01) |
 | **물건 고르기**<br>`choose_object` | `v1` | 4종 물건 중 단서 일치 물건 인지/선택 (오선택 0%) | 내 코스 1 (`9814f10c`) | [`connectailab-rl-highj-choose-v1-link01`](https://huggingface.co/minjunglee27/connectailab-rl-highj-choose-v1-link01) |
 | **장애물 피하기**<br>`avoid_obstacles` | `v1` | 6대 장애물 회피 화분 목표 자율 주행 | 내 코스 1 (`eceb627a`) | [`connectailab-rl-highj-avoid-v1-link01`](https://huggingface.co/minjunglee27/connectailab-rl-highj-avoid-v1-link01) |
+| **경로 따라가기**<br>`follow_route` | `v1` | 급커브 S자 변형 경로 관문 순차 통과 자율 주행 (성공률 95%) | 내 코스 1 (`f6fe2b3f`) | [`connectailab-rl-highj-follow-v1-link01`](https://huggingface.co/minjunglee27/connectailab-rl-highj-follow-v1-link01) |
 
 ---
 

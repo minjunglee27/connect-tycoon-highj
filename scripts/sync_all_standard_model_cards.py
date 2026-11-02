@@ -5,6 +5,7 @@ MODELS_MAP = {
     "minjunglee27/connectailab-rl-highj-goto-v1-link01": "model_cards/goto-v1-link01/README.md",
     "minjunglee27/connectailab-rl-highj-choose-v1-link01": "model_cards/choose-v1-link01/README.md",
     "minjunglee27/connectailab-rl-highj-avoid-v1-link01": "model_cards/avoid-v1-link01/README.md",
+    "minjunglee27/connectailab-rl-highj-follow-v1-link01": "model_cards/follow-v1-link01/README.md",
     "minjunglee27/connectailab-rl-highj-v1": "model_cards/v1/README.md",
     "minjunglee27/connectailab-rl-highj-v2": "model_cards/v2/README.md",
     "minjunglee27/connectailab-rl-highj-teacher": "model_cards/teacher/README.md",

@@ -1,0 +1,53 @@
+{
+ "format": "connect-world-course/1",
+ "world": "link01-decision",
+ "task": "follow_route",
+ "name": "내 코스 1",
+ "goal": {
+  "task": "follow_route",
+  "ko": "경로 따라가기",
+  "desc": "경유점을 순서대로 지나 끝까지"
+ },
+ "layout": {
+  "start": [
+   1.6,
+   -0.3927,
+   2.3731
+  ],
+  "obst": [],
+  "targets": [
+   [
+    "lantern",
+    -1.6,
+    0.5147
+   ]
+  ],
+  "waypoints": [
+   [
+    1.6,
+    -0.3927
+   ],
+   [
+    0.96,
+    0.226
+   ],
+   [
+    -0.3463,
+    -0.3366
+   ],
+   [
+    -0.32,
+    1.0013
+   ],
+   [
+    -0.96,
+    0.783
+   ],
+   [
+    -1.6,
+    0.5147
+   ]
+  ]
+ },
+ "hash": "f6fe2b3f"
+}

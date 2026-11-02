@@ -1,0 +1,44 @@
+{
+  "두뇌 (선생님)": {
+    "accuracy": 1.0,
+    "drive_success": 0.9,
+    "drive_collide": 0.0,
+    "drive_wrong": 0.0,
+    "drive_ret": 22.804191040113444,
+    "drive_time_s": 30.5,
+    "drive_runs": 20
+  },
+  "학습 전": {
+    "accuracy": 0.35462555066079293,
+    "regret": 1.7266257709251096,
+    "n": 454,
+    "drive_success": 0.0,
+    "drive_collide": 0.0,
+    "drive_wrong": 0.0,
+    "drive_ret": -85.74363179345521,
+    "drive_time_s": null,
+    "drive_runs": 20
+  },
+  "지도학습": {
+    "accuracy": 0.8061674008810573,
+    "regret": 1.4201138766519825,
+    "n": 454,
+    "drive_success": 0.95,
+    "drive_collide": 0.0,
+    "drive_wrong": 0.0,
+    "drive_ret": 25.009063947875692,
+    "drive_time_s": 30.63157894736842,
+    "drive_runs": 20
+  },
+  "강화학습": {
+    "accuracy": 0.7709251101321586,
+    "regret": 1.3902301762114544,
+    "n": 454,
+    "drive_success": 0.9,
+    "drive_collide": 0.0,
+    "drive_wrong": 0.0,
+    "drive_ret": 25.2616927788501,
+    "drive_time_s": 30.52777777777778,
+    "drive_runs": 20
+  }
+}

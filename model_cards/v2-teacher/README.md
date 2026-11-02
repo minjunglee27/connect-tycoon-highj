@@ -38,6 +38,7 @@ CONNECT AI LAB에서 로컬 AI와 강화학습 AI를 공부하고, 이를 실전
     - [`connectailab-rl-highj-goto-v1-link01`](https://huggingface.co/minjunglee27/connectailab-rl-highj-goto-v1-link01) · 장애물 회피 목표 자율주행
     - [`connectailab-rl-highj-choose-v1-link01`](https://huggingface.co/minjunglee27/connectailab-rl-highj-choose-v1-link01) · 단서 기반 다중 물건 선택 (성공률 100%)
     - [`connectailab-rl-highj-avoid-v1-link01`](https://huggingface.co/minjunglee27/connectailab-rl-highj-avoid-v1-link01) · 6대 장애물 회피 자율주행
+    - [`connectailab-rl-highj-follow-v1-link01`](https://huggingface.co/minjunglee27/connectailab-rl-highj-follow-v1-link01) · 급커브 S자 경로 추종 자율주행 (성공률 95%)
 - **강화학습 기초 및 정밀 제어 (멘토링 실습)**:
   - [`connectailab-rl-highj-lunarlander-v1`](https://huggingface.co/minjunglee27/connectailab-rl-highj-lunarlander-v1) · 267.9점 안정 착륙
   - [`connectailab-rl-highj-lunarlander-v2`](https://huggingface.co/minjunglee27/connectailab-rl-highj-lunarlander-v2) · 정중앙 정밀 착륙
